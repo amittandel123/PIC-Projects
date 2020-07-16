@@ -1,0 +1,183 @@
+[Header]
+MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
+Version=1.0
+[File000]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\main.p1
+Folder=Intermediary
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File001]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\OneWire.p1
+Folder=Intermediary
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File002]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\CMC_iButton.cof
+Folder=Output
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File003]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\CMC_iButton.hex
+Folder=Output
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File004]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\CMC_iButton.sym
+Folder=Output
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File005]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\CMC_iButton.map
+Folder=Output
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File006]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\CMC_iButton.hxl
+Folder=Output
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File007]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\startup.lst
+Folder=Output
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File008]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\startup.rlf
+Folder=Output
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File009]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\doprnt.p1
+Folder=Output
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File010]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\doprnt.pre
+Folder=Output
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File011]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\CMC_iButton.obj
+Folder=Output
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File012]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\CMC_iButton.lst
+Folder=Output
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File013]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\CMC_iButton.rlf
+Folder=Output
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File014]
+Location=D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\CMC_iButton.sdb
+Folder=Output
+DeviceName=PIC16F677
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|main.c|OneWire.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=

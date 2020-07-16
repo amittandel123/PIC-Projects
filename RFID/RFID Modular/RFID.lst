@@ -1,0 +1,2273 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.70 build 5239 
+                                                                                               Sat Nov 03 15:26:36 2012
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 5239
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 5239"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F690
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           ;COMMON:	_main->_Send_Command_LCD
+    43                           ;COMMON:	_Send_Command_LCD->_Delay
+    44                           ;BANK0:	_main->_Display_Data_LCD
+    45                           ;COMMON:	_Display_Data_LCD->_Display_Char_LCD
+    46                           ;COMMON:	_Display_Char_LCD->_Delay
+    47                           ;COMMON:	_main->_Display_Char_LCD
+    48                           ;COMMON:	_Display_Char_LCD->_Delay
+    49                           	FNCALL	_main,_Initialize_LCD
+    50                           	FNCALL	_main,_Send_Command_LCD
+    51                           	FNCALL	_main,_Delay
+    52                           	FNCALL	_main,_Display_Data_LCD
+    53                           	FNCALL	_main,_Serial_Init
+    54                           	FNCALL	_main,_Serial_Receive
+    55                           	FNCALL	_main,_Serial_Transmit
+    56                           	FNCALL	_main,_Clear_LCD
+    57                           	FNCALL	_main,_Display_Char_LCD
+    58                           	FNCALL	_Display_Data_LCD,_Display_Char_LCD
+    59                           	FNCALL	_Initialize_LCD,_Send_Command_LCD
+    60                           	FNCALL	_Initialize_LCD,_Delay
+    61                           	FNCALL	_Initialize_LCD,_Clear_LCD
+    62                           	FNCALL	_Serial_Transmit,_Send_Command_LCD
+    63                           	FNCALL	_Serial_Transmit,_Delay
+    64                           	FNCALL	_Serial_Transmit,_Display_Char_LCD
+    65                           	FNCALL	_Display_Char_LCD,_Delay
+    66                           	FNCALL	_Clear_LCD,_Send_Command_LCD
+    67                           	FNCALL	_Clear_LCD,_Delay
+    68                           	FNCALL	_Send_Command_LCD,_Delay
+    69                           	FNROOT	_main
+    70                           	global	_Recd_bit
+    71                           	global	_u
+    72                           	global	_ADCON0
+    73                           psect	text70,local,class=CODE,delta=2
+    74                           global __ptext70
+    75  0677                     __ptext70:
+    76  001F                     _ADCON0  equ     31
+    77                           	global	_ADRESH
+    78  001E                     _ADRESH  equ     30
+    79                           	global	_CCP1CON
+    80  0017                     _CCP1CON  equ     23
+    81                           	global	_CCPR1H
+    82  0016                     _CCPR1H  equ     22
+    83                           	global	_CCPR1L
+    84  0015                     _CCPR1L  equ     21
+    85                           	global	_ECCPAS
+    86  001D                     _ECCPAS  equ     29
+    87                           	global	_FSR
+    88  0004                     _FSR  equ     4
+    89                           	global	_INDF
+    90  0000                     _INDF  equ     0
+    91                           	global	_INTCON
+    92  000B                     _INTCON  equ     11
+    93                           	global	_PCL
+    94  0002                     _PCL  equ     2
+    95                           	global	_PCLATH
+    96  000A                     _PCLATH  equ     10
+    97                           	global	_PIR1
+    98  000C                     _PIR1  equ     12
+    99                           	global	_PIR2
+   100  000D                     _PIR2  equ     13
+   101                           	global	_PORTA
+   102  0005                     _PORTA  equ     5
+   103                           	global	_PORTB
+   104  0006                     _PORTB  equ     6
+   105                           	global	_PORTC
+   106  0007                     _PORTC  equ     7
+   107                           	global	_PWM1CON
+   108  001C                     _PWM1CON  equ     28
+   109                           	global	_RCREG
+   110  001A                     _RCREG  equ     26
+   111                           	global	_RCSTA
+   112  0018                     _RCSTA  equ     24
+   113                           	global	_SSPBUF
+   114  0013                     _SSPBUF  equ     19
+   115                           	global	_SSPCON
+   116  0014                     _SSPCON  equ     20
+   117                           	global	_STATUS
+   118  0003                     _STATUS  equ     3
+   119                           	global	_T1CON
+   120  0010                     _T1CON  equ     16
+   121                           	global	_T2CON
+   122  0012                     _T2CON  equ     18
+   123                           	global	_TMR0
+   124  0001                     _TMR0  equ     1
+   125                           	global	_TMR1H
+   126  000F                     _TMR1H  equ     15
+   127                           	global	_TMR1L
+   128  000E                     _TMR1L  equ     14
+   129                           	global	_TMR2
+   130  0011                     _TMR2  equ     17
+   131                           	global	_TXREG
+   132  0019                     _TXREG  equ     25
+   133                           	global	_ADDEN
+   134  00C3                     _ADDEN  equ     195
+   135                           	global	_ADFM
+   136  00FF                     _ADFM  equ     255
+   137                           	global	_ADIF
+   138  0066                     _ADIF  equ     102
+   139                           	global	_ADON
+   140  00F8                     _ADON  equ     248
+   141                           	global	_C1IF
+   142  006D                     _C1IF  equ     109
+   143                           	global	_C2IF
+   144  006E                     _C2IF  equ     110
+   145                           	global	_CARRY
+   146  0018                     _CARRY  equ     24
+   147                           	global	_CCP1IF
+   148  0062                     _CCP1IF  equ     98
+   149                           	global	_CCP1M0
+   150  00B8                     _CCP1M0  equ     184
+   151                           	global	_CCP1M1
+   152  00B9                     _CCP1M1  equ     185
+   153                           	global	_CCP1M2
+   154  00BA                     _CCP1M2  equ     186
+   155                           	global	_CCP1M3
+   156  00BB                     _CCP1M3  equ     187
+   157                           	global	_CHS0
+   158  00FA                     _CHS0  equ     250
+   159                           	global	_CHS1
+   160  00FB                     _CHS1  equ     251
+   161                           	global	_CHS2
+   162  00FC                     _CHS2  equ     252
+   163                           	global	_CHS3
+   164  00FD                     _CHS3  equ     253
+   165                           	global	_CKP
+   166  00A4                     _CKP  equ     164
+   167                           	global	_CREN
+   168  00C4                     _CREN  equ     196
+   169                           	global	_DC
+   170  0019                     _DC  equ     25
+   171                           	global	_DC1B0
+   172  00BC                     _DC1B0  equ     188
+   173                           	global	_DC1B1
+   174  00BD                     _DC1B1  equ     189
+   175                           	global	_ECCPAS0
+   176  00EC                     _ECCPAS0  equ     236
+   177                           	global	_ECCPAS1
+   178  00ED                     _ECCPAS1  equ     237
+   179                           	global	_ECCPAS2
+   180  00EE                     _ECCPAS2  equ     238
+   181                           	global	_ECCPASE
+   182  00EF                     _ECCPASE  equ     239
+   183                           	global	_EEIF
+   184  006C                     _EEIF  equ     108
+   185                           	global	_FERR
+   186  00C2                     _FERR  equ     194
+   187                           	global	_GIE
+   188  005F                     _GIE  equ     95
+   189                           	global	_GODONE
+   190  00F9                     _GODONE  equ     249
+   191                           	global	_INTE
+   192  005C                     _INTE  equ     92
+   193                           	global	_INTF
+   194  0059                     _INTF  equ     89
+   195                           	global	_IRP
+   196  001F                     _IRP  equ     31
+   197                           	global	_OERR
+   198  00C1                     _OERR  equ     193
+   199                           	global	_OSFIF
+   200  006F                     _OSFIF  equ     111
+   201                           	global	_P1M0
+   202  00BE                     _P1M0  equ     190
+   203                           	global	_P1M1
+   204  00BF                     _P1M1  equ     191
+   205                           	global	_PD
+   206  001B                     _PD  equ     27
+   207                           	global	_PDC0
+   208  00E0                     _PDC0  equ     224
+   209                           	global	_PDC1
+   210  00E1                     _PDC1  equ     225
+   211                           	global	_PDC2
+   212  00E2                     _PDC2  equ     226
+   213                           	global	_PDC3
+   214  00E3                     _PDC3  equ     227
+   215                           	global	_PDC4
+   216  00E4                     _PDC4  equ     228
+   217                           	global	_PDC5
+   218  00E5                     _PDC5  equ     229
+   219                           	global	_PDC6
+   220  00E6                     _PDC6  equ     230
+   221                           	global	_PEIE
+   222  005E                     _PEIE  equ     94
+   223                           	global	_PRSEN
+   224  00E7                     _PRSEN  equ     231
+   225                           	global	_PSSAC0
+   226  00EA                     _PSSAC0  equ     234
+   227                           	global	_PSSAC1
+   228  00EB                     _PSSAC1  equ     235
+   229                           	global	_PSSBD0
+   230  00E8                     _PSSBD0  equ     232
+   231                           	global	_PSSBD1
+   232  00E9                     _PSSBD1  equ     233
+   233                           	global	_RA0
+   234  0028                     _RA0  equ     40
+   235+                          	global	_RA1
+   236+ 0029                     _RA1  equ     41
+   237                           	global	_RA2
+   238  002A                     _RA2  equ     42
+   239+                          	global	_RA3
+   240+ 002B                     _RA3  equ     43
+   241+                          	global	_RA4
+   242+ 002C                     _RA4  equ     44
+   243+                          	global	_RA5
+   244+ 002D                     _RA5  equ     45
+   245+                          	global	_RABIE
+   246+ 005B                     _RABIE  equ     91
+   247+                          	global	_RABIF
+   248+ 0058                     _RABIF  equ     88
+   249                           	global	_RB4
+   250  0034                     _RB4  equ     52
+   251                           	global	_RB5
+   252  0035                     _RB5  equ     53
+   253+                          	global	_RB6
+   254+ 0036                     _RB6  equ     54
+   255+                          	global	_RB7
+   256+ 0037                     _RB7  equ     55
+   257+                          	global	_RBIE
+   258+ 005B                     _RBIE  equ     91
+   259+                          	global	_RBIF
+   260+ 0058                     _RBIF  equ     88
+   261                           	global	_RC0
+   262  0038                     _RC0  equ     56
+   263+                          	global	_RC1
+   264+ 0039                     _RC1  equ     57
+   265                           	global	_RC2
+   266  003A                     _RC2  equ     58
+   267+                          	global	_RC3
+   268+ 003B                     _RC3  equ     59
+   269+                          	global	_RC4
+   270+ 003C                     _RC4  equ     60
+   271+                          	global	_RC5
+   272+ 003D                     _RC5  equ     61
+   273+                          	global	_RC6
+   274+ 003E                     _RC6  equ     62
+   275+                          	global	_RC7
+   276+ 003F                     _RC7  equ     63
+   277                           	global	_RCIF
+   278  0065                     _RCIF  equ     101
+   279+                          	global	_RP0
+   280+ 001D                     _RP0  equ     29
+   281+                          	global	_RP1
+   282+ 001E                     _RP1  equ     30
+   283+                          	global	_RX9
+   284+ 00C6                     _RX9  equ     198
+   285+                          	global	_RX9D
+   286+ 00C0                     _RX9D  equ     192
+   287+                          	global	_SPEN
+   288+ 00C7                     _SPEN  equ     199
+   289                           	global	_SREN
+   290  00C5                     _SREN  equ     197
+   291+                          	global	_SSPEN
+   292+ 00A5                     _SSPEN  equ     165
+   293                           	global	_SSPIF
+   294  0063                     _SSPIF  equ     99
+   295+                          	global	_SSPM0
+   296+ 00A0                     _SSPM0  equ     160
+   297+                          	global	_SSPM1
+   298+ 00A1                     _SSPM1  equ     161
+   299+                          	global	_SSPM2
+   300+ 00A2                     _SSPM2  equ     162
+   301+                          	global	_SSPM3
+   302+ 00A3                     _SSPM3  equ     163
+   303+                          	global	_SSPOV
+   304+ 00A6                     _SSPOV  equ     166
+   305                           	global	_T0IE
+   306  005D                     _T0IE  equ     93
+   307+                          	global	_T0IF
+   308+ 005A                     _T0IF  equ     90
+   309+                          	global	_T1CKPS0
+   310+ 0084                     _T1CKPS0  equ     132
+   311+                          	global	_T1CKPS1
+   312+ 0085                     _T1CKPS1  equ     133
+   313+                          	global	_T1GINV
+   314+ 0087                     _T1GINV  equ     135
+   315+                          	global	_T1OSCEN
+   316+ 0083                     _T1OSCEN  equ     131
+   317                           	global	_T1SYNC
+   318  0082                     _T1SYNC  equ     130
+   319+                          	global	_T2CKPS0
+   320+ 0090                     _T2CKPS0  equ     144
+   321                           	global	_T2CKPS1
+   322  0091                     _T2CKPS1  equ     145
+   323+                          	global	_TMR1CS
+   324+ 0081                     _TMR1CS  equ     129
+   325+                          	global	_TMR1GE
+   326+ 0086                     _TMR1GE  equ     134
+   327+                          	global	_TMR1IF
+   328+ 0060                     _TMR1IF  equ     96
+   329+                          	global	_TMR1ON
+   330+ 0080                     _TMR1ON  equ     128
+   331+                          	global	_TMR2IF
+   332+ 0061                     _TMR2IF  equ     97
+   333                           	global	_TMR2ON
+   334  0092                     _TMR2ON  equ     146
+   335+                          	global	_TO
+   336+ 001C                     _TO  equ     28
+   337+                          	global	_TOUTPS0
+   338+ 0093                     _TOUTPS0  equ     147
+   339+                          	global	_TOUTPS1
+   340+ 0094                     _TOUTPS1  equ     148
+   341+                          	global	_TOUTPS2
+   342+ 0095                     _TOUTPS2  equ     149
+   343+                          	global	_TOUTPS3
+   344+ 0096                     _TOUTPS3  equ     150
+   345                           	global	_TXIF
+   346  0064                     _TXIF  equ     100
+   347+                          	global	_VCFG
+   348+ 00FE                     _VCFG  equ     254
+   349                           	global	_WCOL
+   350  00A7                     _WCOL  equ     167
+   351+                          	global	_ZERO
+   352+ 001A                     _ZERO  equ     26
+   353+                          	global	_ADCON1
+   354+ 009F                     _ADCON1  equ     159
+   355+                          	global	_ADRESL
+   356+ 009E                     _ADRESL  equ     158
+   357+                          	global	_BAUDCTL
+   358+ 009B                     _BAUDCTL  equ     155
+   359+                          	global	_IOCA
+   360+ 0096                     _IOCA  equ     150
+   361                           	global	_OPTION
+   362  0081                     _OPTION  equ     129
+   363+                          	global	_OSCCON
+   364+ 008F                     _OSCCON  equ     143
+   365+                          	global	_OSCTUNE
+   366+ 0090                     _OSCTUNE  equ     144
+   367+                          	global	_PCON
+   368+ 008E                     _PCON  equ     142
+   369                           	global	_PIE1
+   370  008C                     _PIE1  equ     140
+   371+                          	global	_PIE2
+   372+ 008D                     _PIE2  equ     141
+   373                           	global	_PR2
+   374  0092                     _PR2  equ     146
+   375+                          	global	_SPBRG
+   376+ 0099                     _SPBRG  equ     153
+   377                           	global	_SPBRGH
+   378  009A                     _SPBRGH  equ     154
+   379+                          	global	_SSPADD
+   380+ 0093                     _SSPADD  equ     147
+   381+                          	global	_SSPMSK
+   382+ 0093                     _SSPMSK  equ     147
+   383+                          	global	_SSPSTAT
+   384+ 0094                     _SSPSTAT  equ     148
+   385+                          	global	_TRISA
+   386+ 0085                     _TRISA  equ     133
+   387+                          	global	_TRISB
+   388+ 0086                     _TRISB  equ     134
+   389                           	global	_TRISC
+   390  0087                     _TRISC  equ     135
+   391                           	global	_TXSTA
+   392  0098                     _TXSTA  equ     152
+   393+                          	global	_WDTCON
+   394+ 0097                     _WDTCON  equ     151
+   395+                          	global	_WPUA
+   396+ 0095                     _WPUA  equ     149
+   397                           	global	_ABDEN
+   398  04D8                     _ABDEN  equ     1240
+   399+                          	global	_ABDOVF
+   400+ 04DF                     _ABDOVF  equ     1247
+   401                           	global	_ADCS0
+   402  04FC                     _ADCS0  equ     1276
+   403+                          	global	_ADCS1
+   404+ 04FD                     _ADCS1  equ     1277
+   405                           	global	_ADCS2
+   406  04FE                     _ADCS2  equ     1278
+   407+                          	global	_ADIE
+   408+ 0466                     _ADIE  equ     1126
+   409+                          	global	_BF
+   410+ 04A0                     _BF  equ     1184
+   411+                          	global	_BOR
+   412+ 0470                     _BOR  equ     1136
+   413+                          	global	_BRG0
+   414+ 04C8                     _BRG0  equ     1224
+   415+                          	global	_BRG1
+   416+ 04C9                     _BRG1  equ     1225
+   417                           	global	_BRG10
+   418  04D2                     _BRG10  equ     1234
+   419+                          	global	_BRG11
+   420+ 04D3                     _BRG11  equ     1235
+   421+                          	global	_BRG12
+   422+ 04D4                     _BRG12  equ     1236
+   423+                          	global	_BRG13
+   424+ 04D5                     _BRG13  equ     1237
+   425+                          	global	_BRG14
+   426+ 04D6                     _BRG14  equ     1238
+   427+                          	global	_BRG15
+   428+ 04D7                     _BRG15  equ     1239
+   429                           	global	_BRG16
+   430  04DB                     _BRG16  equ     1243
+   431+                          	global	_BRG2
+   432+ 04CA                     _BRG2  equ     1226
+   433                           	global	_BRG3
+   434  04CB                     _BRG3  equ     1227
+   435+                          	global	_BRG4
+   436+ 04CC                     _BRG4  equ     1228
+   437                           	global	_BRG5
+   438  04CD                     _BRG5  equ     1229
+   439+                          	global	_BRG6
+   440+ 04CE                     _BRG6  equ     1230
+   441                           	global	_BRG7
+   442  04CF                     _BRG7  equ     1231
+   443+                          	global	_BRG8
+   444+ 04D0                     _BRG8  equ     1232
+   445+                          	global	_BRG9
+   446+ 04D1                     _BRG9  equ     1233
+   447+                          	global	_BRGH
+   448+ 04C2                     _BRGH  equ     1218
+   449+                          	global	_C1IE
+   450+ 046D                     _C1IE  equ     1133
+   451+                          	global	_C2IE
+   452+ 046E                     _C2IE  equ     1134
+   453+                          	global	_CCP1IE
+   454+ 0462                     _CCP1IE  equ     1122
+   455+                          	global	_CKE
+   456+ 04A6                     _CKE  equ     1190
+   457                           	global	_CSRC
+   458  04C7                     _CSRC  equ     1223
+   459+                          	global	_DA
+   460+ 04A5                     _DA  equ     1189
+   461+                          	global	_EEIE
+   462+ 046C                     _EEIE  equ     1132
+   463+                          	global	_HTS
+   464+ 047A                     _HTS  equ     1146
+   465+                          	global	_INTEDG
+   466+ 040E                     _INTEDG  equ     1038
+   467+                          	global	_IOCA0
+   468+ 04B0                     _IOCA0  equ     1200
+   469                           	global	_IOCA1
+   470  04B1                     _IOCA1  equ     1201
+   471+                          	global	_IOCA2
+   472+ 04B2                     _IOCA2  equ     1202
+   473                           	global	_IOCA3
+   474  04B3                     _IOCA3  equ     1203
+   475+                          	global	_IOCA4
+   476+ 04B4                     _IOCA4  equ     1204
+   477+                          	global	_IOCA5
+   478+ 04B5                     _IOCA5  equ     1205
+   479+                          	global	_IRCF0
+   480+ 047C                     _IRCF0  equ     1148
+   481+                          	global	_IRCF1
+   482+ 047D                     _IRCF1  equ     1149
+   483+                          	global	_IRCF2
+   484+ 047E                     _IRCF2  equ     1150
+   485                           	global	_LTS
+   486  0479                     _LTS  equ     1145
+   487+                          	global	_OSFIE
+   488+ 046F                     _OSFIE  equ     1135
+   489+                          	global	_OSTS
+   490+ 047B                     _OSTS  equ     1147
+   491+                          	global	_POR
+   492+ 0471                     _POR  equ     1137
+   493+                          	global	_PS0
+   494+ 0408                     _PS0  equ     1032
+   495+                          	global	_PS1
+   496+ 0409                     _PS1  equ     1033
+   497                           	global	_PS2
+   498  040A                     _PS2  equ     1034
+   499+                          	global	_PSA
+   500+ 040B                     _PSA  equ     1035
+   501                           	global	_RABPU
+   502  040F                     _RABPU  equ     1039
+   503+                          	global	_RBPU
+   504+ 040F                     _RBPU  equ     1039
+   505+                          	global	_RCIDL
+   506+ 04DE                     _RCIDL  equ     1246
+   507+                          	global	_RCIE
+   508+ 0465                     _RCIE  equ     1125
+   509+                          	global	_RW
+   510+ 04A2                     _RW  equ     1186
+   511+                          	global	_SBOREN
+   512+ 0474                     _SBOREN  equ     1140
+   513                           	global	_SCKP
+   514  04DC                     _SCKP  equ     1244
+   515+                          	global	_SCS
+   516+ 0478                     _SCS  equ     1144
+   517+                          	global	_SENDB
+   518+ 04C3                     _SENDB  equ     1219
+   519+                          	global	_SMP
+   520+ 04A7                     _SMP  equ     1191
+   521+                          	global	_SSPIE
+   522+ 0463                     _SSPIE  equ     1123
+   523+                          	global	_START
+   524+ 04A3                     _START  equ     1187
+   525                           	global	_STOP
+   526  04A4                     _STOP  equ     1188
+   527+                          	global	_SWDTEN
+   528+ 04B8                     _SWDTEN  equ     1208
+   529                           	global	_SYNC
+   530  04C4                     _SYNC  equ     1220
+   531+                          	global	_T0CS
+   532+ 040D                     _T0CS  equ     1037
+   533+                          	global	_T0SE
+   534+ 040C                     _T0SE  equ     1036
+   535+                          	global	_TMR1IE
+   536+ 0460                     _TMR1IE  equ     1120
+   537+                          	global	_TMR2IE
+   538+ 0461                     _TMR2IE  equ     1121
+   539+                          	global	_TRISA0
+   540+ 0428                     _TRISA0  equ     1064
+   541                           	global	_TRISA1
+   542  0429                     _TRISA1  equ     1065
+   543                           	global	_TRISA2
+   544  042A                     _TRISA2  equ     1066
+   545+                          	global	_TRISA3
+   546+ 042B                     _TRISA3  equ     1067
+   547                           	global	_TRISA4
+   548  042C                     _TRISA4  equ     1068
+   549                           	global	_TRISA5
+   550  042D                     _TRISA5  equ     1069
+   551+                          	global	_TRISB4
+   552+ 0434                     _TRISB4  equ     1076
+   553                           	global	_TRISB5
+   554  0435                     _TRISB5  equ     1077
+   555+                          	global	_TRISB6
+   556+ 0436                     _TRISB6  equ     1078
+   557                           	global	_TRISB7
+   558  0437                     _TRISB7  equ     1079
+   559+                          	global	_TRISC0
+   560+ 0438                     _TRISC0  equ     1080
+   561+                          	global	_TRISC1
+   562+ 0439                     _TRISC1  equ     1081
+   563+                          	global	_TRISC2
+   564+ 043A                     _TRISC2  equ     1082
+   565+                          	global	_TRISC3
+   566+ 043B                     _TRISC3  equ     1083
+   567+                          	global	_TRISC4
+   568+ 043C                     _TRISC4  equ     1084
+   569                           	global	_TRISC5
+   570  043D                     _TRISC5  equ     1085
+   571                           	global	_TRISC6
+   572  043E                     _TRISC6  equ     1086
+   573+                          	global	_TRISC7
+   574+ 043F                     _TRISC7  equ     1087
+   575+                          	global	_TRMT
+   576+ 04C1                     _TRMT  equ     1217
+   577+                          	global	_TUN0
+   578+ 0480                     _TUN0  equ     1152
+   579+                          	global	_TUN1
+   580+ 0481                     _TUN1  equ     1153
+   581                           	global	_TUN2
+   582  0482                     _TUN2  equ     1154
+   583+                          	global	_TUN3
+   584+ 0483                     _TUN3  equ     1155
+   585                           	global	_TUN4
+   586  0484                     _TUN4  equ     1156
+   587+                          	global	_TX9
+   588+ 04C6                     _TX9  equ     1222
+   589+                          	global	_TX9D
+   590+ 04C0                     _TX9D  equ     1216
+   591+                          	global	_TXEN
+   592+ 04C5                     _TXEN  equ     1221
+   593+                          	global	_TXIE
+   594+ 0464                     _TXIE  equ     1124
+   595+                          	global	_UA
+   596+ 04A1                     _UA  equ     1185
+   597                           	global	_ULPWUE
+   598  0475                     _ULPWUE  equ     1141
+   599+                          	global	_WDTPS0
+   600+ 04B9                     _WDTPS0  equ     1209
+   601+                          	global	_WDTPS1
+   602+ 04BA                     _WDTPS1  equ     1210
+   603+                          	global	_WDTPS2
+   604+ 04BB                     _WDTPS2  equ     1211
+   605+                          	global	_WDTPS3
+   606+ 04BC                     _WDTPS3  equ     1212
+   607+                          	global	_WPUA0
+   608+ 04A8                     _WPUA0  equ     1192
+   609                           	global	_WPUA1
+   610  04A9                     _WPUA1  equ     1193
+   611+                          	global	_WPUA2
+   612+ 04AA                     _WPUA2  equ     1194
+   613                           	global	_WPUA4
+   614  04AC                     _WPUA4  equ     1196
+   615+                          	global	_WPUA5
+   616+ 04AD                     _WPUA5  equ     1197
+   617+                          	global	_WUE
+   618+ 04D9                     _WUE  equ     1241
+   619+                          	global	_ANSEL
+   620+ 011E                     _ANSEL  equ     286
+   621+                          	global	_ANSELH
+   622+ 011F                     _ANSELH  equ     287
+   623+                          	global	_CM1CON0
+   624+ 0119                     _CM1CON0  equ     281
+   625                           	global	_CM2CON0
+   626  011A                     _CM2CON0  equ     282
+   627+                          	global	_CM2CON1
+   628+ 011B                     _CM2CON1  equ     283
+   629+                          	global	_EEADR
+   630+ 010D                     _EEADR  equ     269
+   631+                          	global	_EEADRH
+   632+ 010F                     _EEADRH  equ     271
+   633+                          	global	_EEADRL
+   634+ 010D                     _EEADRL  equ     269
+   635                           	global	_EEDAT
+   636  010C                     _EEDAT  equ     268
+   637                           	global	_EEDATA
+   638  010C                     _EEDATA  equ     268
+   639                           	global	_EEDATH
+   640  010E                     _EEDATH  equ     270
+   641                           	global	_EEDATL
+   642  010C                     _EEDATL  equ     268
+   643                           	global	_IOCB
+   644  0116                     _IOCB  equ     278
+   645                           	global	_VRCON
+   646  0118                     _VRCON  equ     280
+   647                           	global	_WPUB
+   648  0115                     _WPUB  equ     277
+   649                           	global	_ANS0
+   650  08F0                     _ANS0  equ     2288
+   651                           	global	_ANS1
+   652  08F1                     _ANS1  equ     2289
+   653                           	global	_ANS10
+   654  08FA                     _ANS10  equ     2298
+   655                           	global	_ANS11
+   656  08FB                     _ANS11  equ     2299
+   657                           	global	_ANS2
+   658  08F2                     _ANS2  equ     2290
+   659                           	global	_ANS3
+   660  08F3                     _ANS3  equ     2291
+   661                           	global	_ANS4
+   662  08F4                     _ANS4  equ     2292
+   663                           	global	_ANS5
+   664  08F5                     _ANS5  equ     2293
+   665                           	global	_ANS6
+   666  08F6                     _ANS6  equ     2294
+   667                           	global	_ANS7
+   668  08F7                     _ANS7  equ     2295
+   669                           	global	_ANS8
+   670  08F8                     _ANS8  equ     2296
+   671                           	global	_ANS9
+   672  08F9                     _ANS9  equ     2297
+   673                           	global	_C1CH0
+   674  08C8                     _C1CH0  equ     2248
+   675                           	global	_C1CH1
+   676  08C9                     _C1CH1  equ     2249
+   677                           	global	_C1OE
+   678  08CD                     _C1OE  equ     2253
+   679                           	global	_C1ON
+   680  08CF                     _C1ON  equ     2255
+   681                           	global	_C1OUT
+   682  08CE                     _C1OUT  equ     2254
+   683                           	global	_C1POL
+   684  08CC                     _C1POL  equ     2252
+   685                           	global	_C1R
+   686  08CA                     _C1R  equ     2250
+   687                           	global	_C1VREN
+   688  08C7                     _C1VREN  equ     2247
+   689                           	global	_C2CH0
+   690  08D0                     _C2CH0  equ     2256
+   691                           	global	_C2CH1
+   692  08D1                     _C2CH1  equ     2257
+   693                           	global	_C2OE
+   694  08D5                     _C2OE  equ     2261
+   695                           	global	_C2ON
+   696  08D7                     _C2ON  equ     2263
+   697                           	global	_C2OUT
+   698  08D6                     _C2OUT  equ     2262
+   699                           	global	_C2POL
+   700  08D4                     _C2POL  equ     2260
+   701                           	global	_C2R
+   702  08D2                     _C2R  equ     2258
+   703                           	global	_C2SYNC
+   704  08D8                     _C2SYNC  equ     2264
+   705                           	global	_C2VREN
+   706  08C6                     _C2VREN  equ     2246
+   707                           	global	_IOCB4
+   708  08B4                     _IOCB4  equ     2228
+   709                           	global	_IOCB5
+   710  08B5                     _IOCB5  equ     2229
+   711                           	global	_IOCB6
+   712  08B6                     _IOCB6  equ     2230
+   713                           	global	_IOCB7
+   714  08B7                     _IOCB7  equ     2231
+   715                           	global	_MC1OUT
+   716  08DF                     _MC1OUT  equ     2271
+   717                           	global	_MC2OUT
+   718  08DE                     _MC2OUT  equ     2270
+   719                           	global	_T1GSS
+   720  08D9                     _T1GSS  equ     2265
+   721                           	global	_VP6EN
+   722  08C4                     _VP6EN  equ     2244
+   723                           	global	_VR0
+   724  08C0                     _VR0  equ     2240
+   725                           	global	_VR1
+   726  08C1                     _VR1  equ     2241
+   727                           	global	_VR2
+   728  08C2                     _VR2  equ     2242
+   729                           	global	_VR3
+   730  08C3                     _VR3  equ     2243
+   731                           	global	_VRR
+   732  08C5                     _VRR  equ     2245
+   733                           	global	_WPUB4
+   734  08AC                     _WPUB4  equ     2220
+   735                           	global	_WPUB5
+   736  08AD                     _WPUB5  equ     2221
+   737                           	global	_WPUB6
+   738  08AE                     _WPUB6  equ     2222
+   739                           	global	_WPUB7
+   740  08AF                     _WPUB7  equ     2223
+   741                           	global	_EECON1
+   742  018C                     _EECON1  equ     396
+   743                           	global	_EECON2
+   744  018D                     _EECON2  equ     397
+   745                           	global	_PSTRCON
+   746  019D                     _PSTRCON  equ     413
+   747                           	global	_SRCON
+   748  019E                     _SRCON  equ     414
+   749                           	global	_C1SEN
+   750  0CF5                     _C1SEN  equ     3317
+   751                           	global	_C2REN
+   752  0CF4                     _C2REN  equ     3316
+   753                           	global	_EEPGD
+   754  0C67                     _EEPGD  equ     3175
+   755                           	global	_PULSR
+   756  0CF2                     _PULSR  equ     3314
+   757                           	global	_PULSS
+   758  0CF3                     _PULSS  equ     3315
+   759                           	global	_RD
+   760  0C60                     _RD  equ     3168
+   761                           	global	_SR0
+   762  0CF6                     _SR0  equ     3318
+   763                           	global	_SR1
+   764  0CF7                     _SR1  equ     3319
+   765                           	global	_STRA
+   766  0CE8                     _STRA  equ     3304
+   767                           	global	_STRB
+   768  0CE9                     _STRB  equ     3305
+   769                           	global	_STRC
+   770  0CEA                     _STRC  equ     3306
+   771                           	global	_STRD
+   772  0CEB                     _STRD  equ     3307
+   773                           	global	_STRSYNC
+   774  0CEC                     _STRSYNC  equ     3308
+   775                           	global	_WR
+   776  0C61                     _WR  equ     3169
+   777                           	global	_WREN
+   778  0C62                     _WREN  equ     3170
+   779                           	global	_WRERR
+   780  0C63                     _WRERR  equ     3171
+   781                           psect	strings,class=CODE,delta=2,reloc=256
+   782                           global __pstrings
+   783  0600                     __pstrings:
+   784                           	global	stringdir,stringtab,__stringbase,stringjmp
+   785  0600                     stringtab:
+   786                           ;	String table - string pointers are 1 byte each
+   787  0600  00FE               	movwf	(btemp)&07Fh
+   788  0601  1FFE               	btfss	(btemp)&07Fh,7
+   789  0602  2E08               	goto	stringcode
+   790  0603  1383               	bcf	status,7
+   791  0604  187E               	btfsc	btemp&7Fh,0
+   792  0605  1783               	bsf	status,7
+   793  0606  0800               	movf	indf,w
+   794  0607  0008               	return
+   795  0608                     stringcode:
+   796  0608  0804               	movf	fsr,w
+   797  0609                     stringdir:
+   798  0609  00FE               movwf btemp&07Fh
+   799  060A  3006               movlw high(stringdir)
+   800  060B  008A               movwf pclath
+   801  060C  087E               movf btemp&07Fh,w
+   802  060D                     stringjmp:
+   803  060D  0782               	addwf pc
+   804  060E                     __stringbase:
+   805  060E  3400               	retlw	0
+   806                           psect	strings
+   807                           	
+   808  060F                     STR_1:	
+   809  060F  344C               	retlw	76	;'L'
+   810  0610  3443               	retlw	67	;'C'
+   811  0611  3444               	retlw	68	;'D'
+   812  0612  3420               	retlw	32	;' '
+   813  0613  3469               	retlw	105	;'i'
+   814  0614  3473               	retlw	115	;'s'
+   815  0615  3420               	retlw	32	;' '
+   816  0616  3452               	retlw	82	;'R'
+   817  0617  3465               	retlw	101	;'e'
+   818  0618  3461               	retlw	97	;'a'
+   819  0619  3464               	retlw	100	;'d'
+   820  061A  3479               	retlw	121	;'y'
+   821  061B  3400               	retlw	0
+   822                           psect	strings
+   823                           	file	"RFID.as"
+   824                           	line	#
+   825                           psect cinit,class=CODE,delta=2
+   826                           global start_initialization
+   827  0672                     start_initialization:
+   828                           
+   829                           psect	bssCOMMON,class=COMMON,space=1
+   830                           global __pbssCOMMON
+   831  0079                     __pbssCOMMON:
+   832  0079                     _Recd_bit:
+   833  0079                            ds      1
+   834                           
+   835  007A                     _u:
+   836  007A                            ds      1
+   837                           
+   838                           ; Clear objects allocated to COMMON
+   839                           psect cinit,class=CODE,delta=2
+   840  0672  01F9               	clrf	((__pbssCOMMON)+0)&07Fh
+   841  0673  01FA               	clrf	((__pbssCOMMON)+1)&07Fh
+   842                           psect cinit,class=CODE,delta=2
+   843                           global end_of_initialization
+   844                           
+   845                           ;End of C runtime variable initationation code
+   846                           
+   847  0674                     end_of_initialization:
+   848  0674  0183               clrf status
+   849  0675  118A  2F8B         ljmp _main	;jump to C main() function
+   850                           psect	cstackCOMMON,class=COMMON,space=1
+   851                           global __pcstackCOMMON
+   852  0070                     __pcstackCOMMON:
+   853                           	global	?_Serial_Init
+   854  0070                     ?_Serial_Init: ;@ 0x0
+   855                           	global	??_Serial_Init
+   856  0070                     ??_Serial_Init: ;@ 0x0
+   857                           	global	??_Delay
+   858  0070                     ??_Delay: ;@ 0x0
+   859                           	global	??_Serial_Receive
+   860  0070                     ??_Serial_Receive: ;@ 0x0
+   861                           	global	Serial_Receive@temp
+   862  0070                     Serial_Receive@temp:	; 1 bytes @ 0x0
+   863  0070                     	ds	1
+   864                           	global	?_Serial_Receive
+   865  0071                     ?_Serial_Receive: ;@ 0x1
+   866  0071                     	ds	1
+   867                           	global	??_Initialize_LCD
+   868  0072                     ??_Initialize_LCD: ;@ 0x2
+   869                           	global	??_Send_Command_LCD
+   870  0072                     ??_Send_Command_LCD: ;@ 0x2
+   871                           	global	??_Serial_Transmit
+   872  0072                     ??_Serial_Transmit: ;@ 0x2
+   873                           	global	??_Display_Char_LCD
+   874  0072                     ??_Display_Char_LCD: ;@ 0x2
+   875                           	global	??_Clear_LCD
+   876  0072                     ??_Clear_LCD: ;@ 0x2
+   877                           	global	??_Display_Data_LCD
+   878  0072                     ??_Display_Data_LCD: ;@ 0x2
+   879                           	global	Delay@val
+   880  0072                     Delay@val:	; 1 bytes @ 0x2
+   881  0072                     	ds	1
+   882                           	global	Delay@u
+   883  0073                     Delay@u:	; 2 bytes @ 0x3
+   884  0073                     	ds	2
+   885                           	global	Delay@v
+   886  0075                     Delay@v:	; 2 bytes @ 0x5
+   887  0075                     	ds	2
+   888                           	global	?_Delay
+   889  0077                     ?_Delay: ;@ 0x7
+   890                           	global	Display_Char_LCD@a
+   891  0077                     Display_Char_LCD@a:	; 1 bytes @ 0x7
+   892                           	global	Send_Command_LCD@comd
+   893  0077                     Send_Command_LCD@comd:	; 1 bytes @ 0x7
+   894  0077                     	ds	1
+   895                           	global	?_Send_Command_LCD
+   896  0078                     ?_Send_Command_LCD: ;@ 0x8
+   897                           	global	?_Clear_LCD
+   898  0078                     ?_Clear_LCD: ;@ 0x8
+   899                           	global	?_Initialize_LCD
+   900  0078                     ?_Initialize_LCD: ;@ 0x8
+   901                           	global	?_Display_Data_LCD
+   902  0078                     ?_Display_Data_LCD: ;@ 0x8
+   903                           	global	??_main
+   904  0078                     ??_main: ;@ 0x8
+   905                           	global	?_Serial_Transmit
+   906  0078                     ?_Serial_Transmit: ;@ 0x8
+   907                           	global	?_Display_Char_LCD
+   908  0078                     ?_Display_Char_LCD: ;@ 0x8
+   909  0078                     	ds	1
+   910                           	global	?_main
+   911  0079                     ?_main: ;@ 0x9
+   912                           psect	cstackBANK0,class=BANK0,space=1
+   913                           global __pcstackBANK0
+   914  0020                     __pcstackBANK0:
+   915                           	global	Serial_Transmit@data1
+   916  0020                     Serial_Transmit@data1:	; 1 bytes @ 0x0
+   917                           	global	Display_Data_LCD@mdata
+   918  0020                     Display_Data_LCD@mdata:	; 1 bytes @ 0x0
+   919  0020                     	ds	1
+   920                           	global	Display_Data_LCD@x
+   921  0021                     Display_Data_LCD@x:	; 2 bytes @ 0x1
+   922  0021                     	ds	2
+   923                           ;Data sizes: Strings 13, constant 0, data 0, bss 2, persistent 0 stack 0
+   924                           ;Auto spaces:   Size  Autos    Used
+   925                           ; COMMON          14      9      11
+   926                           ; BANK0           80      3       3
+   927                           ; BANK1           80      0       0
+   928                           ; BANK2           80      0       0
+   929                           
+   930                           
+   931                           ;Pointer list with targets:
+   932                           
+   933                           ;Display_Data_LCD@mdata	PTR unsigned char  size(1); Largest target is 13
+   934                           ;		 -> STR_1(CODE[13]), 
+   935                           
+   936                           
+   937                           ;Main: autosize = 0, tempsize = 1, incstack = 0, save=0
+   938                           
+   939                           
+   940                           ;Call graph:                      Base Space Used Autos Args Refs Density
+   941                           ;_main                                                1    0 1756   0.00
+   942                           ;                                    8 COMMO    1
+   943                           ;     _Initialize_LCD
+   944                           ;   _Send_Command_LCD
+   945                           ;              _Delay
+   946                           ;   _Display_Data_LCD
+   947                           ;        _Serial_Init
+   948                           ;     _Serial_Receive
+   949                           ;    _Serial_Transmit
+   950                           ;          _Clear_LCD
+   951                           ;   _Display_Char_LCD
+   952                           ;  _Serial_Init                                       0    0    0   0.00
+   953                           ;  _Display_Data_LCD                                  3    0  234   0.00
+   954                           ;                                    0 BANK0    3
+   955                           ;   _Display_Char_LCD
+   956                           ;  _Serial_Receive                                    1    0   10   0.00
+   957                           ;                                    0 COMMO    1
+   958                           ;  _Initialize_LCD                                    0    0  480   0.00
+   959                           ;   _Send_Command_LCD
+   960                           ;              _Delay
+   961                           ;          _Clear_LCD
+   962                           ;  _Serial_Transmit                                   1    0  420   0.00
+   963                           ;                                    0 BANK0    1
+   964                           ;   _Send_Command_LCD
+   965                           ;              _Delay
+   966                           ;   _Display_Char_LCD
+   967                           ;    _Display_Char_LCD                                1    0  132   0.00
+   968                           ;                                    7 COMMO    1
+   969                           ;              _Delay
+   970                           ;    _Clear_LCD                                       0    0  240   0.00
+   971                           ;   _Send_Command_LCD
+   972                           ;              _Delay
+   973                           ;      _Send_Command_LCD                              1    0  132   0.00
+   974                           ;                                    7 COMMO    1
+   975                           ;              _Delay
+   976                           ;        _Delay                                       7    0  108   0.00
+   977                           ;                                    0 COMMO    7
+   978                           ; Estimated maximum call depth 4
+   979                           ; Address spaces:
+   980                           
+   981                           ;Name               Size   Autos  Total    Cost      Usage
+   982                           ;BITCOMMON            E      0       0       0        0.0%
+   983                           ;CODE                 0      0       0       0        0.0%
+   984                           ;NULL                 0      0       0       0        0.0%
+   985                           ;COMMON               E      9       B       1       78.6%
+   986                           ;BITSFR0              0      0       0       1        0.0%
+   987                           ;SFR0                 0      0       0       1        0.0%
+   988                           ;SFR1                 0      0       0       2        0.0%
+   989                           ;BITSFR1              0      0       0       2        0.0%
+   990                           ;ABS                  0      0       E       2        0.0%
+   991                           ;STACK                0      0       0       3        0.0%
+   992                           ;BITBANK0            50      0       0       4        0.0%
+   993                           ;BITSFR3              0      0       0       4        0.0%
+   994                           ;SFR3                 0      0       0       4        0.0%
+   995                           ;BANK0               50      3       3       5        3.8%
+   996                           ;SFR2                 0      0       0       5        0.0%
+   997                           ;BITSFR2              0      0       0       5        0.0%
+   998                           ;BITBANK1            50      0       0       6        0.0%
+   999                           ;BANK1               50      0       0       7        0.0%
+  1000                           ;BITBANK2            50      0       0       8        0.0%
+  1001                           ;BANK2               50      0       0       9        0.0%
+  1002                           ;DATA                 0      0       E      10        0.0%
+  1003                           ;EEDATA             100      0       0    1000        0.0%
+  1004                           
+  1005                           	global	_main
+  1006                           psect	maintext,local,class=CODE,delta=2
+  1007                           global __pmaintext
+  1008  078B                     __pmaintext:
+  1009                           
+  1010                           ; *************** function _main *****************
+  1011                           ; Defined at:
+  1012                           ;		line 8 in file "D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\main.c"
+  1013                           ; Parameters:    Size  Location     Type
+  1014                           ;		None
+  1015                           ; Auto vars:     Size  Location     Type
+  1016                           ;		None
+  1017                           ; Return value:  Size  Location     Type
+  1018                           ;		None               void
+  1019                           ; Registers used:
+  1020                           ;		wreg, fsr0l, fsr0h, fsr1l, fsr1h, status,2, status,0, btemp+0, btemp+1, btemp+2, btem
+                                 p+3, pclath, cstack
+  1021                           ; Tracked objects:
+  1022                           ;		On entry : 17F/0
+  1023                           ;		On exit  : 0/0
+  1024                           ;		Unchanged: 0/0
+  1025                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1026                           ;      Locals:         1       0       0       0
+  1027                           ;      Temp:     1
+  1028                           ;      Total:    1
+  1029                           ; This function calls:
+  1030                           ;		_Initialize_LCD
+  1031                           ;		_Send_Command_LCD
+  1032                           ;		_Delay
+  1033                           ;		_Display_Data_LCD
+  1034                           ;		_Serial_Init
+  1035                           ;		_Serial_Receive
+  1036                           ;		_Serial_Transmit
+  1037                           ;		_Clear_LCD
+  1038                           ;		_Display_Char_LCD
+  1039                           ; This function is called by:
+  1040                           ;		Startup code after reset
+  1041                           ; This function uses a non-reentrant model
+  1042                           ; 
+  1043                           psect	maintext
+  1044                           	file	"D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\main.c"
+  1045                           	line	8
+  1046                           	global	__size_of_main
+  1047  0075                     	__size_of_main	equ	__end_of_main-_main
+  1048                           ;main.c: 7: void main()
+  1049                           ;main.c: 8: {
+  1050                           	
+  1051  078B                     _main:	
+  1052                           	opt stack 7
+  1053                           ; Regs used in _main: [allreg]
+  1054                           	line	9
+  1055                           	
+  1056  078B                     l30001287:	
+  1057                           ;main.c: 9: ANSEL=0x00;
+  1058  078B  1003               	clrc
+  1059  078C  3000               	movlw	0
+  1060  078D  1803               	btfsc	status,0
+  1061  078E  3001               	movlw	1
+  1062  078F  1283               	bcf	status, 5	;RP0=0, select bank2
+  1063  0790  1703               	bsf	status, 6	;RP1=1, select bank2
+  1064  0791  009E               	movwf	(286)^0100h
+  1065                           	line	10
+  1066                           ;main.c: 10: ANSELH=0x00;
+  1067  0792  1003               	clrc
+  1068  0793  3000               	movlw	0
+  1069  0794  1803               	btfsc	status,0
+  1070  0795  3001               	movlw	1
+  1071  0796  009F               	movwf	(287)^0100h
+  1072                           	line	11
+  1073                           ;main.c: 11: TRISA=0x00;
+  1074  0797  1003               	clrc
+  1075  0798  3000               	movlw	0
+  1076  0799  1803               	btfsc	status,0
+  1077  079A  3001               	movlw	1
+  1078  079B  1683               	bsf	status, 5	;RP0=1, select bank1
+  1079  079C  1303               	bcf	status, 6	;RP1=0, select bank1
+  1080  079D  0085               	movwf	(133)^080h	;volatile
+  1081                           	line	12
+  1082                           ;main.c: 12: TRISB=0x00;
+  1083  079E  1003               	clrc
+  1084  079F  3000               	movlw	0
+  1085  07A0  1803               	btfsc	status,0
+  1086  07A1  3001               	movlw	1
+  1087  07A2  0086               	movwf	(134)^080h	;volatile
+  1088                           	line	13
+  1089                           ;main.c: 13: TRISC=0x00;
+  1090  07A3  1003               	clrc
+  1091  07A4  3000               	movlw	0
+  1092  07A5  1803               	btfsc	status,0
+  1093  07A6  3001               	movlw	1
+  1094  07A7  0087               	movwf	(135)^080h	;volatile
+  1095                           	
+  1096  07A8                     l30001288:	
+  1097                           	line	14
+  1098                           ;main.c: 14: Initialize_LCD();
+  1099  07A8  118A  271E  118A   	fcall	_Initialize_LCD
+  1100                           	
+  1101  07AB                     l30001289:	
+  1102                           	line	15
+  1103                           ;main.c: 15: Send_Command_LCD(0x80);
+  1104  07AB  3080               	movlw	(080h)
+  1105  07AC  118A  2645  118A   	fcall	_Send_Command_LCD
+  1106                           	
+  1107  07AF                     l30001290:	
+  1108                           	line	16
+  1109                           ;main.c: 16: Delay(5);
+  1110  07AF  3005               	movlw	(05h)
+  1111  07B0  118A  275E  118A   	fcall	_Delay
+  1112                           	
+  1113  07B3                     l30001291:	
+  1114                           	line	17
+  1115                           ;main.c: 17: Display_Data_LCD("LCD is Ready");
+  1116  07B3  3001               	movlw	((STR_1-__stringbase))&0ffh
+  1117  07B4  118A  273B  118A   	fcall	_Display_Data_LCD
+  1118                           	
+  1119  07B7                     l30001292:	
+  1120                           	line	18
+  1121                           ;main.c: 18: Delay(5);
+  1122  07B7  3005               	movlw	(05h)
+  1123  07B8  118A  275E  118A   	fcall	_Delay
+  1124                           	
+  1125  07BB                     l30001293:	
+  1126                           	line	19
+  1127                           ;main.c: 19: Send_Command_LCD(0xC0);
+  1128  07BB  30C0               	movlw	(0C0h)
+  1129  07BC  118A  2645  118A   	fcall	_Send_Command_LCD
+  1130                           	
+  1131  07BF                     l30001294:	
+  1132                           	line	20
+  1133                           ;main.c: 20: Delay(5);
+  1134  07BF  3005               	movlw	(05h)
+  1135  07C0  118A  275E  118A   	fcall	_Delay
+  1136                           	
+  1137  07C3                     l30001295:	
+  1138                           	line	21
+  1139                           ;main.c: 21: Serial_Init();
+  1140  07C3  118A  2702  118A   	fcall	_Serial_Init
+  1141                           	line	22
+  1142                           ;main.c: 22: for(u=0;u<33;u++)
+  1143  07C6  1003               	clrc
+  1144  07C7  3000               	movlw	0
+  1145  07C8  1803               	btfsc	status,0
+  1146  07C9  3001               	movlw	1
+  1147  07CA  00FA               	movwf	(_u)
+  1148                           	
+  1149  07CB                     l30001298:	
+  1150                           	line	24
+  1151                           ;main.c: 23: {
+  1152                           ;main.c: 24: Recd_bit=Serial_Receive();
+  1153  07CB  118A  2665  118A   	fcall	_Serial_Receive
+  1154  07CE  00F9               	movwf	(_Recd_bit)
+  1155                           	line	25
+  1156                           ;main.c: 25: Serial_Transmit(Recd_bit);
+  1157  07CF  0879               	movf	(_Recd_bit),w
+  1158  07D0  118A  261C  118A   	fcall	_Serial_Transmit
+  1159                           	line	26
+  1160                           ;main.c: 26: Clear_LCD();
+  1161  07D3  118A  2634  118A   	fcall	_Clear_LCD
+  1162                           	line	27
+  1163                           ;main.c: 27: Send_Command_LCD(0x80);
+  1164  07D6  3080               	movlw	(080h)
+  1165  07D7  118A  2645  118A   	fcall	_Send_Command_LCD
+  1166                           	line	28
+  1167                           ;main.c: 28: Delay(5);
+  1168  07DA  3005               	movlw	(05h)
+  1169  07DB  118A  275E  118A   	fcall	_Delay
+  1170                           	line	29
+  1171                           ;main.c: 29: Display_Char_LCD(Recd_bit);
+  1172  07DE  0879               	movf	(_Recd_bit),w
+  1173  07DF  118A  2655  118A   	fcall	_Display_Char_LCD
+  1174                           	
+  1175  07E2                     l30001299:	
+  1176                           	line	30
+  1177                           ;main.c: 30: if(u>15)
+  1178  07E2  3010               	movlw	(010h)
+  1179  07E3  027A               	subwf	(_u),w
+  1180  07E4  1C03               	skipc
+  1181  07E5  2FE7               	goto	u151
+  1182  07E6  2FE8               	goto	u150
+  1183  07E7                     u151:
+  1184  07E7  2FF4               	goto	l30001301
+  1185  07E8                     u150:
+  1186                           	
+  1187  07E8                     l30001300:	
+  1188                           	line	32
+  1189                           ;main.c: 31: {
+  1190                           ;main.c: 32: Send_Command_LCD(0xC0);
+  1191  07E8  30C0               	movlw	(0C0h)
+  1192  07E9  118A  2645  118A   	fcall	_Send_Command_LCD
+  1193                           	line	33
+  1194                           ;main.c: 33: Delay(10);
+  1195  07EC  300A               	movlw	(0Ah)
+  1196  07ED  118A  275E  118A   	fcall	_Delay
+  1197                           	line	34
+  1198                           ;main.c: 34: Display_Char_LCD(Recd_bit);
+  1199  07F0  0879               	movf	(_Recd_bit),w
+  1200  07F1  118A  2655  118A   	fcall	_Display_Char_LCD
+  1201                           	
+  1202  07F4                     l30001301:	
+  1203                           	line	22
+  1204  07F4  3001               	movlw	(01h)
+  1205  07F5  00F8               	movwf	(??_main+0+0)
+  1206  07F6  0878               	movf	(??_main+0+0),w
+  1207  07F7  07FA               	addwf	(_u),f
+  1208                           	
+  1209  07F8                     l30001302:	
+  1210  07F8  3021               	movlw	(021h)
+  1211  07F9  027A               	subwf	(_u),w
+  1212  07FA  1C03               	skipc
+  1213  07FB  2FFD               	goto	u161
+  1214  07FC  2FFE               	goto	u160
+  1215  07FD                     u161:
+  1216  07FD  2FCB               	goto	l30001298
+  1217  07FE                     u160:
+  1218                           	
+  1219  07FE                     l17:	
+  1220                           	global	start
+  1221  07FE  118A  2800         	ljmp	start
+  1222                           	opt stack 0
+  1223                           GLOBAL	__end_of_main
+  1224  0800                     	__end_of_main:
+  1225                           ; =============== function _main ends ============
+  1226                           
+  1227                           psect	maintext
+  1228                           	line	37
+  1229                           	signat	_main,88
+  1230                           	global	_Serial_Init
+  1231                           psect	text71,local,class=CODE,delta=2
+  1232                           global __ptext71
+  1233  0702                     __ptext71:
+  1234                           
+  1235                           ; *************** function _Serial_Init *****************
+  1236                           ; Defined at:
+  1237                           ;		line 9 in file "D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\serial.c"
+  1238                           ; Parameters:    Size  Location     Type
+  1239                           ;		None
+  1240                           ; Auto vars:     Size  Location     Type
+  1241                           ;		None
+  1242                           ; Return value:  Size  Location     Type
+  1243                           ;		None               void
+  1244                           ; Registers used:
+  1245                           ;		wreg, status,2, status,0
+  1246                           ; Tracked objects:
+  1247                           ;		On entry : 0/0
+  1248                           ;		On exit  : 0/0
+  1249                           ;		Unchanged: 0/0
+  1250                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1251                           ;      Locals:         0       0       0       0
+  1252                           ;      Temp:     0
+  1253                           ;      Total:    0
+  1254                           ; This function calls:
+  1255                           ;		Nothing
+  1256                           ; This function is called by:
+  1257                           ;		_main
+  1258                           ; This function uses a non-reentrant model
+  1259                           ; 
+  1260                           psect	text71
+  1261                           	file	"D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\serial.c"
+  1262                           	line	9
+  1263                           	global	__size_of_Serial_Init
+  1264  001C                     	__size_of_Serial_Init	equ	__end_of_Serial_Init-_Serial_Init
+  1265                           ;serial.c: 8: void Serial_Init()
+  1266                           ;serial.c: 9: {
+  1267                           	
+  1268  0702                     _Serial_Init:	
+  1269                           	opt stack 6
+  1270                           ; Regs used in _Serial_Init: [wreg+status,2+status,0]
+  1271                           	line	10
+  1272                           	
+  1273  0702                     l30001216:	
+  1274                           ;serial.c: 10: ANSEL=0;
+  1275  0702  1003               	clrc
+  1276  0703  3000               	movlw	0
+  1277  0704  1803               	btfsc	status,0
+  1278  0705  3001               	movlw	1
+  1279  0706  1283               	bcf	status, 5	;RP0=0, select bank2
+  1280  0707  1703               	bsf	status, 6	;RP1=1, select bank2
+  1281  0708  009E               	movwf	(286)^0100h
+  1282                           	line	11
+  1283                           ;serial.c: 11: ANSELH=0;
+  1284  0709  1003               	clrc
+  1285  070A  3000               	movlw	0
+  1286  070B  1803               	btfsc	status,0
+  1287  070C  3001               	movlw	1
+  1288  070D  009F               	movwf	(287)^0100h
+  1289                           	
+  1290  070E                     l30001217:	
+  1291                           	line	12
+  1292                           ;serial.c: 12: OSCCON=0x77;
+  1293  070E  3077               	movlw	(077h)
+  1294  070F  1683               	bsf	status, 5	;RP0=1, select bank1
+  1295  0710  1303               	bcf	status, 6	;RP1=0, select bank1
+  1296  0711  008F               	movwf	(143)^080h	;volatile
+  1297                           	
+  1298  0712                     l30001218:	
+  1299                           	line	13
+  1300                           ;serial.c: 13: SYNC=0;
+  1301  0712  1218               	bcf	(1220/8)^080h,(1220)&7
+  1302                           	
+  1303  0713                     l30001219:	
+  1304                           	line	14
+  1305                           ;serial.c: 14: BRGH=1;
+  1306  0713  1518               	bsf	(1218/8)^080h,(1218)&7
+  1307                           	
+  1308  0714                     l30001220:	
+  1309                           	line	15
+  1310                           ;serial.c: 15: BRG16=1;
+  1311  0714  159B               	bsf	(1243/8)^080h,(1243)&7
+  1312                           	
+  1313  0715                     l30001221:	
+  1314                           	line	16
+  1315                           ;serial.c: 16: SPBRG=16;
+  1316  0715  3010               	movlw	(010h)
+  1317  0716  0099               	movwf	(153)^080h
+  1318                           	
+  1319  0717                     l30001222:	
+  1320                           	line	17
+  1321                           ;serial.c: 17: SPEN=1;
+  1322  0717  1283               	bcf	status, 5	;RP0=0, select bank0
+  1323  0718  1303               	bcf	status, 6	;RP1=0, select bank0
+  1324  0719  1798               	bsf	(199/8),(199)&7
+  1325                           	
+  1326  071A                     l30001223:	
+  1327                           	line	18
+  1328                           ;serial.c: 18: TXEN=1;
+  1329  071A  1683               	bsf	status, 5	;RP0=1, select bank1
+  1330  071B  1303               	bcf	status, 6	;RP1=0, select bank1
+  1331  071C  1698               	bsf	(1221/8)^080h,(1221)&7
+  1332                           	
+  1333  071D                     l22:	
+  1334  071D  0008               	return
+  1335                           	opt stack 0
+  1336                           GLOBAL	__end_of_Serial_Init
+  1337  071E                     	__end_of_Serial_Init:
+  1338                           ; =============== function _Serial_Init ends ============
+  1339                           
+  1340                           psect	text72,local,class=CODE,delta=2
+  1341                           global __ptext72
+  1342  073B                     __ptext72:
+  1343                           	line	19
+  1344                           	signat	_Serial_Init,88
+  1345                           	global	_Display_Data_LCD
+  1346                           
+  1347                           ; *************** function _Display_Data_LCD *****************
+  1348                           ; Defined at:
+  1349                           ;		line 35 in file "D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\LCD.c"
+  1350                           ; Parameters:    Size  Location     Type
+  1351                           ;  mdata           1    wreg     PTR unsigned char 
+  1352                           ;		 -> STR_1(13), 
+  1353                           ; Auto vars:     Size  Location     Type
+  1354                           ;  mdata           1    0[BANK0 ] PTR unsigned char 
+  1355                           ;		 -> STR_1(13), 
+  1356                           ;  x               2    1[BANK0 ] unsigned int 
+  1357                           ; Return value:  Size  Location     Type
+  1358                           ;		None               void
+  1359                           ; Registers used:
+  1360                           ;		wreg, status,2, status,0, pclath, cstack
+  1361                           ; Tracked objects:
+  1362                           ;		On entry : 0/0
+  1363                           ;		On exit  : 0/0
+  1364                           ;		Unchanged: 0/0
+  1365                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1366                           ;      Locals:         0       3       0       0
+  1367                           ;      Temp:     0
+  1368                           ;      Total:    3
+  1369                           ; This function calls:
+  1370                           ;		_Display_Char_LCD
+  1371                           ; This function is called by:
+  1372                           ;		_main
+  1373                           ; This function uses a non-reentrant model
+  1374                           ; 
+  1375                           psect	text72
+  1376                           	file	"D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\LCD.c"
+  1377                           	line	35
+  1378                           	global	__size_of_Display_Data_LCD
+  1379  0023                     	__size_of_Display_Data_LCD	equ	__end_of_Display_Data_LCD-_Display_Data_LCD
+  1380                           ;LCD.c: 34: void Display_Data_LCD(unsigned char *mdata)
+  1381                           ;LCD.c: 35: {
+  1382                           	
+  1383  073B                     _Display_Data_LCD:	
+  1384                           	opt stack 6
+  1385                           ; Regs used in _Display_Data_LCD: [wreg+status,2+status,0+pclath+cstack]
+  1386                           ;Display_Data_LCD@mdata stored from wreg
+  1387                           	line	37
+  1388  073B  1283               	bcf	status, 5	;RP0=0, select bank0
+  1389  073C  1303               	bcf	status, 6	;RP1=0, select bank0
+  1390  073D  00A0               	movwf	(Display_Data_LCD@mdata)
+  1391                           	
+  1392  073E                     l30001307:	
+  1393                           ;LCD.c: 36: unsigned int x;
+  1394                           ;LCD.c: 37: for(x=0;mdata[x]!=0;x++)
+  1395  073E  3000               	movlw	low(0)
+  1396  073F  00A1               	movwf	(Display_Data_LCD@x)
+  1397  0740  3000               	movlw	high(0)
+  1398  0741  00A2               	movwf	((Display_Data_LCD@x))+1
+  1399  0742  2F53               	goto	l30001310
+  1400                           	
+  1401  0743                     l30001308:	
+  1402                           	line	39
+  1403                           ;LCD.c: 38: {
+  1404                           ;LCD.c: 39: Display_Char_LCD(mdata[x]);
+  1405  0743  0820               	movf	(Display_Data_LCD@mdata),w
+  1406  0744  0721               	addwf	(Display_Data_LCD@x),w
+  1407                           	FNCALL _Display_Data_LCD,stringtab
+  1408  0745  118A  2609  118A   	fcall	stringdir
+  1409  0748  118A  2655  118A   	fcall	_Display_Char_LCD
+  1410                           	
+  1411  074B                     l30001309:	
+  1412                           	line	37
+  1413  074B  3001               	movlw	low(01h)
+  1414  074C  1283               	bcf	status, 5	;RP0=0, select bank0
+  1415  074D  1303               	bcf	status, 6	;RP1=0, select bank0
+  1416  074E  07A1               	addwf	(Display_Data_LCD@x),f
+  1417  074F  1803               	skipnc
+  1418  0750  0AA2               	incf	(Display_Data_LCD@x+1),f
+  1419  0751  3000               	movlw	high(01h)
+  1420  0752  07A2               	addwf	(Display_Data_LCD@x+1),f
+  1421                           	
+  1422  0753                     l30001310:	
+  1423  0753  0820               	movf	(Display_Data_LCD@mdata),w
+  1424  0754  0721               	addwf	(Display_Data_LCD@x),w
+  1425                           	FNCALL _Display_Data_LCD,stringtab
+  1426  0755  118A  2609  118A   	fcall	stringdir
+  1427  0758  3800               	iorlw	0
+  1428  0759  1D03               	skipz
+  1429  075A  2F5C               	goto	u171
+  1430  075B  2F5D               	goto	u170
+  1431  075C                     u171:
+  1432  075C  2F43               	goto	l30001308
+  1433  075D                     u170:
+  1434                           	
+  1435  075D                     l3:	
+  1436  075D  0008               	return
+  1437                           	opt stack 0
+  1438                           GLOBAL	__end_of_Display_Data_LCD
+  1439  075E                     	__end_of_Display_Data_LCD:
+  1440                           ; =============== function _Display_Data_LCD ends ============
+  1441                           
+  1442                           psect	text73,local,class=CODE,delta=2
+  1443                           global __ptext73
+  1444  0665                     __ptext73:
+  1445                           	line	41
+  1446                           	signat	_Display_Data_LCD,4216
+  1447                           	global	_Serial_Receive
+  1448                           
+  1449                           ; *************** function _Serial_Receive *****************
+  1450                           ; Defined at:
+  1451                           ;		line 22 in file "D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\serial.c"
+  1452                           ; Parameters:    Size  Location     Type
+  1453                           ;		None
+  1454                           ; Auto vars:     Size  Location     Type
+  1455                           ;  temp            1    0[COMMON] unsigned char 
+  1456                           ; Return value:  Size  Location     Type
+  1457                           ;                  1    wreg      unsigned char 
+  1458                           ; Registers used:
+  1459                           ;		wreg, status,2, status,0
+  1460                           ; Tracked objects:
+  1461                           ;		On entry : 0/0
+  1462                           ;		On exit  : 0/0
+  1463                           ;		Unchanged: 0/0
+  1464                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1465                           ;      Locals:         1       0       0       0
+  1466                           ;      Temp:     0
+  1467                           ;      Total:    1
+  1468                           ; This function calls:
+  1469                           ;		Nothing
+  1470                           ; This function is called by:
+  1471                           ;		_main
+  1472                           ; This function uses a non-reentrant model
+  1473                           ; 
+  1474                           psect	text73
+  1475                           	file	"D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\serial.c"
+  1476                           	line	22
+  1477                           	global	__size_of_Serial_Receive
+  1478  000D                     	__size_of_Serial_Receive	equ	__end_of_Serial_Receive-_Serial_Receive
+  1479                           ;serial.c: 21: unsigned char Serial_Receive()
+  1480                           ;serial.c: 22: {
+  1481                           	
+  1482  0665                     _Serial_Receive:	
+  1483                           	opt stack 6
+  1484                           ; Regs used in _Serial_Receive: [wreg+status,2+status,0]
+  1485                           	line	23
+  1486                           	
+  1487  0665                     l30001224:	
+  1488                           ;serial.c: 23: CREN=1;
+  1489  0665  1283               	bcf	status, 5	;RP0=0, select bank0
+  1490  0666  1303               	bcf	status, 6	;RP1=0, select bank0
+  1491  0667  1618               	bsf	(196/8),(196)&7
+  1492                           	
+  1493  0668                     l30001225:	
+  1494                           	
+  1495  0668                     l24:	
+  1496                           	line	25
+  1497  0668  1E8C               	btfss	(101/8),(101)&7
+  1498  0669  2E6B               	goto	u61
+  1499  066A  2E6C               	goto	u60
+  1500  066B                     u61:
+  1501  066B  2E68               	goto	l24
+  1502  066C                     u60:
+  1503                           	
+  1504  066C                     l30001226:	
+  1505                           	line	26
+  1506                           ;serial.c: 26: temp=RCREG;
+  1507  066C  081A               	movf	(26),w	;volatile
+  1508  066D  00F0               	movwf	(Serial_Receive@temp)
+  1509                           	
+  1510  066E                     l30001227:	
+  1511                           	line	27
+  1512                           ;serial.c: 27: RCIF=0;
+  1513  066E  128C               	bcf	(101/8),(101)&7
+  1514                           	
+  1515  066F                     l30001228:	
+  1516                           	line	28
+  1517                           ;serial.c: 28: CREN=0;
+  1518  066F  1218               	bcf	(196/8),(196)&7
+  1519                           	line	29
+  1520                           ;serial.c: 29: return(temp);
+  1521  0670  0870               	movf	(Serial_Receive@temp),w
+  1522                           	
+  1523  0671                     l23:	
+  1524  0671  0008               	return
+  1525                           	opt stack 0
+  1526                           GLOBAL	__end_of_Serial_Receive
+  1527  0672                     	__end_of_Serial_Receive:
+  1528                           ; =============== function _Serial_Receive ends ============
+  1529                           
+  1530                           psect	text74,local,class=CODE,delta=2
+  1531                           global __ptext74
+  1532  071E                     __ptext74:
+  1533                           	line	30
+  1534                           	signat	_Serial_Receive,89
+  1535                           	global	_Initialize_LCD
+  1536                           
+  1537                           ; *************** function _Initialize_LCD *****************
+  1538                           ; Defined at:
+  1539                           ;		line 11 in file "D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\LCD.c"
+  1540                           ; Parameters:    Size  Location     Type
+  1541                           ;		None
+  1542                           ; Auto vars:     Size  Location     Type
+  1543                           ;		None
+  1544                           ; Return value:  Size  Location     Type
+  1545                           ;		None               void
+  1546                           ; Registers used:
+  1547                           ;		wreg, status,2, status,0, pclath, cstack
+  1548                           ; Tracked objects:
+  1549                           ;		On entry : 0/0
+  1550                           ;		On exit  : 0/0
+  1551                           ;		Unchanged: 0/0
+  1552                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1553                           ;      Locals:         0       0       0       0
+  1554                           ;      Temp:     0
+  1555                           ;      Total:    0
+  1556                           ; This function calls:
+  1557                           ;		_Send_Command_LCD
+  1558                           ;		_Delay
+  1559                           ;		_Clear_LCD
+  1560                           ; This function is called by:
+  1561                           ;		_main
+  1562                           ; This function uses a non-reentrant model
+  1563                           ; 
+  1564                           psect	text74
+  1565                           	file	"D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\LCD.c"
+  1566                           	line	11
+  1567                           	global	__size_of_Initialize_LCD
+  1568  001D                     	__size_of_Initialize_LCD	equ	__end_of_Initialize_LCD-_Initialize_LCD
+  1569                           ;LCD.c: 10: void Initialize_LCD()
+  1570                           ;LCD.c: 11: {
+  1571                           	
+  1572  071E                     _Initialize_LCD:	
+  1573                           	opt stack 6
+  1574                           ; Regs used in _Initialize_LCD: [wreg+status,2+status,0+pclath+cstack]
+  1575                           	line	12
+  1576                           	
+  1577  071E                     l30001316:	
+  1578                           ;LCD.c: 12: RB4=0;
+  1579  071E  1283               	bcf	status, 5	;RP0=0, select bank0
+  1580  071F  1303               	bcf	status, 6	;RP1=0, select bank0
+  1581  0720  1206               	bcf	(52/8),(52)&7
+  1582                           	line	13
+  1583                           ;LCD.c: 13: RB5=0;
+  1584  0721  1286               	bcf	(53/8),(53)&7
+  1585                           	line	14
+  1586                           ;LCD.c: 14: RB6=0;
+  1587  0722  1306               	bcf	(54/8),(54)&7
+  1588                           	
+  1589  0723                     l30001317:	
+  1590                           	line	16
+  1591                           ;LCD.c: 16: Send_Command_LCD(0x38);
+  1592  0723  3038               	movlw	(038h)
+  1593  0724  118A  2645  118A   	fcall	_Send_Command_LCD
+  1594                           	line	17
+  1595                           ;LCD.c: 17: Delay(1);
+  1596  0727  3001               	movlw	(01h)
+  1597  0728  118A  275E  118A   	fcall	_Delay
+  1598                           	line	18
+  1599                           ;LCD.c: 18: Send_Command_LCD(0x0C);
+  1600  072B  300C               	movlw	(0Ch)
+  1601  072C  118A  2645  118A   	fcall	_Send_Command_LCD
+  1602                           	line	19
+  1603                           ;LCD.c: 19: Delay(1);
+  1604  072F  3001               	movlw	(01h)
+  1605  0730  118A  275E  118A   	fcall	_Delay
+  1606                           	line	20
+  1607                           ;LCD.c: 20: Clear_LCD();
+  1608  0733  118A  2634  118A   	fcall	_Clear_LCD
+  1609                           	line	21
+  1610                           ;LCD.c: 21: Delay(1);
+  1611  0736  3001               	movlw	(01h)
+  1612  0737  118A  275E  118A   	fcall	_Delay
+  1613                           	
+  1614  073A                     l1:	
+  1615  073A  0008               	return
+  1616                           	opt stack 0
+  1617                           GLOBAL	__end_of_Initialize_LCD
+  1618  073B                     	__end_of_Initialize_LCD:
+  1619                           ; =============== function _Initialize_LCD ends ============
+  1620                           
+  1621                           psect	text75,local,class=CODE,delta=2
+  1622                           global __ptext75
+  1623  061C                     __ptext75:
+  1624                           	line	22
+  1625                           	signat	_Initialize_LCD,88
+  1626                           	global	_Serial_Transmit
+  1627                           
+  1628                           ; *************** function _Serial_Transmit *****************
+  1629                           ; Defined at:
+  1630                           ;		line 33 in file "D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\serial.c"
+  1631                           ; Parameters:    Size  Location     Type
+  1632                           ;  data1           1    wreg     unsigned char 
+  1633                           ; Auto vars:     Size  Location     Type
+  1634                           ;  data1           1    0[BANK0 ] unsigned char 
+  1635                           ; Return value:  Size  Location     Type
+  1636                           ;		None               void
+  1637                           ; Registers used:
+  1638                           ;		wreg, status,2, status,0, pclath, cstack
+  1639                           ; Tracked objects:
+  1640                           ;		On entry : 0/0
+  1641                           ;		On exit  : 0/0
+  1642                           ;		Unchanged: 0/0
+  1643                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1644                           ;      Locals:         0       1       0       0
+  1645                           ;      Temp:     0
+  1646                           ;      Total:    1
+  1647                           ; This function calls:
+  1648                           ;		_Send_Command_LCD
+  1649                           ;		_Delay
+  1650                           ;		_Display_Char_LCD
+  1651                           ; This function is called by:
+  1652                           ;		_main
+  1653                           ; This function uses a non-reentrant model
+  1654                           ; 
+  1655                           psect	text75
+  1656                           	file	"D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\serial.c"
+  1657                           	line	33
+  1658                           	global	__size_of_Serial_Transmit
+  1659  0018                     	__size_of_Serial_Transmit	equ	__end_of_Serial_Transmit-_Serial_Transmit
+  1660                           ;serial.c: 32: void Serial_Transmit(unsigned char data1)
+  1661                           ;serial.c: 33: {
+  1662                           	
+  1663  061C                     _Serial_Transmit:	
+  1664                           	opt stack 6
+  1665                           ; Regs used in _Serial_Transmit: [wreg+status,2+status,0+pclath+cstack]
+  1666                           ;Serial_Transmit@data1 stored from wreg
+  1667  061C  1283               	bcf	status, 5	;RP0=0, select bank0
+  1668  061D  1303               	bcf	status, 6	;RP1=0, select bank0
+  1669  061E  00A0               	movwf	(Serial_Transmit@data1)
+  1670                           	
+  1671  061F                     l30001285:	
+  1672                           	line	34
+  1673                           ;serial.c: 34: TXREG=data1;
+  1674  061F  0820               	movf	(Serial_Transmit@data1),w
+  1675  0620  0099               	movwf	(25)	;volatile
+  1676                           	
+  1677  0621                     l28:	
+  1678                           	line	35
+  1679  0621  1E0C               	btfss	(100/8),(100)&7
+  1680  0622  2E24               	goto	u141
+  1681  0623  2E25               	goto	u140
+  1682  0624                     u141:
+  1683  0624  2E21               	goto	l28
+  1684  0625                     u140:
+  1685                           	
+  1686  0625                     l30001286:	
+  1687                           	line	36
+  1688                           ;serial.c: 36: Send_Command_LCD(0xC0);
+  1689  0625  30C0               	movlw	(0C0h)
+  1690  0626  118A  2645  118A   	fcall	_Send_Command_LCD
+  1691                           	line	37
+  1692                           ;serial.c: 37: Delay(10);
+  1693  0629  300A               	movlw	(0Ah)
+  1694  062A  118A  275E  118A   	fcall	_Delay
+  1695                           	line	38
+  1696                           ;serial.c: 38: Display_Char_LCD(data1);
+  1697  062D  1283               	bcf	status, 5	;RP0=0, select bank0
+  1698  062E  1303               	bcf	status, 6	;RP1=0, select bank0
+  1699  062F  0820               	movf	(Serial_Transmit@data1),w
+  1700  0630  118A  2655  118A   	fcall	_Display_Char_LCD
+  1701                           	
+  1702  0633                     l27:	
+  1703  0633  0008               	return
+  1704                           	opt stack 0
+  1705                           GLOBAL	__end_of_Serial_Transmit
+  1706  0634                     	__end_of_Serial_Transmit:
+  1707                           ; =============== function _Serial_Transmit ends ============
+  1708                           
+  1709                           psect	text76,local,class=CODE,delta=2
+  1710                           global __ptext76
+  1711  0655                     __ptext76:
+  1712                           	line	39
+  1713                           	signat	_Serial_Transmit,4216
+  1714                           	global	_Display_Char_LCD
+  1715                           
+  1716                           ; *************** function _Display_Char_LCD *****************
+  1717                           ; Defined at:
+  1718                           ;		line 44 in file "D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\LCD.c"
+  1719                           ; Parameters:    Size  Location     Type
+  1720                           ;  a               1    wreg     unsigned char 
+  1721                           ; Auto vars:     Size  Location     Type
+  1722                           ;  a               1    7[COMMON] unsigned char 
+  1723                           ; Return value:  Size  Location     Type
+  1724                           ;		None               void
+  1725                           ; Registers used:
+  1726                           ;		wreg, status,2, status,0, pclath, cstack
+  1727                           ; Tracked objects:
+  1728                           ;		On entry : 0/0
+  1729                           ;		On exit  : 0/0
+  1730                           ;		Unchanged: 0/0
+  1731                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1732                           ;      Locals:         1       0       0       0
+  1733                           ;      Temp:     0
+  1734                           ;      Total:    1
+  1735                           ; This function calls:
+  1736                           ;		_Delay
+  1737                           ; This function is called by:
+  1738                           ;		_Display_Data_LCD
+  1739                           ;		_main
+  1740                           ;		_Serial_Transmit
+  1741                           ; This function uses a non-reentrant model
+  1742                           ; 
+  1743                           psect	text76
+  1744                           	file	"D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\LCD.c"
+  1745                           	line	44
+  1746                           	global	__size_of_Display_Char_LCD
+  1747  0010                     	__size_of_Display_Char_LCD	equ	__end_of_Display_Char_LCD-_Display_Char_LCD
+  1748                           ;LCD.c: 43: void Display_Char_LCD(unsigned char a)
+  1749                           ;LCD.c: 44: {
+  1750                           	
+  1751  0655                     _Display_Char_LCD:	
+  1752                           	opt stack 5
+  1753                           ; Regs used in _Display_Char_LCD: [wreg+status,2+status,0+pclath+cstack]
+  1754                           ;Display_Char_LCD@a stored from wreg
+  1755  0655  00F7               	movwf	(Display_Char_LCD@a)
+  1756                           	
+  1757  0656                     l30001303:	
+  1758                           	line	45
+  1759                           ;LCD.c: 45: RB4=1;
+  1760  0656  1283               	bcf	status, 5	;RP0=0, select bank0
+  1761  0657  1303               	bcf	status, 6	;RP1=0, select bank0
+  1762  0658  1606               	bsf	(52/8),(52)&7
+  1763                           	line	46
+  1764                           ;LCD.c: 46: RB5=0;
+  1765  0659  1286               	bcf	(53/8),(53)&7
+  1766                           	line	47
+  1767                           ;LCD.c: 47: RB6=1;
+  1768  065A  1706               	bsf	(54/8),(54)&7
+  1769                           	
+  1770  065B                     l30001304:	
+  1771                           	line	48
+  1772                           ;LCD.c: 48: PORTC=a;
+  1773  065B  0877               	movf	(Display_Char_LCD@a),w
+  1774  065C  0087               	movwf	(7)	;volatile
+  1775                           	
+  1776  065D                     l30001305:	
+  1777                           	line	49
+  1778                           ;LCD.c: 49: Delay(10);
+  1779  065D  300A               	movlw	(0Ah)
+  1780  065E  118A  275E  118A   	fcall	_Delay
+  1781                           	
+  1782  0661                     l30001306:	
+  1783                           	line	50
+  1784                           ;LCD.c: 50: RB6=0;
+  1785  0661  1283               	bcf	status, 5	;RP0=0, select bank0
+  1786  0662  1303               	bcf	status, 6	;RP1=0, select bank0
+  1787  0663  1306               	bcf	(54/8),(54)&7
+  1788                           	
+  1789  0664                     l8:	
+  1790  0664  0008               	return
+  1791                           	opt stack 0
+  1792                           GLOBAL	__end_of_Display_Char_LCD
+  1793  0665                     	__end_of_Display_Char_LCD:
+  1794                           ; =============== function _Display_Char_LCD ends ============
+  1795                           
+  1796                           psect	text77,local,class=CODE,delta=2
+  1797                           global __ptext77
+  1798  0634                     __ptext77:
+  1799                           	line	51
+  1800                           	signat	_Display_Char_LCD,4216
+  1801                           	global	_Clear_LCD
+  1802                           
+  1803                           ; *************** function _Clear_LCD *****************
+  1804                           ; Defined at:
+  1805                           ;		line 54 in file "D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\LCD.c"
+  1806                           ; Parameters:    Size  Location     Type
+  1807                           ;		None
+  1808                           ; Auto vars:     Size  Location     Type
+  1809                           ;		None
+  1810                           ; Return value:  Size  Location     Type
+  1811                           ;		None               void
+  1812                           ; Registers used:
+  1813                           ;		wreg, status,2, status,0, pclath, cstack
+  1814                           ; Tracked objects:
+  1815                           ;		On entry : 0/0
+  1816                           ;		On exit  : 0/0
+  1817                           ;		Unchanged: 0/0
+  1818                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1819                           ;      Locals:         0       0       0       0
+  1820                           ;      Temp:     0
+  1821                           ;      Total:    0
+  1822                           ; This function calls:
+  1823                           ;		_Send_Command_LCD
+  1824                           ;		_Delay
+  1825                           ; This function is called by:
+  1826                           ;		_Initialize_LCD
+  1827                           ;		_main
+  1828                           ; This function uses a non-reentrant model
+  1829                           ; 
+  1830                           psect	text77
+  1831                           	file	"D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\LCD.c"
+  1832                           	line	54
+  1833                           	global	__size_of_Clear_LCD
+  1834  0011                     	__size_of_Clear_LCD	equ	__end_of_Clear_LCD-_Clear_LCD
+  1835                           ;LCD.c: 53: void Clear_LCD()
+  1836                           ;LCD.c: 54: {
+  1837                           	
+  1838  0634                     _Clear_LCD:	
+  1839                           	opt stack 5
+  1840                           ; Regs used in _Clear_LCD: [wreg+status,2+status,0+pclath+cstack]
+  1841                           	line	55
+  1842                           	
+  1843  0634                     l30001318:	
+  1844                           ;LCD.c: 55: Send_Command_LCD(0x01);
+  1845  0634  3001               	movlw	(01h)
+  1846  0635  118A  2645  118A   	fcall	_Send_Command_LCD
+  1847                           	line	56
+  1848                           ;LCD.c: 56: Delay(1);
+  1849  0638  3001               	movlw	(01h)
+  1850  0639  118A  275E  118A   	fcall	_Delay
+  1851                           	line	57
+  1852                           ;LCD.c: 57: Send_Command_LCD(0x02);
+  1853  063C  3002               	movlw	(02h)
+  1854  063D  118A  2645  118A   	fcall	_Send_Command_LCD
+  1855                           	line	58
+  1856                           ;LCD.c: 58: Delay(1);
+  1857  0640  3001               	movlw	(01h)
+  1858  0641  118A  275E  118A   	fcall	_Delay
+  1859                           	
+  1860  0644                     l9:	
+  1861  0644  0008               	return
+  1862                           	opt stack 0
+  1863                           GLOBAL	__end_of_Clear_LCD
+  1864  0645                     	__end_of_Clear_LCD:
+  1865                           ; =============== function _Clear_LCD ends ============
+  1866                           
+  1867                           psect	text78,local,class=CODE,delta=2
+  1868                           global __ptext78
+  1869  0645                     __ptext78:
+  1870                           	line	59
+  1871                           	signat	_Clear_LCD,88
+  1872                           	global	_Send_Command_LCD
+  1873                           
+  1874                           ; *************** function _Send_Command_LCD *****************
+  1875                           ; Defined at:
+  1876                           ;		line 25 in file "D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\LCD.c"
+  1877                           ; Parameters:    Size  Location     Type
+  1878                           ;  comd            1    wreg     unsigned char 
+  1879                           ; Auto vars:     Size  Location     Type
+  1880                           ;  comd            1    7[COMMON] unsigned char 
+  1881                           ; Return value:  Size  Location     Type
+  1882                           ;		None               void
+  1883                           ; Registers used:
+  1884                           ;		wreg, status,2, status,0, pclath, cstack
+  1885                           ; Tracked objects:
+  1886                           ;		On entry : 0/0
+  1887                           ;		On exit  : 0/0
+  1888                           ;		Unchanged: 0/0
+  1889                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1890                           ;      Locals:         1       0       0       0
+  1891                           ;      Temp:     0
+  1892                           ;      Total:    1
+  1893                           ; This function calls:
+  1894                           ;		_Delay
+  1895                           ; This function is called by:
+  1896                           ;		_Initialize_LCD
+  1897                           ;		_Clear_LCD
+  1898                           ;		_main
+  1899                           ;		_Serial_Transmit
+  1900                           ; This function uses a non-reentrant model
+  1901                           ; 
+  1902                           psect	text78
+  1903                           	file	"D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\LCD.c"
+  1904                           	line	25
+  1905                           	global	__size_of_Send_Command_LCD
+  1906  0010                     	__size_of_Send_Command_LCD	equ	__end_of_Send_Command_LCD-_Send_Command_LCD
+  1907                           ;LCD.c: 24: void Send_Command_LCD(unsigned char comd)
+  1908                           ;LCD.c: 25: {
+  1909                           	
+  1910  0645                     _Send_Command_LCD:	
+  1911                           	opt stack 4
+  1912                           ; Regs used in _Send_Command_LCD: [wreg+status,2+status,0+pclath+cstack]
+  1913                           ;Send_Command_LCD@comd stored from wreg
+  1914  0645  00F7               	movwf	(Send_Command_LCD@comd)
+  1915                           	
+  1916  0646                     l30001311:	
+  1917                           	line	26
+  1918                           ;LCD.c: 26: RB4=0;
+  1919  0646  1283               	bcf	status, 5	;RP0=0, select bank0
+  1920  0647  1303               	bcf	status, 6	;RP1=0, select bank0
+  1921  0648  1206               	bcf	(52/8),(52)&7
+  1922                           	line	27
+  1923                           ;LCD.c: 27: RB5=0;
+  1924  0649  1286               	bcf	(53/8),(53)&7
+  1925                           	
+  1926  064A                     l30001312:	
+  1927                           	line	28
+  1928                           ;LCD.c: 28: PORTC=comd;
+  1929  064A  0877               	movf	(Send_Command_LCD@comd),w
+  1930  064B  0087               	movwf	(7)	;volatile
+  1931                           	
+  1932  064C                     l30001313:	
+  1933                           	line	29
+  1934                           ;LCD.c: 29: RB6=1;
+  1935  064C  1706               	bsf	(54/8),(54)&7
+  1936                           	
+  1937  064D                     l30001314:	
+  1938                           	line	30
+  1939                           ;LCD.c: 30: Delay(1);
+  1940  064D  3001               	movlw	(01h)
+  1941  064E  118A  275E  118A   	fcall	_Delay
+  1942                           	
+  1943  0651                     l30001315:	
+  1944                           	line	31
+  1945                           ;LCD.c: 31: RB6=0;
+  1946  0651  1283               	bcf	status, 5	;RP0=0, select bank0
+  1947  0652  1303               	bcf	status, 6	;RP1=0, select bank0
+  1948  0653  1306               	bcf	(54/8),(54)&7
+  1949                           	
+  1950  0654                     l2:	
+  1951  0654  0008               	return
+  1952                           	opt stack 0
+  1953                           GLOBAL	__end_of_Send_Command_LCD
+  1954  0655                     	__end_of_Send_Command_LCD:
+  1955                           ; =============== function _Send_Command_LCD ends ============
+  1956                           
+  1957                           psect	text79,local,class=CODE,delta=2
+  1958                           global __ptext79
+  1959  075E                     __ptext79:
+  1960                           	line	32
+  1961                           	signat	_Send_Command_LCD,4216
+  1962                           	global	_Delay
+  1963                           
+  1964                           ; *************** function _Delay *****************
+  1965                           ; Defined at:
+  1966                           ;		line 62 in file "D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\LCD.c"
+  1967                           ; Parameters:    Size  Location     Type
+  1968                           ;  val             1    wreg     unsigned char 
+  1969                           ; Auto vars:     Size  Location     Type
+  1970                           ;  val             1    2[COMMON] unsigned char 
+  1971                           ;  v               2    5[COMMON] unsigned int 
+  1972                           ;  u               2    3[COMMON] unsigned int 
+  1973                           ; Return value:  Size  Location     Type
+  1974                           ;		None               void
+  1975                           ; Registers used:
+  1976                           ;		wreg
+  1977                           ; Tracked objects:
+  1978                           ;		On entry : 0/0
+  1979                           ;		On exit  : 0/0
+  1980                           ;		Unchanged: 0/0
+  1981                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1982                           ;      Locals:         7       0       0       0
+  1983                           ;      Temp:     2
+  1984                           ;      Total:    7
+  1985                           ; This function calls:
+  1986                           ;		Nothing
+  1987                           ; This function is called by:
+  1988                           ;		_Initialize_LCD
+  1989                           ;		_Send_Command_LCD
+  1990                           ;		_Display_Char_LCD
+  1991                           ;		_Clear_LCD
+  1992                           ;		_main
+  1993                           ;		_Serial_Transmit
+  1994                           ; This function uses a non-reentrant model
+  1995                           ; 
+  1996                           psect	text79
+  1997                           	file	"D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\LCD.c"
+  1998                           	line	62
+  1999                           	global	__size_of_Delay
+  2000  002D                     	__size_of_Delay	equ	__end_of_Delay-_Delay
+  2001                           ;LCD.c: 61: void Delay(unsigned char val)
+  2002                           ;LCD.c: 62: {
+  2003                           	
+  2004  075E                     _Delay:	
+  2005                           	opt stack 3
+  2006                           ; Regs used in _Delay: [wreg]
+  2007                           ;Delay@val stored from wreg
+  2008                           	line	64
+  2009  075E  00F2               	movwf	(Delay@val)
+  2010                           	
+  2011  075F                     l30001319:	
+  2012                           ;LCD.c: 63: unsigned int u,v;
+  2013                           ;LCD.c: 64: for(u=0;u<val;u++)
+  2014  075F  3000               	movlw	low(0)
+  2015  0760  00F3               	movwf	(Delay@u)
+  2016  0761  3000               	movlw	high(0)
+  2017  0762  00F4               	movwf	((Delay@u))+1
+  2018  0763  2F7D               	goto	l14
+  2019                           	
+  2020  0764                     l11:	
+  2021                           	line	65
+  2022                           ;LCD.c: 65: for(v=0;v<1000;v++);
+  2023  0764  3000               	movlw	low(0)
+  2024  0765  00F5               	movwf	(Delay@v)
+  2025  0766  3000               	movlw	high(0)
+  2026  0767  00F6               	movwf	((Delay@v))+1
+  2027                           	
+  2028  0768                     l30001322:	
+  2029  0768  3001               	movlw	low(01h)
+  2030  0769  07F5               	addwf	(Delay@v),f
+  2031  076A  1803               	skipnc
+  2032  076B  0AF6               	incf	(Delay@v+1),f
+  2033  076C  3000               	movlw	high(01h)
+  2034  076D  07F6               	addwf	(Delay@v+1),f
+  2035  076E  3003               	movlw	high(03E8h)
+  2036  076F  0276               	subwf	(Delay@v+1),w
+  2037  0770  30E8               	movlw	low(03E8h)
+  2038  0771  1903               	skipnz
+  2039  0772  0275               	subwf	(Delay@v),w
+  2040  0773  1C03               	skipc
+  2041  0774  2F76               	goto	u181
+  2042  0775  2F77               	goto	u180
+  2043  0776                     u181:
+  2044  0776  2F68               	goto	l30001322
+  2045  0777                     u180:
+  2046                           	
+  2047  0777                     l30001323:	
+  2048                           	line	64
+  2049  0777  3001               	movlw	low(01h)
+  2050  0778  07F3               	addwf	(Delay@u),f
+  2051  0779  1803               	skipnc
+  2052  077A  0AF4               	incf	(Delay@u+1),f
+  2053  077B  3000               	movlw	high(01h)
+  2054  077C  07F4               	addwf	(Delay@u+1),f
+  2055                           	
+  2056  077D                     l14:	
+  2057  077D  0872               	movf	(Delay@val),w
+  2058  077E  00F0               	movwf	(??_Delay+0+0)
+  2059  077F  01F1               	clrf	(??_Delay+0+0+1)
+  2060  0780  0871               	movf	1+(??_Delay+0+0),w
+  2061  0781  0274               	subwf	(Delay@u+1),w
+  2062  0782  1D03               	skipz
+  2063  0783  2F86               	goto	u195
+  2064  0784  0870               	movf	0+(??_Delay+0+0),w
+  2065  0785  0273               	subwf	(Delay@u),w
+  2066  0786                     u195:
+  2067  0786  1C03               	skipc
+  2068  0787  2F89               	goto	u191
+  2069  0788  2F8A               	goto	u190
+  2070  0789                     u191:
+  2071  0789  2F64               	goto	l11
+  2072  078A                     u190:
+  2073                           	
+  2074  078A                     l10:	
+  2075  078A  0008               	return
+  2076                           	opt stack 0
+  2077                           GLOBAL	__end_of_Delay
+  2078  078B                     	__end_of_Delay:
+  2079                           ; =============== function _Delay ends ============
+  2080                           
+  2081                           psect	text80,local,class=CODE,delta=2
+  2082                           global __ptext80
+  2083  0677                     __ptext80:
+  2084                           	line	66
+  2085                           	signat	_Delay,4216
+  2086                           	global	btemp
+  2087  007E                     	btemp set 07Eh
+
+
+HI-TECH Software PICC Macro Assembler V9.70 build 5239 
+Symbol Table                                                                                   Sat Nov 03 15:26:36 2012
+
+                        l1 073A                          l2 0654                          l3 075D  
+                        l8 0664                          l9 0644                          _u 007A  
+                        pc 0002                         l10 078A                         l11 0764  
+                       _DA 04A5                         l14 077D                         l22 071D  
+                       _BF 04A0                         l23 0671                         _DC 0019  
+                       l24 0668                         l17 07FE                         l27 0633  
+                       l28 0621                         _PD 001B                         _RD 0C60  
+                       _UA 04A1                         u60 066C                         u61 066B  
+                       _TO 001C                         _RW 04A2                         _WR 0C61  
+__size_of_Display_Char_LCD 0010  __size_of_Display_Data_LCD 0023                         fsr 0004  
+              __pbssCOMMON 0079         __size_of_Clear_LCD 0011                        _C1R 08CA  
+                      _C2R 08D2                        _CKE 04A6                        _CKP 00A4  
+                      _GIE 005F                        _BOR 0470                        _RA0 0028  
+                      _RA1 0029                        _RA2 002A                        _RA3 002B  
+                      _RC0 0038                        _RA4 002C                        _RC1 0039  
+                      _RA5 002D                        _RC2 003A                        _RB4 0034  
+                      _RC3 003B                        _RB5 0035                        _RC4 003C  
+                      _RB6 0036                        _RC5 003D                        _RB7 0037  
+                      _RC6 003E                        _RC7 003F                        u140 0625  
+                      u141 0624                        u150 07E8                        u151 07E7  
+                      u160 07FE                        _FSR 0004                        u161 07FD  
+                      u170 075D                        _PCL 0002                        u171 075C  
+                      u180 0777                        u181 0776                        u190 078A  
+                      _PS0 0408                        _PR2 0092                        u191 0789  
+                      _PS1 0409                        _PS2 040A                        _RP0 001D  
+                      _IRP 001F                        _RP1 001E                        u195 0786  
+                      _HTS 047A                        _SR0 0CF6                        _SR1 0CF7  
+                      _SCS 0478                        _PSA 040B                        _LTS 0479  
+                      _VR0 08C0                        _VR1 08C1                        _VR2 08C2  
+                      _VR3 08C3                        _POR 0471                        _RX9 00C6  
+                      _SMP 04A7                        _TX9 04C6                        _WUE 04D9  
+                      _VRR 08C5                        indf 0000                    ??_Delay 0070  
+              _Serial_Init 0702                       _C1IE 046D                       _C1IF 006D  
+                     _C2IE 046E                       _C2IF 006E                       _C1OE 08CD  
+                     _C2OE 08D5                       _C1ON 08CF                       _C2ON 08D7  
+                     _ADIE 0466                       _ADIF 0066                       _ADFM 00FF  
+                     _ADON 00F8                   __ptext70 0677                   __ptext71 0702  
+                 __ptext80 0677                   __ptext72 073B                   __ptext73 0665  
+                     _P1M0 00BE                       _CHS0 00FA                   __ptext74 071E  
+                     _P1M1 00BF                       _CHS1 00FB                   __ptext75 061C  
+                     _CHS2 00FC                   __ptext76 0655                       _CHS3 00FD  
+                 __ptext77 0634                   __ptext78 0645                       _EEIE 046C  
+                 __ptext79 075E                       _EEIF 006C                       _ANS0 08F0  
+                     _BRG0 04C8                       STR_1 060F                       _ANS1 08F1  
+                     _BRG1 04C9                       _ANS2 08F2                       _BRG2 04CA  
+                     _ANS3 08F3                       _BRG3 04CB                       _ANS4 08F4  
+                     _BRG4 04CC                       _ANS5 08F5                       _BRG5 04CD  
+                     _ANS6 08F6                       _BRG6 04CE                       _ANS7 08F7  
+                     _BRG7 04CF                       _ANS8 08F8                       _BRG8 04D0  
+                     _ANS9 08F9                       _BRG9 04D1                       _BRGH 04C2  
+                     _T0IE 005D                       _T0IF 005A                       _CREN 00C4  
+                     _T0CS 040D                       _FERR 00C2                       _PDC0 00E0  
+                     _PDC1 00E1                       _PDC2 00E2                       _PDC3 00E3  
+                     _PDC4 00E4                       _T0SE 040C                       _CSRC 04C7  
+                     _IOCA 0096                       _PDC5 00E5                       _IOCB 0116  
+                     _PDC6 00E6                       _INDF 0000                       _PIE1 008C  
+                     _PIE2 008D                       _PEIE 005E                       _INTE 005C  
+                     _INTF 0059                       _RBIE 005B                       _RBIF 0058  
+                     _RCIE 0465                       _RCIF 0065                       _PCON 008E  
+                     _PIR1 000C                       _PIR2 000D                       _OERR 00C1  
+                     _SCKP 04DC                       _RBPU 040F                       _VCFG 00FE  
+                     _RX9D 00C0                       _TMR0 0001                       _TMR2 0011  
+                     _WCOL 00A7                       _SPEN 00C7        __end_of_Serial_Init 071E  
+                     _TX9D 04C0                       _SREN 00C5                       _OSTS 047B  
+                     _TUN0 0480                       _TUN1 0481                       _TUN2 0482  
+                     _TUN3 0483                       _TUN4 0484                       _STRA 0CE8  
+                     _STRB 0CE9                       _STRC 0CEA                       _STRD 0CEB  
+         _Display_Char_LCD 0655                       _TRMT 04C1                       _STOP 04A4  
+                     _TXIE 0464                       _ZERO 001A                       _WREN 0C62  
+                     _TXEN 04C5                       _TXIF 0064                       _SYNC 04C4  
+                     _WPUA 0095                       _WPUB 0115           _Display_Data_LCD 073B  
+                     _main 078B                       btemp 007E                       start 0000  
+        ?_Display_Char_LCD 0078          ?_Display_Data_LCD 0078        start_initialization 0672  
+           _Serial_Receive 0665            ?_Serial_Receive 0071               ?_Serial_Init 0070  
+                stringcode 0608             _Initialize_LCD 071E              __end_of_Delay 078B  
+    Display_Data_LCD@mdata 0020                    _CM1CON0 0119                    _CM2CON0 011A  
+                  _CCP1CON 0017                    _CM2CON1 011B           ??_Serial_Receive 0070  
+          ?_Initialize_LCD 0078                    _BAUDCTL 009B                    _ECCPAS0 00EC  
+                  _ECCPAS1 00ED                    _ECCPAS2 00EE                    _ECCPASE 00EF  
+                    _C1CH0 08C8                      _C1CH1 08C9                      _C2CH0 08D0  
+                    _C2CH1 08D1                      _DC1B0 00BC                      _DC1B1 00BD  
+                    _C1SEN 0CF5                      _C2REN 0CF4                      _C1POL 08CC  
+                    _C2POL 08D4                      _C1OUT 08CE                      _C2OUT 08D6  
+                    _ABDEN 04D8                      _ADCS0 04FC                      _ADCS1 04FD  
+                    _ADCS2 04FE                      _ADDEN 00C3                      ?_main 0079  
+        Display_Char_LCD@a 0077       __size_of_Serial_Init 001C                      _EEADR 010D  
+                    _ANS10 08FA                      _EEDAT 010C                      _BRG10 04D2  
+                    _ANS11 08FB                      _BRG11 04D3                      _BRG12 04D4  
+                    _BRG13 04D5                      _BRG14 04D6                      _BRG15 04D7  
+                    _BRG16 04DB          Display_Data_LCD@x 0021                      _CARRY 0018  
+                    _EEPGD 0C67                      _ANSEL 011E                      _T1CON 0010  
+                    _IOCA0 04B0                      _IOCA1 04B1                      _IOCA2 04B2  
+                    _T2CON 0012                      _IOCA3 04B3                      _IOCA4 04B4  
+                    _IOCA5 04B5                      _IOCB4 08B4                      _IOCB5 08B5  
+                    _IOCB6 08B6                      _IOCB7 08B7                      _T1GSS 08D9  
+                  _T1CKPS0 0084                    _T1CKPS1 0085                      _IRCF0 047C  
+                    _IRCF1 047D                      _IRCF2 047E                    _T2CKPS0 0090  
+                  _T2CKPS1 0091                      _RABIE 005B                      _RABIF 0058  
+         ??_Initialize_LCD 0072                      _RABPU 040F                      _RCIDL 04DE  
+                    _RCREG 001A                      _SENDB 04C3                      _RCSTA 0018  
+                    _OSFIE 046F                      _OSFIF 006F                      _VP6EN 08C4  
+                    _TMR1H 000F                      _TMR1L 000E                      _SPBRG 0099  
+                    _PORTA 0005                      _PORTB 0006                    _T1OSCEN 0083  
+                    _PORTC 0007                      _PRSEN 00E7                      _SRCON 019E  
+                    _START 04A3                      _PULSR 0CF2                      _PULSS 0CF3  
+                    _SSPM0 00A0                      _SSPM1 00A1                      _SSPM2 00A2  
+                    _SSPM3 00A3                      _TRISA 0085                      _TRISB 0086  
+                    _TRISC 0087                      _SSPIE 0463                      _SSPIF 0063  
+                    _SSPEN 00A5                      _VRCON 0118                      _WPUA0 04A8  
+                    _WPUA1 04A9                      _WPUA2 04AA                      _WPUA4 04AC  
+                    _WPUA5 04AD                      _WPUB4 08AC                      _SSPOV 00A6  
+                    _WPUB5 08AD                      _WPUB6 08AE                      _WPUB7 08AF  
+                    _WRERR 0C63                      _TXREG 0019                      _TXSTA 0098  
+                    _Delay 075E   __size_of_Serial_Transmit 0018                  __pstrings 0600  
+       ??_Display_Char_LCD 0072         ??_Display_Data_LCD 0072             __pcstackCOMMON 0070  
+                  _OSCTUNE 0090                    _PWM1CON 001C                    _PSTRCON 019D  
+   __end_of_Serial_Receive 0672                    _SSPSTAT 0094                    _TOUTPS0 0093  
+                  _TOUTPS1 0094                    _TOUTPS2 0095                    _TOUTPS3 0096  
+                  _STRSYNC 0CEC                      pclath 000A         Serial_Receive@temp 0070  
+                    status 0003     __end_of_Initialize_LCD 073B   __end_of_Send_Command_LCD 0655  
+            __size_of_main 0075                   l30001220 0714                   l30001300 07E8  
+                 l30001221 0715                   l30001301 07F4                   l30001310 0753  
+                 l30001222 0717                   l30001302 07F8                   l30001311 0646  
+                 l30001303 0656                   l30001223 071A                   l30001312 064A  
+                 l30001304 065B                   l30001224 0665                   l30001216 0702  
+                 l30001313 064C                   l30001305 065D                   l30001225 0668  
+                 l30001217 070E                   l30001322 0768                   l30001314 064D  
+                 l30001306 0661                   l30001226 066C                   l30001218 0712  
+                 l30001323 0777                   l30001315 0651                   l30001227 066E  
+                 l30001307 073E                   l30001219 0713                   l30001316 071E  
+                 l30001228 066F                   l30001308 0743                   l30001317 0723  
+                 l30001309 074B                   l30001318 0634                   l30001319 075F  
+                 l30001290 07AF                   l30001291 07B3                   l30001292 07B7  
+                 l30001285 061F                   l30001293 07BB                   l30001286 0625  
+                 l30001294 07BF                   l30001295 07C3                   l30001287 078B  
+                 l30001288 07A8                   l30001289 07AB                   l30001298 07CB  
+                 l30001299 07E2                __stringbase 060E              ??_Serial_Init 0070  
+                   ??_main 0078            _Serial_Transmit 061C                 __pmaintext 078B  
+                   ?_Delay 0077           ?_Serial_Transmit 0078    __size_of_Serial_Receive 000D  
+                   _C1VREN 08C7                   stringdir 0609                     _C2VREN 08C6  
+                   _C2SYNC 08D8                   stringjmp 060D                   stringtab 0600  
+                   _ADCON0 001F                     _ADCON1 009F                     _ABDOVF 04DF  
+                   _CCP1M0 00B8                     _CCP1M1 00B9                     _CCP1M2 00BA  
+                   _CCP1M3 00BB                     _CCP1IE 0462                     _CCP1IF 0062  
+                   _ADRESH 001E                     _EEADRH 010F                     _ADRESL 009E  
+                   _EEADRL 010D                     _EEDATA 010C                     _ECCPAS 001D  
+                   _CCPR1H 0016                     _EEDATH 010E                     _CCPR1L 0015  
+                   _EEDATL 010C                     _EECON1 018C                     _EECON2 018D  
+                   _ANSELH 011F                     _MC1OUT 08DF                     _MC2OUT 08DE  
+             __end_of_main 0800                     _T1GINV 0087                     _GODONE 00F9  
+     end_of_initialization 0674  __size_of_Send_Command_LCD 0010                     _T1SYNC 0082  
+  __size_of_Initialize_LCD 001D                     Delay@u 0073                     Delay@v 0075  
+                   _INTEDG 040E                     _PCLATH 000A                     _INTCON 000B  
+            __pcstackBANK0 0020          ??_Serial_Transmit 0072                     _SBOREN 0474  
+                   _OSCCON 008F                     _TMR1GE 0086                     _TMR1IE 0460  
+                   _TMR1IF 0060                     _TMR1CS 0081                     _TMR2IE 0461  
+                   _TMR2IF 0061                     _PSSAC0 00EA                     _PSSAC1 00EB  
+                   _PSSBD0 00E8                     _PSSBD1 00E9                     _SPBRGH 009A  
+                   _OPTION 0081                     _TMR1ON 0080                     _TMR2ON 0092  
+                   _WDTCON 0097       Serial_Transmit@data1 0020                     _WDTPS0 04B9  
+                   _WDTPS1 04BA                     _WDTPS2 04BB                     _WDTPS3 04BC  
+                   _SSPADD 0093                     _TRISA0 0428                     _TRISA1 0429  
+                   _TRISA2 042A                     _TRISA3 042B                     _TRISC0 0438  
+                   _TRISA4 042C                     _TRISC1 0439                     _TRISA5 042D  
+                   _TRISC2 043A                     _TRISB4 0434                     _TRISC3 043B  
+                   _TRISB5 0435                     _TRISC4 043C                     _TRISB6 0436  
+                   _TRISC5 043D                     _TRISB7 0437                     _TRISC6 043E  
+                   _TRISC7 043F                     _STATUS 0003                     _SSPCON 0014  
+                   _SSPBUF 0013                     _SWDTEN 04B8                     _ULPWUE 0475  
+                   _SSPMSK 0093                   Delay@val 0072                  _Clear_LCD 0634  
+        __end_of_Clear_LCD 0645                 ?_Clear_LCD 0078       Send_Command_LCD@comd 0077  
+         _Send_Command_LCD 0645   __end_of_Display_Char_LCD 0665   __end_of_Display_Data_LCD 075E  
+              ??_Clear_LCD 0072          ?_Send_Command_LCD 0078    __end_of_Serial_Transmit 0634  
+                 _Recd_bit 0079         ??_Send_Command_LCD 0072             __size_of_Delay 002D  

@@ -1,0 +1,11 @@
+_Serial_Init: CODE, 1766 0 26
+_main: CODE, 1925 0 123
+_Clear_LCD: CODE, 1701 0 17
+_Serial_Receive: CODE, 1820 0 13
+_Display_Data_LCD: CODE, 1878 0 47
+_Display_Char_LCD: CODE, 1669 0 16
+_Initialize_LCD: CODE, 1742 0 24
+_Delay: CODE, 1833 0 45
+_Serial_Transmit: CODE, 1718 0 24
+_Send_Command_LCD: CODE, 1685 0 16
+Total: 351

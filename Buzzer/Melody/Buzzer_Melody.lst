@@ -1,0 +1,2897 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.70 build 5239 
+                                                                                               Thu Jun 28 18:57:54 2012
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 5239
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 5239"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F690
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           ;COMMON:	_main->_PlayNote
+    43                           ;COMMON:	_PlayNote->___lwdiv
+    44                           ;BANK0:	_PlayNote->___lwdiv
+    45                           ;BANK0:	_main->_PlayNote
+    46                           ;COMMON:	_PlayNote->___lwdiv
+    47                           ;BANK0:	_PlayNote->___lwdiv
+    48                           	FNCALL	_main,_InitTimer
+    49                           	FNCALL	_main,_PlayNote
+    50                           	FNCALL	_PlayNote,___lwdiv
+    51                           	FNROOT	_main
+    52                           	FNCALL	intlevel1,_interr
+    53                           	global	intlevel1
+    54                           	FNROOT	intlevel1
+    55                           	global	main@Melody
+    56                           psect	strings,class=CODE,delta=2,reloc=256
+    57                           global __pstrings
+    58  0300                     __pstrings:
+    59                           	global	stringdir,stringtab,__stringbase,stringjmp
+    60  0300                     stringtab:
+    61                           ;	String table - string pointers are 1 byte each
+    62  0300  00FE               	movwf	(btemp)&07Fh
+    63  0301  1FFE               	btfss	(btemp)&07Fh,7
+    64  0302  2B08               	goto	stringcode
+    65  0303  1383               	bcf	status,7
+    66  0304  187E               	btfsc	btemp&7Fh,0
+    67  0305  1783               	bsf	status,7
+    68  0306  0800               	movf	indf,w
+    69  0307  0008               	return
+    70  0308                     stringcode:
+    71  0308  0804               	movf	fsr,w
+    72  0309                     stringdir:
+    73  0309  00FE               movwf btemp&07Fh
+    74  030A  3003               movlw high(stringdir)
+    75  030B  008A               movwf pclath
+    76  030C  087E               movf btemp&07Fh,w
+    77  030D                     stringjmp:
+    78  030D  0782               	addwf pc
+    79  030E                     __stringbase:
+    80  030E  3400               	retlw	0
+    81                           psect	strings
+    82                           	file	"D:\Amit\E-Projects\PIC Projects\Buzzer\Melody\Buzzer_Melody.c"
+    83                           	line	61
+    84  030F                     main@Melody:
+    85  030F  3431               	retlw	031h
+    86  0310  3436               	retlw	036h
+    87  0311  3464               	retlw	064h
+    88  0312  3435               	retlw	035h
+    89  0313  342C               	retlw	02Ch
+    90  0314  3431               	retlw	031h
+    91  0315  3436               	retlw	036h
+    92  0316  3464               	retlw	064h
+    93  0317  3423               	retlw	023h
+    94  0318  3435               	retlw	035h
+    95  0319  342C               	retlw	02Ch
+    96  031A  3431               	retlw	031h
+    97  031B  3436               	retlw	036h
+    98  031C  3464               	retlw	064h
+    99  031D  3435               	retlw	035h
+   100  031E  342C               	retlw	02Ch
+   101  031F  3431               	retlw	031h
+   102  0320  3436               	retlw	036h
+   103  0321  3464               	retlw	064h
+   104  0322  3423               	retlw	023h
+   105  0323  3435               	retlw	035h
+   106  0324  342C               	retlw	02Ch
+   107  0325  3431               	retlw	031h
+   108  0326  3436               	retlw	036h
+   109  0327  3464               	retlw	064h
+   110  0328  3435               	retlw	035h
+   111  0329  342C               	retlw	02Ch
+   112  032A  3431               	retlw	031h
+   113  032B  3436               	retlw	036h
+   114  032C  3464               	retlw	064h
+   115  032D  3423               	retlw	023h
+   116  032E  3435               	retlw	035h
+   117  032F  342C               	retlw	02Ch
+   118  0330  3431               	retlw	031h
+   119  0331  3436               	retlw	036h
+   120  0332  3464               	retlw	064h
+   121  0333  3435               	retlw	035h
+   122  0334  342C               	retlw	02Ch
+   123  0335  3431               	retlw	031h
+   124  0336  3436               	retlw	036h
+   125  0337  3464               	retlw	064h
+   126  0338  3435               	retlw	035h
+   127  0339  342C               	retlw	02Ch
+   128  033A  3431               	retlw	031h
+   129  033B  3436               	retlw	036h
+   130  033C  3464               	retlw	064h
+   131  033D  3423               	retlw	023h
+   132  033E  3435               	retlw	035h
+   133  033F  342C               	retlw	02Ch
+   134  0340  3431               	retlw	031h
+   135  0341  3436               	retlw	036h
+   136  0342  3465               	retlw	065h
+   137  0343  3435               	retlw	035h
+   138  0344  342C               	retlw	02Ch
+   139  0345  3431               	retlw	031h
+   140  0346  3436               	retlw	036h
+   141  0347  3466               	retlw	066h
+   142  0348  3435               	retlw	035h
+   143  0349  342C               	retlw	02Ch
+   144  034A  3431               	retlw	031h
+   145  034B  3436               	retlw	036h
+   146  034C  3466               	retlw	066h
+   147  034D  3423               	retlw	023h
+   148  034E  3435               	retlw	035h
+   149  034F  342C               	retlw	02Ch
+   150  0350  3431               	retlw	031h
+   151  0351  3436               	retlw	036h
+   152  0352  3467               	retlw	067h
+   153  0353  3435               	retlw	035h
+   154  0354  342C               	retlw	02Ch
+   155  0355  3438               	retlw	038h
+   156  0356  3467               	retlw	067h
+   157  0357  3435               	retlw	035h
+   158  0358  342C               	retlw	02Ch
+   159  0359  3434               	retlw	034h
+   160  035A  3470               	retlw	070h
+   161  035B  342C               	retlw	02Ch
+   162  035C  3438               	retlw	038h
+   163  035D  3467               	retlw	067h
+   164  035E  3435               	retlw	035h
+   165  035F  342C               	retlw	02Ch
+   166  0360  3434               	retlw	034h
+   167  0361  3470               	retlw	070h
+   168  0362  342C               	retlw	02Ch
+   169  0363  3438               	retlw	038h
+   170  0364  3461               	retlw	061h
+   171  0365  3423               	retlw	023h
+   172  0366  3435               	retlw	035h
+   173  0367  342C               	retlw	02Ch
+   174  0368  3438               	retlw	038h
+   175  0369  3470               	retlw	070h
+   176  036A  342C               	retlw	02Ch
+   177  036B  3438               	retlw	038h
+   178  036C  3463               	retlw	063h
+   179  036D  3436               	retlw	036h
+   180  036E  342C               	retlw	02Ch
+   181  036F  3438               	retlw	038h
+   182  0370  3470               	retlw	070h
+   183  0371  342C               	retlw	02Ch
+   184  0372  3438               	retlw	038h
+   185  0373  3467               	retlw	067h
+   186  0374  3435               	retlw	035h
+   187  0375  342C               	retlw	02Ch
+   188  0376  3434               	retlw	034h
+   189  0377  3470               	retlw	070h
+   190  0378  342C               	retlw	02Ch
+   191  0379  3438               	retlw	038h
+   192  037A  3467               	retlw	067h
+   193  037B  3435               	retlw	035h
+   194  037C  342C               	retlw	02Ch
+   195  037D  3434               	retlw	034h
+   196  037E  3470               	retlw	070h
+   197  037F  342C               	retlw	02Ch
+   198  0380  3438               	retlw	038h
+   199  0381  3466               	retlw	066h
+   200  0382  3435               	retlw	035h
+   201  0383  342C               	retlw	02Ch
+   202  0384  3438               	retlw	038h
+   203  0385  3470               	retlw	070h
+   204  0386  342C               	retlw	02Ch
+   205  0387  3438               	retlw	038h
+   206  0388  3470               	retlw	070h
+   207  0389  342C               	retlw	02Ch
+   208  038A  3438               	retlw	038h
+   209  038B  3467               	retlw	067h
+   210  038C  3435               	retlw	035h
+   211  038D  342C               	retlw	02Ch
+   212  038E  3434               	retlw	034h
+   213  038F  3470               	retlw	070h
+   214  0390  342C               	retlw	02Ch
+   215  0391  3434               	retlw	034h
+   216  0392  3470               	retlw	070h
+   217  0393  342C               	retlw	02Ch
+   218  0394  3438               	retlw	038h
+   219  0395  3461               	retlw	061h
+   220  0396  3423               	retlw	023h
+   221  0397  3435               	retlw	035h
+   222  0398  342C               	retlw	02Ch
+   223  0399  3438               	retlw	038h
+   224  039A  3470               	retlw	070h
+   225  039B  342C               	retlw	02Ch
+   226  039C  3438               	retlw	038h
+   227  039D  3463               	retlw	063h
+   228  039E  3436               	retlw	036h
+   229  039F  342C               	retlw	02Ch
+   230  03A0  3438               	retlw	038h
+   231  03A1  3470               	retlw	070h
+   232  03A2  342C               	retlw	02Ch
+   233  03A3  3438               	retlw	038h
+   234  03A4  3467               	retlw	067h
+   235  03A5  3435               	retlw	035h
+   236  03A6  342C               	retlw	02Ch
+   237  03A7  3434               	retlw	034h
+   238  03A8  3470               	retlw	070h
+   239  03A9  342C               	retlw	02Ch
+   240  03AA  3434               	retlw	034h
+   241  03AB  3470               	retlw	070h
+   242  03AC  342C               	retlw	02Ch
+   243  03AD  3438               	retlw	038h
+   244  03AE  3466               	retlw	066h
+   245  03AF  3435               	retlw	035h
+   246  03B0  342C               	retlw	02Ch
+   247  03B1  3438               	retlw	038h
+   248  03B2  3470               	retlw	070h
+   249  03B3  342C               	retlw	02Ch
+   250  03B4  3438               	retlw	038h
+   251  03B5  3466               	retlw	066h
+   252  03B6  3423               	retlw	023h
+   253  03B7  3435               	retlw	035h
+   254  03B8  342C               	retlw	02Ch
+   255  03B9  3438               	retlw	038h
+   256  03BA  3470               	retlw	070h
+   257  03BB  342C               	retlw	02Ch
+   258  03BC  3438               	retlw	038h
+   259  03BD  3461               	retlw	061h
+   260  03BE  3423               	retlw	023h
+   261  03BF  3435               	retlw	035h
+   262  03C0  342C               	retlw	02Ch
+   263  03C1  3438               	retlw	038h
+   264  03C2  3467               	retlw	067h
+   265  03C3  3435               	retlw	035h
+   266  03C4  342C               	retlw	02Ch
+   267  03C5  3431               	retlw	031h
+   268  03C6  3464               	retlw	064h
+   269  03C7  3435               	retlw	035h
+   270  03C8  3400               	retlw	0
+   271                           	global	main@Melody
+   272                           	global	_TMR0Count
+   273                           	global	_beep
+   274                           	global	_preloadTMR1H
+   275                           	global	_preloadTMR1L
+   276                           	global	_beat_speed
+   277                           psect	nvCOMMON,class=COMMON,space=1
+   278                           global __pnvCOMMON
+   279  007A                     __pnvCOMMON:
+   280  007A                     _beat_speed:
+   281  007A                            ds      1
+   282                           
+   283                           	global	_ADCON0
+   284  001F                     _ADCON0  equ     31
+   285                           	global	_ADRESH
+   286  001E                     _ADRESH  equ     30
+   287                           	global	_CCP1CON
+   288  0017                     _CCP1CON  equ     23
+   289                           	global	_CCPR1H
+   290  0016                     _CCPR1H  equ     22
+   291                           	global	_CCPR1L
+   292  0015                     _CCPR1L  equ     21
+   293                           	global	_ECCPAS
+   294  001D                     _ECCPAS  equ     29
+   295                           	global	_FSR
+   296  0004                     _FSR  equ     4
+   297                           	global	_INDF
+   298  0000                     _INDF  equ     0
+   299                           	global	_INTCON
+   300  000B                     _INTCON  equ     11
+   301                           	global	_PCL
+   302  0002                     _PCL  equ     2
+   303                           	global	_PCLATH
+   304  000A                     _PCLATH  equ     10
+   305                           	global	_PIR1
+   306  000C                     _PIR1  equ     12
+   307                           	global	_PIR2
+   308  000D                     _PIR2  equ     13
+   309                           	global	_PORTA
+   310  0005                     _PORTA  equ     5
+   311                           	global	_PORTB
+   312  0006                     _PORTB  equ     6
+   313                           	global	_PORTC
+   314  0007                     _PORTC  equ     7
+   315                           	global	_PWM1CON
+   316  001C                     _PWM1CON  equ     28
+   317                           	global	_RCREG
+   318  001A                     _RCREG  equ     26
+   319                           	global	_RCSTA
+   320  0018                     _RCSTA  equ     24
+   321                           	global	_SSPBUF
+   322  0013                     _SSPBUF  equ     19
+   323                           	global	_SSPCON
+   324  0014                     _SSPCON  equ     20
+   325                           	global	_STATUS
+   326  0003                     _STATUS  equ     3
+   327                           	global	_T1CON
+   328  0010                     _T1CON  equ     16
+   329                           	global	_T2CON
+   330  0012                     _T2CON  equ     18
+   331                           	global	_TMR0
+   332  0001                     _TMR0  equ     1
+   333                           	global	_TMR1H
+   334  000F                     _TMR1H  equ     15
+   335                           	global	_TMR1L
+   336  000E                     _TMR1L  equ     14
+   337                           	global	_TMR2
+   338  0011                     _TMR2  equ     17
+   339                           	global	_TXREG
+   340  0019                     _TXREG  equ     25
+   341                           	global	_ADDEN
+   342  00C3                     _ADDEN  equ     195
+   343                           	global	_ADFM
+   344  00FF                     _ADFM  equ     255
+   345                           	global	_ADIF
+   346  0066                     _ADIF  equ     102
+   347                           	global	_ADON
+   348  00F8                     _ADON  equ     248
+   349                           	global	_C1IF
+   350  006D                     _C1IF  equ     109
+   351                           	global	_C2IF
+   352  006E                     _C2IF  equ     110
+   353                           	global	_CARRY
+   354  0018                     _CARRY  equ     24
+   355                           	global	_CCP1IF
+   356  0062                     _CCP1IF  equ     98
+   357                           	global	_CCP1M0
+   358  00B8                     _CCP1M0  equ     184
+   359                           	global	_CCP1M1
+   360  00B9                     _CCP1M1  equ     185
+   361                           	global	_CCP1M2
+   362  00BA                     _CCP1M2  equ     186
+   363                           	global	_CCP1M3
+   364  00BB                     _CCP1M3  equ     187
+   365                           	global	_CHS0
+   366  00FA                     _CHS0  equ     250
+   367                           	global	_CHS1
+   368  00FB                     _CHS1  equ     251
+   369                           	global	_CHS2
+   370  00FC                     _CHS2  equ     252
+   371                           	global	_CHS3
+   372  00FD                     _CHS3  equ     253
+   373                           	global	_CKP
+   374  00A4                     _CKP  equ     164
+   375                           	global	_CREN
+   376  00C4                     _CREN  equ     196
+   377                           	global	_DC
+   378  0019                     _DC  equ     25
+   379                           	global	_DC1B0
+   380  00BC                     _DC1B0  equ     188
+   381                           	global	_DC1B1
+   382  00BD                     _DC1B1  equ     189
+   383                           	global	_ECCPAS0
+   384  00EC                     _ECCPAS0  equ     236
+   385                           	global	_ECCPAS1
+   386  00ED                     _ECCPAS1  equ     237
+   387                           	global	_ECCPAS2
+   388  00EE                     _ECCPAS2  equ     238
+   389                           	global	_ECCPASE
+   390  00EF                     _ECCPASE  equ     239
+   391                           	global	_EEIF
+   392  006C                     _EEIF  equ     108
+   393                           	global	_FERR
+   394  00C2                     _FERR  equ     194
+   395                           	global	_GIE
+   396  005F                     _GIE  equ     95
+   397                           	global	_GODONE
+   398  00F9                     _GODONE  equ     249
+   399                           	global	_INTE
+   400  005C                     _INTE  equ     92
+   401                           	global	_INTF
+   402  0059                     _INTF  equ     89
+   403                           	global	_IRP
+   404  001F                     _IRP  equ     31
+   405                           	global	_OERR
+   406  00C1                     _OERR  equ     193
+   407                           	global	_OSFIF
+   408  006F                     _OSFIF  equ     111
+   409                           	global	_P1M0
+   410  00BE                     _P1M0  equ     190
+   411                           	global	_P1M1
+   412  00BF                     _P1M1  equ     191
+   413                           	global	_PD
+   414  001B                     _PD  equ     27
+   415                           	global	_PDC0
+   416  00E0                     _PDC0  equ     224
+   417                           	global	_PDC1
+   418  00E1                     _PDC1  equ     225
+   419                           	global	_PDC2
+   420  00E2                     _PDC2  equ     226
+   421                           	global	_PDC3
+   422  00E3                     _PDC3  equ     227
+   423+                          	global	_PDC4
+   424+ 00E4                     _PDC4  equ     228
+   425+                          	global	_PDC5
+   426+ 00E5                     _PDC5  equ     229
+   427+                          	global	_PDC6
+   428+ 00E6                     _PDC6  equ     230
+   429                           	global	_PEIE
+   430  005E                     _PEIE  equ     94
+   431+                          	global	_PRSEN
+   432+ 00E7                     _PRSEN  equ     231
+   433                           	global	_PSSAC0
+   434  00EA                     _PSSAC0  equ     234
+   435+                          	global	_PSSAC1
+   436+ 00EB                     _PSSAC1  equ     235
+   437+                          	global	_PSSBD0
+   438+ 00E8                     _PSSBD0  equ     232
+   439+                          	global	_PSSBD1
+   440+ 00E9                     _PSSBD1  equ     233
+   441+                          	global	_RA0
+   442+ 0028                     _RA0  equ     40
+   443+                          	global	_RA1
+   444+ 0029                     _RA1  equ     41
+   445                           	global	_RA2
+   446  002A                     _RA2  equ     42
+   447+                          	global	_RA3
+   448+ 002B                     _RA3  equ     43
+   449+                          	global	_RA4
+   450+ 002C                     _RA4  equ     44
+   451+                          	global	_RA5
+   452+ 002D                     _RA5  equ     45
+   453+                          	global	_RABIE
+   454+ 005B                     _RABIE  equ     91
+   455+                          	global	_RABIF
+   456+ 0058                     _RABIF  equ     88
+   457                           	global	_RB4
+   458  0034                     _RB4  equ     52
+   459+                          	global	_RB5
+   460+ 0035                     _RB5  equ     53
+   461                           	global	_RB6
+   462  0036                     _RB6  equ     54
+   463+                          	global	_RB7
+   464+ 0037                     _RB7  equ     55
+   465+                          	global	_RBIE
+   466+ 005B                     _RBIE  equ     91
+   467+                          	global	_RBIF
+   468+ 0058                     _RBIF  equ     88
+   469+                          	global	_RC0
+   470+ 0038                     _RC0  equ     56
+   471+                          	global	_RC1
+   472+ 0039                     _RC1  equ     57
+   473                           	global	_RC2
+   474  003A                     _RC2  equ     58
+   475+                          	global	_RC3
+   476+ 003B                     _RC3  equ     59
+   477+                          	global	_RC4
+   478+ 003C                     _RC4  equ     60
+   479+                          	global	_RC5
+   480+ 003D                     _RC5  equ     61
+   481+                          	global	_RC6
+   482+ 003E                     _RC6  equ     62
+   483+                          	global	_RC7
+   484+ 003F                     _RC7  equ     63
+   485                           	global	_RCIF
+   486  0065                     _RCIF  equ     101
+   487+                          	global	_RP0
+   488+ 001D                     _RP0  equ     29
+   489                           	global	_RP1
+   490  001E                     _RP1  equ     30
+   491+                          	global	_RX9
+   492+ 00C6                     _RX9  equ     198
+   493+                          	global	_RX9D
+   494+ 00C0                     _RX9D  equ     192
+   495+                          	global	_SPEN
+   496+ 00C7                     _SPEN  equ     199
+   497+                          	global	_SREN
+   498+ 00C5                     _SREN  equ     197
+   499+                          	global	_SSPEN
+   500+ 00A5                     _SSPEN  equ     165
+   501                           	global	_SSPIF
+   502  0063                     _SSPIF  equ     99
+   503+                          	global	_SSPM0
+   504+ 00A0                     _SSPM0  equ     160
+   505+                          	global	_SSPM1
+   506+ 00A1                     _SSPM1  equ     161
+   507+                          	global	_SSPM2
+   508+ 00A2                     _SSPM2  equ     162
+   509                           	global	_SSPM3
+   510  00A3                     _SSPM3  equ     163
+   511+                          	global	_SSPOV
+   512+ 00A6                     _SSPOV  equ     166
+   513                           	global	_T0IE
+   514  005D                     _T0IE  equ     93
+   515+                          	global	_T0IF
+   516+ 005A                     _T0IF  equ     90
+   517                           	global	_T1CKPS0
+   518  0084                     _T1CKPS0  equ     132
+   519+                          	global	_T1CKPS1
+   520+ 0085                     _T1CKPS1  equ     133
+   521+                          	global	_T1GINV
+   522+ 0087                     _T1GINV  equ     135
+   523+                          	global	_T1OSCEN
+   524+ 0083                     _T1OSCEN  equ     131
+   525+                          	global	_T1SYNC
+   526+ 0082                     _T1SYNC  equ     130
+   527+                          	global	_T2CKPS0
+   528+ 0090                     _T2CKPS0  equ     144
+   529                           	global	_T2CKPS1
+   530  0091                     _T2CKPS1  equ     145
+   531+                          	global	_TMR1CS
+   532+ 0081                     _TMR1CS  equ     129
+   533+                          	global	_TMR1GE
+   534+ 0086                     _TMR1GE  equ     134
+   535+                          	global	_TMR1IF
+   536+ 0060                     _TMR1IF  equ     96
+   537+                          	global	_TMR1ON
+   538+ 0080                     _TMR1ON  equ     128
+   539+                          	global	_TMR2IF
+   540+ 0061                     _TMR2IF  equ     97
+   541                           	global	_TMR2ON
+   542  0092                     _TMR2ON  equ     146
+   543+                          	global	_TO
+   544+ 001C                     _TO  equ     28
+   545                           	global	_TOUTPS0
+   546  0093                     _TOUTPS0  equ     147
+   547+                          	global	_TOUTPS1
+   548+ 0094                     _TOUTPS1  equ     148
+   549+                          	global	_TOUTPS2
+   550+ 0095                     _TOUTPS2  equ     149
+   551+                          	global	_TOUTPS3
+   552+ 0096                     _TOUTPS3  equ     150
+   553+                          	global	_TXIF
+   554+ 0064                     _TXIF  equ     100
+   555+                          	global	_VCFG
+   556+ 00FE                     _VCFG  equ     254
+   557                           	global	_WCOL
+   558  00A7                     _WCOL  equ     167
+   559                           	global	_ZERO
+   560  001A                     _ZERO  equ     26
+   561+                          	global	_ADCON1
+   562+ 009F                     _ADCON1  equ     159
+   563+                          	global	_ADRESL
+   564+ 009E                     _ADRESL  equ     158
+   565                           	global	_BAUDCTL
+   566  009B                     _BAUDCTL  equ     155
+   567+                          	global	_IOCA
+   568+ 0096                     _IOCA  equ     150
+   569                           	global	_OPTION
+   570  0081                     _OPTION  equ     129
+   571+                          	global	_OSCCON
+   572+ 008F                     _OSCCON  equ     143
+   573                           	global	_OSCTUNE
+   574  0090                     _OSCTUNE  equ     144
+   575+                          	global	_PCON
+   576+ 008E                     _PCON  equ     142
+   577+                          	global	_PIE1
+   578+ 008C                     _PIE1  equ     140
+   579+                          	global	_PIE2
+   580+ 008D                     _PIE2  equ     141
+   581+                          	global	_PR2
+   582+ 0092                     _PR2  equ     146
+   583+                          	global	_SPBRG
+   584+ 0099                     _SPBRG  equ     153
+   585                           	global	_SPBRGH
+   586  009A                     _SPBRGH  equ     154
+   587+                          	global	_SSPADD
+   588+ 0093                     _SSPADD  equ     147
+   589+                          	global	_SSPMSK
+   590+ 0093                     _SSPMSK  equ     147
+   591+                          	global	_SSPSTAT
+   592+ 0094                     _SSPSTAT  equ     148
+   593                           	global	_TRISA
+   594  0085                     _TRISA  equ     133
+   595+                          	global	_TRISB
+   596+ 0086                     _TRISB  equ     134
+   597                           	global	_TRISC
+   598  0087                     _TRISC  equ     135
+   599+                          	global	_TXSTA
+   600+ 0098                     _TXSTA  equ     152
+   601                           	global	_WDTCON
+   602  0097                     _WDTCON  equ     151
+   603+                          	global	_WPUA
+   604+ 0095                     _WPUA  equ     149
+   605+                          	global	_ABDEN
+   606+ 04D8                     _ABDEN  equ     1240
+   607+                          	global	_ABDOVF
+   608+ 04DF                     _ABDOVF  equ     1247
+   609+                          	global	_ADCS0
+   610+ 04FC                     _ADCS0  equ     1276
+   611+                          	global	_ADCS1
+   612+ 04FD                     _ADCS1  equ     1277
+   613                           	global	_ADCS2
+   614  04FE                     _ADCS2  equ     1278
+   615                           	global	_ADIE
+   616  0466                     _ADIE  equ     1126
+   617+                          	global	_BF
+   618+ 04A0                     _BF  equ     1184
+   619+                          	global	_BOR
+   620+ 0470                     _BOR  equ     1136
+   621                           	global	_BRG0
+   622  04C8                     _BRG0  equ     1224
+   623                           	global	_BRG1
+   624  04C9                     _BRG1  equ     1225
+   625                           	global	_BRG10
+   626  04D2                     _BRG10  equ     1234
+   627                           	global	_BRG11
+   628  04D3                     _BRG11  equ     1235
+   629                           	global	_BRG12
+   630  04D4                     _BRG12  equ     1236
+   631                           	global	_BRG13
+   632  04D5                     _BRG13  equ     1237
+   633                           	global	_BRG14
+   634  04D6                     _BRG14  equ     1238
+   635                           	global	_BRG15
+   636  04D7                     _BRG15  equ     1239
+   637                           	global	_BRG16
+   638  04DB                     _BRG16  equ     1243
+   639                           	global	_BRG2
+   640  04CA                     _BRG2  equ     1226
+   641                           	global	_BRG3
+   642  04CB                     _BRG3  equ     1227
+   643                           	global	_BRG4
+   644  04CC                     _BRG4  equ     1228
+   645                           	global	_BRG5
+   646  04CD                     _BRG5  equ     1229
+   647                           	global	_BRG6
+   648  04CE                     _BRG6  equ     1230
+   649                           	global	_BRG7
+   650  04CF                     _BRG7  equ     1231
+   651                           	global	_BRG8
+   652  04D0                     _BRG8  equ     1232
+   653                           	global	_BRG9
+   654  04D1                     _BRG9  equ     1233
+   655                           	global	_BRGH
+   656  04C2                     _BRGH  equ     1218
+   657                           	global	_C1IE
+   658  046D                     _C1IE  equ     1133
+   659                           	global	_C2IE
+   660  046E                     _C2IE  equ     1134
+   661                           	global	_CCP1IE
+   662  0462                     _CCP1IE  equ     1122
+   663                           	global	_CKE
+   664  04A6                     _CKE  equ     1190
+   665                           	global	_CSRC
+   666  04C7                     _CSRC  equ     1223
+   667                           	global	_DA
+   668  04A5                     _DA  equ     1189
+   669                           	global	_EEIE
+   670  046C                     _EEIE  equ     1132
+   671                           	global	_HTS
+   672  047A                     _HTS  equ     1146
+   673                           	global	_INTEDG
+   674  040E                     _INTEDG  equ     1038
+   675                           	global	_IOCA0
+   676  04B0                     _IOCA0  equ     1200
+   677                           	global	_IOCA1
+   678  04B1                     _IOCA1  equ     1201
+   679                           	global	_IOCA2
+   680  04B2                     _IOCA2  equ     1202
+   681                           	global	_IOCA3
+   682  04B3                     _IOCA3  equ     1203
+   683                           	global	_IOCA4
+   684  04B4                     _IOCA4  equ     1204
+   685                           	global	_IOCA5
+   686  04B5                     _IOCA5  equ     1205
+   687                           	global	_IRCF0
+   688  047C                     _IRCF0  equ     1148
+   689                           	global	_IRCF1
+   690  047D                     _IRCF1  equ     1149
+   691                           	global	_IRCF2
+   692  047E                     _IRCF2  equ     1150
+   693                           	global	_LTS
+   694  0479                     _LTS  equ     1145
+   695                           	global	_OSFIE
+   696  046F                     _OSFIE  equ     1135
+   697                           	global	_OSTS
+   698  047B                     _OSTS  equ     1147
+   699                           	global	_POR
+   700  0471                     _POR  equ     1137
+   701                           	global	_PS0
+   702  0408                     _PS0  equ     1032
+   703                           	global	_PS1
+   704  0409                     _PS1  equ     1033
+   705                           	global	_PS2
+   706  040A                     _PS2  equ     1034
+   707                           	global	_PSA
+   708  040B                     _PSA  equ     1035
+   709                           	global	_RABPU
+   710  040F                     _RABPU  equ     1039
+   711                           	global	_RBPU
+   712  040F                     _RBPU  equ     1039
+   713                           	global	_RCIDL
+   714  04DE                     _RCIDL  equ     1246
+   715                           	global	_RCIE
+   716  0465                     _RCIE  equ     1125
+   717                           	global	_RW
+   718  04A2                     _RW  equ     1186
+   719                           	global	_SBOREN
+   720  0474                     _SBOREN  equ     1140
+   721                           	global	_SCKP
+   722  04DC                     _SCKP  equ     1244
+   723                           	global	_SCS
+   724  0478                     _SCS  equ     1144
+   725                           	global	_SENDB
+   726  04C3                     _SENDB  equ     1219
+   727                           	global	_SMP
+   728  04A7                     _SMP  equ     1191
+   729                           	global	_SSPIE
+   730  0463                     _SSPIE  equ     1123
+   731                           	global	_START
+   732  04A3                     _START  equ     1187
+   733                           	global	_STOP
+   734  04A4                     _STOP  equ     1188
+   735                           	global	_SWDTEN
+   736  04B8                     _SWDTEN  equ     1208
+   737                           	global	_SYNC
+   738  04C4                     _SYNC  equ     1220
+   739                           	global	_T0CS
+   740  040D                     _T0CS  equ     1037
+   741                           	global	_T0SE
+   742  040C                     _T0SE  equ     1036
+   743                           	global	_TMR1IE
+   744  0460                     _TMR1IE  equ     1120
+   745                           	global	_TMR2IE
+   746  0461                     _TMR2IE  equ     1121
+   747                           	global	_TRISA0
+   748  0428                     _TRISA0  equ     1064
+   749                           	global	_TRISA1
+   750  0429                     _TRISA1  equ     1065
+   751                           	global	_TRISA2
+   752  042A                     _TRISA2  equ     1066
+   753                           	global	_TRISA3
+   754  042B                     _TRISA3  equ     1067
+   755                           	global	_TRISA4
+   756  042C                     _TRISA4  equ     1068
+   757                           	global	_TRISA5
+   758  042D                     _TRISA5  equ     1069
+   759                           	global	_TRISB4
+   760  0434                     _TRISB4  equ     1076
+   761                           	global	_TRISB5
+   762  0435                     _TRISB5  equ     1077
+   763                           	global	_TRISB6
+   764  0436                     _TRISB6  equ     1078
+   765                           	global	_TRISB7
+   766  0437                     _TRISB7  equ     1079
+   767                           	global	_TRISC0
+   768  0438                     _TRISC0  equ     1080
+   769                           	global	_TRISC1
+   770  0439                     _TRISC1  equ     1081
+   771                           	global	_TRISC2
+   772  043A                     _TRISC2  equ     1082
+   773                           	global	_TRISC3
+   774  043B                     _TRISC3  equ     1083
+   775                           	global	_TRISC4
+   776  043C                     _TRISC4  equ     1084
+   777                           	global	_TRISC5
+   778  043D                     _TRISC5  equ     1085
+   779                           	global	_TRISC6
+   780  043E                     _TRISC6  equ     1086
+   781                           	global	_TRISC7
+   782  043F                     _TRISC7  equ     1087
+   783                           	global	_TRMT
+   784  04C1                     _TRMT  equ     1217
+   785                           	global	_TUN0
+   786  0480                     _TUN0  equ     1152
+   787                           	global	_TUN1
+   788  0481                     _TUN1  equ     1153
+   789                           	global	_TUN2
+   790  0482                     _TUN2  equ     1154
+   791                           	global	_TUN3
+   792  0483                     _TUN3  equ     1155
+   793                           	global	_TUN4
+   794  0484                     _TUN4  equ     1156
+   795                           	global	_TX9
+   796  04C6                     _TX9  equ     1222
+   797                           	global	_TX9D
+   798  04C0                     _TX9D  equ     1216
+   799                           	global	_TXEN
+   800  04C5                     _TXEN  equ     1221
+   801                           	global	_TXIE
+   802  0464                     _TXIE  equ     1124
+   803                           	global	_UA
+   804  04A1                     _UA  equ     1185
+   805                           	global	_ULPWUE
+   806  0475                     _ULPWUE  equ     1141
+   807                           	global	_WDTPS0
+   808  04B9                     _WDTPS0  equ     1209
+   809                           	global	_WDTPS1
+   810  04BA                     _WDTPS1  equ     1210
+   811                           	global	_WDTPS2
+   812  04BB                     _WDTPS2  equ     1211
+   813                           	global	_WDTPS3
+   814  04BC                     _WDTPS3  equ     1212
+   815                           	global	_WPUA0
+   816  04A8                     _WPUA0  equ     1192
+   817                           	global	_WPUA1
+   818  04A9                     _WPUA1  equ     1193
+   819                           	global	_WPUA2
+   820  04AA                     _WPUA2  equ     1194
+   821                           	global	_WPUA4
+   822  04AC                     _WPUA4  equ     1196
+   823                           	global	_WPUA5
+   824  04AD                     _WPUA5  equ     1197
+   825                           	global	_WUE
+   826  04D9                     _WUE  equ     1241
+   827                           	global	_ANSEL
+   828  011E                     _ANSEL  equ     286
+   829                           	global	_ANSELH
+   830  011F                     _ANSELH  equ     287
+   831                           	global	_CM1CON0
+   832  0119                     _CM1CON0  equ     281
+   833                           	global	_CM2CON0
+   834  011A                     _CM2CON0  equ     282
+   835                           	global	_CM2CON1
+   836  011B                     _CM2CON1  equ     283
+   837                           	global	_EEADR
+   838  010D                     _EEADR  equ     269
+   839                           	global	_EEADRH
+   840  010F                     _EEADRH  equ     271
+   841                           	global	_EEADRL
+   842  010D                     _EEADRL  equ     269
+   843                           	global	_EEDAT
+   844  010C                     _EEDAT  equ     268
+   845                           	global	_EEDATA
+   846  010C                     _EEDATA  equ     268
+   847                           	global	_EEDATH
+   848  010E                     _EEDATH  equ     270
+   849                           	global	_EEDATL
+   850  010C                     _EEDATL  equ     268
+   851                           	global	_IOCB
+   852  0116                     _IOCB  equ     278
+   853                           	global	_VRCON
+   854  0118                     _VRCON  equ     280
+   855                           	global	_WPUB
+   856  0115                     _WPUB  equ     277
+   857                           	global	_ANS0
+   858  08F0                     _ANS0  equ     2288
+   859                           	global	_ANS1
+   860  08F1                     _ANS1  equ     2289
+   861                           	global	_ANS10
+   862  08FA                     _ANS10  equ     2298
+   863                           	global	_ANS11
+   864  08FB                     _ANS11  equ     2299
+   865                           	global	_ANS2
+   866  08F2                     _ANS2  equ     2290
+   867                           	global	_ANS3
+   868  08F3                     _ANS3  equ     2291
+   869                           	global	_ANS4
+   870  08F4                     _ANS4  equ     2292
+   871                           	global	_ANS5
+   872  08F5                     _ANS5  equ     2293
+   873                           	global	_ANS6
+   874  08F6                     _ANS6  equ     2294
+   875                           	global	_ANS7
+   876  08F7                     _ANS7  equ     2295
+   877                           	global	_ANS8
+   878  08F8                     _ANS8  equ     2296
+   879                           	global	_ANS9
+   880  08F9                     _ANS9  equ     2297
+   881                           	global	_C1CH0
+   882  08C8                     _C1CH0  equ     2248
+   883                           	global	_C1CH1
+   884  08C9                     _C1CH1  equ     2249
+   885                           	global	_C1OE
+   886  08CD                     _C1OE  equ     2253
+   887                           	global	_C1ON
+   888  08CF                     _C1ON  equ     2255
+   889                           	global	_C1OUT
+   890  08CE                     _C1OUT  equ     2254
+   891                           	global	_C1POL
+   892  08CC                     _C1POL  equ     2252
+   893                           	global	_C1R
+   894  08CA                     _C1R  equ     2250
+   895                           	global	_C1VREN
+   896  08C7                     _C1VREN  equ     2247
+   897                           	global	_C2CH0
+   898  08D0                     _C2CH0  equ     2256
+   899                           	global	_C2CH1
+   900  08D1                     _C2CH1  equ     2257
+   901                           	global	_C2OE
+   902  08D5                     _C2OE  equ     2261
+   903                           	global	_C2ON
+   904  08D7                     _C2ON  equ     2263
+   905                           	global	_C2OUT
+   906  08D6                     _C2OUT  equ     2262
+   907                           	global	_C2POL
+   908  08D4                     _C2POL  equ     2260
+   909                           	global	_C2R
+   910  08D2                     _C2R  equ     2258
+   911                           	global	_C2SYNC
+   912  08D8                     _C2SYNC  equ     2264
+   913                           	global	_C2VREN
+   914  08C6                     _C2VREN  equ     2246
+   915                           	global	_IOCB4
+   916  08B4                     _IOCB4  equ     2228
+   917                           	global	_IOCB5
+   918  08B5                     _IOCB5  equ     2229
+   919                           	global	_IOCB6
+   920  08B6                     _IOCB6  equ     2230
+   921                           	global	_IOCB7
+   922  08B7                     _IOCB7  equ     2231
+   923                           	global	_MC1OUT
+   924  08DF                     _MC1OUT  equ     2271
+   925                           	global	_MC2OUT
+   926  08DE                     _MC2OUT  equ     2270
+   927                           	global	_T1GSS
+   928  08D9                     _T1GSS  equ     2265
+   929                           	global	_VP6EN
+   930  08C4                     _VP6EN  equ     2244
+   931                           	global	_VR0
+   932  08C0                     _VR0  equ     2240
+   933                           	global	_VR1
+   934  08C1                     _VR1  equ     2241
+   935                           	global	_VR2
+   936  08C2                     _VR2  equ     2242
+   937                           	global	_VR3
+   938  08C3                     _VR3  equ     2243
+   939                           	global	_VRR
+   940  08C5                     _VRR  equ     2245
+   941                           	global	_WPUB4
+   942  08AC                     _WPUB4  equ     2220
+   943                           	global	_WPUB5
+   944  08AD                     _WPUB5  equ     2221
+   945                           	global	_WPUB6
+   946  08AE                     _WPUB6  equ     2222
+   947                           	global	_WPUB7
+   948  08AF                     _WPUB7  equ     2223
+   949                           	global	_EECON1
+   950  018C                     _EECON1  equ     396
+   951                           	global	_EECON2
+   952  018D                     _EECON2  equ     397
+   953                           	global	_PSTRCON
+   954  019D                     _PSTRCON  equ     413
+   955                           	global	_SRCON
+   956  019E                     _SRCON  equ     414
+   957                           	global	_C1SEN
+   958  0CF5                     _C1SEN  equ     3317
+   959                           	global	_C2REN
+   960  0CF4                     _C2REN  equ     3316
+   961                           	global	_EEPGD
+   962  0C67                     _EEPGD  equ     3175
+   963                           	global	_PULSR
+   964  0CF2                     _PULSR  equ     3314
+   965                           	global	_PULSS
+   966  0CF3                     _PULSS  equ     3315
+   967                           	global	_RD
+   968  0C60                     _RD  equ     3168
+   969                           	global	_SR0
+   970  0CF6                     _SR0  equ     3318
+   971                           	global	_SR1
+   972  0CF7                     _SR1  equ     3319
+   973                           	global	_STRA
+   974  0CE8                     _STRA  equ     3304
+   975                           	global	_STRB
+   976  0CE9                     _STRB  equ     3305
+   977                           	global	_STRC
+   978  0CEA                     _STRC  equ     3306
+   979                           	global	_STRD
+   980  0CEB                     _STRD  equ     3307
+   981                           	global	_STRSYNC
+   982  0CEC                     _STRSYNC  equ     3308
+   983                           	global	_WR
+   984  0C61                     _WR  equ     3169
+   985                           	global	_WREN
+   986  0C62                     _WREN  equ     3170
+   987                           	global	_WRERR
+   988  0C63                     _WRERR  equ     3171
+   989                           	file	"Buzzer_Melody.as"
+   990                           	line	#
+   991                           psect cinit,class=CODE,delta=2
+   992                           global start_initialization
+   993  04E2                     start_initialization:
+   994                           
+   995                           psect	bssCOMMON,class=COMMON,space=1
+   996                           global __pbssCOMMON
+   997  0075                     __pbssCOMMON:
+   998  0075                     _TMR0Count:
+   999  0075                            ds      2
+  1000                           
+  1001  0077                     _beep:
+  1002  0077                            ds      1
+  1003                           
+  1004  0078                     _preloadTMR1H:
+  1005  0078                            ds      1
+  1006                           
+  1007  0079                     _preloadTMR1L:
+  1008  0079                            ds      1
+  1009                           
+  1010                           ; Clear objects allocated to COMMON
+  1011                           psect cinit,class=CODE,delta=2
+  1012  04E2  01F5               	clrf	((__pbssCOMMON)+0)&07Fh
+  1013  04E3  01F6               	clrf	((__pbssCOMMON)+1)&07Fh
+  1014  04E4  01F7               	clrf	((__pbssCOMMON)+2)&07Fh
+  1015  04E5  01F8               	clrf	((__pbssCOMMON)+3)&07Fh
+  1016  04E6  01F9               	clrf	((__pbssCOMMON)+4)&07Fh
+  1017                           psect cinit,class=CODE,delta=2
+  1018                           global end_of_initialization
+  1019                           
+  1020                           ;End of C runtime variable initationation code
+  1021                           
+  1022  04E7                     end_of_initialization:
+  1023  04E7  0183               clrf status
+  1024  04E8  118A  2813         ljmp _main	;jump to C main() function
+  1025                           psect	cstackCOMMON,class=COMMON,space=1
+  1026                           global __pcstackCOMMON
+  1027  0070                     __pcstackCOMMON:
+  1028                           	global	?_InitTimer
+  1029  0070                     ?_InitTimer: ;@ 0x0
+  1030                           	global	??_InitTimer
+  1031  0070                     ??_InitTimer: ;@ 0x0
+  1032                           	global	??___lwdiv
+  1033  0070                     ??___lwdiv: ;@ 0x0
+  1034  0070                     	ds	1
+  1035                           	global	??_PlayNote
+  1036  0071                     ??_PlayNote: ;@ 0x1
+  1037  0071                     	ds	2
+  1038                           	global	??_main
+  1039  0073                     ??_main: ;@ 0x3
+  1040  0073                     	ds	2
+  1041                           psect	cstackBANK0,class=BANK0,space=1
+  1042                           global __pcstackBANK0
+  1043  0020                     __pcstackBANK0:
+  1044                           	global	___lwdiv@counter
+  1045  0020                     ___lwdiv@counter:	; 1 bytes @ 0x0
+  1046  0020                     	ds	1
+  1047                           	global	___lwdiv@quotient
+  1048  0021                     ___lwdiv@quotient:	; 2 bytes @ 0x1
+  1049  0021                     	ds	2
+  1050                           	global	?___lwdiv
+  1051  0023                     ?___lwdiv: ;@ 0x3
+  1052                           	global	___lwdiv@dividend
+  1053  0023                     ___lwdiv@dividend:	; 2 bytes @ 0x3
+  1054  0023                     	ds	2
+  1055                           	global	___lwdiv@divisor
+  1056  0025                     ___lwdiv@divisor:	; 2 bytes @ 0x5
+  1057  0025                     	ds	2
+  1058                           	global	?_PlayNote
+  1059  0027                     ?_PlayNote: ;@ 0x7
+  1060                           	global	PlayNote@note
+  1061  0027                     PlayNote@note:	; 2 bytes @ 0x7
+  1062  0027                     	ds	2
+  1063                           	global	PlayNote@octave
+  1064  0029                     PlayNote@octave:	; 1 bytes @ 0x9
+  1065  0029                     	ds	1
+  1066                           	global	PlayNote@duration
+  1067  002A                     PlayNote@duration:	; 2 bytes @ 0xA
+  1068  002A                     	ds	2
+  1069                           	global	main@defaultoctave
+  1070  002C                     main@defaultoctave:	; 2 bytes @ 0xC
+  1071  002C                     	ds	2
+  1072                           	global	main@defaultduration
+  1073  002E                     main@defaultduration:	; 2 bytes @ 0xE
+  1074  002E                     	ds	2
+  1075                           	global	main@octave
+  1076  0030                     main@octave:	; 2 bytes @ 0x10
+  1077  0030                     	ds	2
+  1078                           	global	main@note
+  1079  0032                     main@note:	; 2 bytes @ 0x12
+  1080  0032                     	ds	2
+  1081                           	global	main@duration
+  1082  0034                     main@duration:	; 2 bytes @ 0x14
+  1083  0034                     	ds	2
+  1084                           	global	main@pointer
+  1085  0036                     main@pointer:	; 2 bytes @ 0x16
+  1086  0036                     	ds	2
+  1087                           	global	??_interr
+  1088  0038                     ??_interr: ;@ 0x18
+  1089                           	global	?_main
+  1090  0038                     ?_main: ;@ 0x18
+  1091  0038                     	ds	4
+  1092                           	global	?_interr
+  1093  003C                     ?_interr: ;@ 0x1C
+  1094                           ;Data sizes: Strings 0, constant 186, data 0, bss 5, persistent 1 stack 0
+  1095                           ;Auto spaces:   Size  Autos    Used
+  1096                           ; COMMON          14      5      11
+  1097                           ; BANK0           80     28      28
+  1098                           ; BANK1           80      0       0
+  1099                           ; BANK2           80      0       0
+  1100                           
+  1101                           
+  1102                           ;Pointer list with targets:
+  1103                           
+  1104                           ;?___lwdiv	unsigned int  size(1); Largest target is 0
+  1105                           
+  1106                           
+  1107                           ;Main: autosize = 0, tempsize = 2, incstack = 0, save=0
+  1108                           
+  1109                           
+  1110                           ;Call graph:                      Base Space Used Autos Args Refs Density
+  1111                           ;_main                                               14    0 1215   0.00
+  1112                           ;                                    3 COMMO    2
+  1113                           ;                                   12 BANK0   12
+  1114                           ;          _InitTimer
+  1115                           ;           _PlayNote
+  1116                           ;  _PlayNote                                          2    5  468   0.00
+  1117                           ;                                    1 COMMO    2
+  1118                           ;                                    7 BANK0    5
+  1119                           ;            ___lwdiv
+  1120                           ;  _InitTimer                                         0    0    0   0.00
+  1121                           ;    ___lwdiv                                         4    4  192   0.00
+  1122                           ;                                    0 COMMO    1
+  1123                           ;                                    0 BANK0    7
+  1124                           ; Estimated maximum call depth 2
+  1125                           ;_interr                                              4    0    0   0.00
+  1126                           ;                                   24 BANK0    4
+  1127                           ; Estimated maximum call depth 0
+  1128                           ; Address spaces:
+  1129                           
+  1130                           ;Name               Size   Autos  Total    Cost      Usage
+  1131                           ;BITCOMMON            E      0       0       0        0.0%
+  1132                           ;CODE                 0      0       0       0        0.0%
+  1133                           ;NULL                 0      0       0       0        0.0%
+  1134                           ;COMMON               E      5       B       1       78.6%
+  1135                           ;BITSFR0              0      0       0       1        0.0%
+  1136                           ;SFR0                 0      0       0       1        0.0%
+  1137                           ;SFR1                 0      0       0       2        0.0%
+  1138                           ;BITSFR1              0      0       0       2        0.0%
+  1139                           ;ABS                  0      0      27       2        0.0%
+  1140                           ;STACK                0      0       0       3        0.0%
+  1141                           ;BITBANK0            50      0       0       4        0.0%
+  1142                           ;BITSFR3              0      0       0       4        0.0%
+  1143                           ;SFR3                 0      0       0       4        0.0%
+  1144                           ;BANK0               50     1C      1C       5       35.0%
+  1145                           ;SFR2                 0      0       0       5        0.0%
+  1146                           ;BITSFR2              0      0       0       5        0.0%
+  1147                           ;BITBANK1            50      0       0       6        0.0%
+  1148                           ;BANK1               50      0       0       7        0.0%
+  1149                           ;BITBANK2            50      0       0       8        0.0%
+  1150                           ;BANK2               50      0       0       9        0.0%
+  1151                           ;DATA                 0      0      27      10        0.0%
+  1152                           ;EEDATA             100      0       0    1000        0.0%
+  1153                           
+  1154                           	global	_main
+  1155                           psect	maintext,local,class=CODE,delta=2
+  1156                           global __pmaintext
+  1157  0013                     __pmaintext:
+  1158                           
+  1159                           ; *************** function _main *****************
+  1160                           ; Defined at:
+  1161                           ;		line 26 in file "D:\Amit\E-Projects\PIC Projects\Buzzer\Melody\Buzzer_Melody.c"
+  1162                           ; Parameters:    Size  Location     Type
+  1163                           ;		None
+  1164                           ; Auto vars:     Size  Location     Type
+  1165                           ;  pointer         2   22[BANK0 ] unsigned int 
+  1166                           ;  duration        2   20[BANK0 ] unsigned int 
+  1167                           ;  note            2   18[BANK0 ] unsigned int 
+  1168                           ;  octave          2   16[BANK0 ] unsigned int 
+  1169                           ;  defaultoctav    2   12[BANK0 ] unsigned int 
+  1170                           ;  defaultdurat    2   14[BANK0 ] unsigned int 
+  1171                           ; Return value:  Size  Location     Type
+  1172                           ;		None               void
+  1173                           ; Registers used:
+  1174                           ;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  1175                           ; Tracked objects:
+  1176                           ;		On entry : 17F/0
+  1177                           ;		On exit  : 0/0
+  1178                           ;		Unchanged: 0/0
+  1179                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  1180                           ;      Locals:         2      12       0       0
+  1181                           ;      Temp:     2
+  1182                           ;      Total:   14
+  1183                           ; This function calls:
+  1184                           ;		_InitTimer
+  1185                           ;		_PlayNote
+  1186                           ; This function is called by:
+  1187                           ;		Startup code after reset
+  1188                           ; This function uses a non-reentrant model
+  1189                           ; 
+  1190                           psect	maintext
+  1191                           	file	"D:\Amit\E-Projects\PIC Projects\Buzzer\Melody\Buzzer_Melody.c"
+  1192                           	line	26
+  1193                           	global	__size_of_main
+  1194  0213                     	__size_of_main	equ	__end_of_main-_main
+  1195                           ;pic16f685.h: 21: volatile unsigned char INDF @ 0x000;
+  1196                           ;pic16f685.h: 22: volatile unsigned char TMR0 @ 0x001;
+  1197                           ;pic16f685.h: 23: volatile unsigned char PCL @ 0x002;
+  1198                           ;pic16f685.h: 24: volatile unsigned char STATUS @ 0x003;
+  1199                           ;pic16f685.h: 25: unsigned char FSR @ 0x004;
+  1200                           ;pic16f685.h: 26: volatile unsigned char PORTA @ 0x005;
+  1201                           ;pic16f685.h: 27: volatile unsigned char PORTB @ 0x006;
+  1202                           ;pic16f685.h: 28: volatile unsigned char PORTC @ 0x007;
+  1203                           ;pic16f685.h: 29: volatile unsigned char PCLATH @ 0x00A;
+  1204                           ;pic16f685.h: 30: volatile unsigned char INTCON @ 0x00B;
+  1205                           	
+  1206  0013                     _main:	
+  1207                           	opt stack 6
+  1208                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  1209                           	line	27
+  1210                           	
+  1211  0013                     l30000699:	
+  1212                           ;Buzzer_Melody.c: 27: unsigned int pointer = 0;
+  1213  0013  3000               	movlw	low(0)
+  1214  0014  00B6               	movwf	(main@pointer)
+  1215  0015  3000               	movlw	high(0)
+  1216  0016  00B7               	movwf	((main@pointer))+1
+  1217                           	line	29
+  1218                           ;Buzzer_Melody.c: 29: unsigned int duration = 0;
+  1219  0017  3000               	movlw	low(0)
+  1220  0018  00B4               	movwf	(main@duration)
+  1221  0019  3000               	movlw	high(0)
+  1222  001A  00B5               	movwf	((main@duration))+1
+  1223                           	line	30
+  1224                           ;Buzzer_Melody.c: 30: unsigned int note = 0;
+  1225  001B  3000               	movlw	low(0)
+  1226  001C  00B2               	movwf	(main@note)
+  1227  001D  3000               	movlw	high(0)
+  1228  001E  00B3               	movwf	((main@note))+1
+  1229                           	line	31
+  1230                           ;Buzzer_Melody.c: 31: unsigned int defaultoctave = 0;
+  1231  001F  3000               	movlw	low(0)
+  1232  0020  00AC               	movwf	(main@defaultoctave)
+  1233  0021  3000               	movlw	high(0)
+  1234  0022  00AD               	movwf	((main@defaultoctave))+1
+  1235                           	line	32
+  1236                           ;Buzzer_Melody.c: 32: unsigned int defaultduration = 0;
+  1237  0023  3000               	movlw	low(0)
+  1238  0024  00AE               	movwf	(main@defaultduration)
+  1239  0025  3000               	movlw	high(0)
+  1240  0026  00AF               	movwf	((main@defaultduration))+1
+  1241                           	line	62
+  1242                           ;Buzzer_Melody.c: 61: const unsigned char static Melody[] = {"16d5,16d#5,16d5,16d#5,16d5
+                                 ,16d#5,16d5,16d5,16d#5,16e5,16f5,16f#5,16g5,8g5,4p,8g5,4p,8a#5,8p,8c6,8p,8g5,4p,8g5,4p,8
+                                 f5,8p,8p,8g5,4p,4p,8a#5,8p,8c6,8p,8g5,4p,4p,8f5,8p,8f#5,8p,8a#5,8g5,1d5"};
+  1243                           ;Buzzer_Melody.c: 62: defaultoctave = 6;
+  1244  0027  3006               	movlw	low(06h)
+  1245  0028  00AC               	movwf	(main@defaultoctave)
+  1246  0029  3000               	movlw	high(06h)
+  1247  002A  00AD               	movwf	((main@defaultoctave))+1
+  1248                           	line	63
+  1249                           ;Buzzer_Melody.c: 63: defaultduration = 4;
+  1250  002B  3004               	movlw	low(04h)
+  1251  002C  00AE               	movwf	(main@defaultduration)
+  1252  002D  3000               	movlw	high(04h)
+  1253  002E  00AF               	movwf	((main@defaultduration))+1
+  1254                           	line	64
+  1255                           ;Buzzer_Melody.c: 64: beat_speed = 150;
+  1256  002F  3096               	movlw	(096h)
+  1257  0030  00FA               	movwf	(_beat_speed)
+  1258                           	
+  1259  0031                     l30000700:	
+  1260                           	line	67
+  1261                           ;Buzzer_Melody.c: 67: TRISC2 = 0;
+  1262  0031  1683               	bsf	status, 5	;RP0=1, select bank1
+  1263  0032  1303               	bcf	status, 6	;RP1=0, select bank1
+  1264  0033  1107               	bcf	(1082/8)^080h,(1082)&7
+  1265                           	
+  1266  0034                     l30000701:	
+  1267                           	line	69
+  1268                           ;Buzzer_Melody.c: 69: beep = 0;
+  1269  0034  1003               	clrc
+  1270  0035  3000               	movlw	0
+  1271  0036  1803               	btfsc	status,0
+  1272  0037  3001               	movlw	1
+  1273  0038  00F7               	movwf	(_beep)
+  1274                           	
+  1275  0039                     l30000702:	
+  1276                           	line	71
+  1277                           ;Buzzer_Melody.c: 71: InitTimer();
+  1278  0039  118A  24D2  118A   	fcall	_InitTimer
+  1279                           	
+  1280  003C                     l30000703:	
+  1281                           	line	72
+  1282                           ;Buzzer_Melody.c: 72: PEIE = 1;
+  1283  003C  1283               	bcf	status, 5	;RP0=0, select bank0
+  1284  003D  1303               	bcf	status, 6	;RP1=0, select bank0
+  1285  003E  170B               	bsf	(94/8),(94)&7
+  1286                           	
+  1287  003F                     l30000704:	
+  1288                           	line	73
+  1289                           ;Buzzer_Melody.c: 73: GIE = 1;
+  1290  003F  178B               	bsf	(95/8),(95)&7
+  1291                           	
+  1292  0040                     l30000705:	
+  1293                           	line	76
+  1294                           ;Buzzer_Melody.c: 76: octave = defaultoctave;
+  1295  0040  082D               	movf	(main@defaultoctave+1),w
+  1296  0041  01B1               	clrf	(main@octave+1)
+  1297  0042  07B1               	addwf	(main@octave+1)
+  1298  0043  082C               	movf	(main@defaultoctave),w
+  1299  0044  01B0               	clrf	(main@octave)
+  1300  0045  07B0               	addwf	(main@octave)
+  1301                           
+  1302                           	
+  1303  0046                     l30000706:	
+  1304                           	line	78
+  1305                           ;Buzzer_Melody.c: 78: if ((Melody[pointer] == '3') && (Melody[pointer+1] == '2'))
+  1306  0046  0836               	movf	(main@pointer),w
+  1307  0047  3E01               	addlw	(main@Melody-__stringbase)
+  1308                           	FNCALL _main,stringtab
+  1309  0048  118A  2309  118A   	fcall	stringdir
+  1310  004B  3A33               	xorlw	033h
+  1311  004C  1D03               	skipz
+  1312  004D  284F               	goto	u881
+  1313  004E  2850               	goto	u880
+  1314  004F                     u881:
+  1315  004F  2866               	goto	l30000709
+  1316  0050                     u880:
+  1317                           	
+  1318  0050                     l30000707:	
+  1319  0050  0836               	movf	(main@pointer),w
+  1320  0051  3E01               	addlw	01h
+  1321  0052  3E01               	addlw	(main@Melody-__stringbase)
+  1322                           	FNCALL _main,stringtab
+  1323  0053  118A  2309  118A   	fcall	stringdir
+  1324  0056  3A32               	xorlw	032h
+  1325  0057  1D03               	skipz
+  1326  0058  285A               	goto	u891
+  1327  0059  285B               	goto	u890
+  1328  005A                     u891:
+  1329  005A  2866               	goto	l30000709
+  1330  005B                     u890:
+  1331                           	
+  1332  005B                     l30000708:	
+  1333                           	line	80
+  1334                           ;Buzzer_Melody.c: 79: {
+  1335                           ;Buzzer_Melody.c: 80: duration = 32;
+  1336  005B  3020               	movlw	low(020h)
+  1337  005C  00B4               	movwf	(main@duration)
+  1338  005D  3000               	movlw	high(020h)
+  1339  005E  00B5               	movwf	((main@duration))+1
+  1340                           	line	81
+  1341                           ;Buzzer_Melody.c: 81: pointer += 2;
+  1342  005F  3002               	movlw	low(02h)
+  1343  0060  07B6               	addwf	(main@pointer),f
+  1344  0061  1803               	skipnc
+  1345  0062  0AB7               	incf	(main@pointer+1),f
+  1346  0063  3000               	movlw	high(02h)
+  1347  0064  07B7               	addwf	(main@pointer+1),f
+  1348  0065  28E0               	goto	l30000721
+  1349                           	
+  1350  0066                     l30000709:	
+  1351                           	line	83
+  1352                           ;Buzzer_Melody.c: 83: else if ((Melody[pointer] == '1') && (Melody[pointer+1] == '6'))
+  1353  0066  0836               	movf	(main@pointer),w
+  1354  0067  3E01               	addlw	(main@Melody-__stringbase)
+  1355                           	FNCALL _main,stringtab
+  1356  0068  118A  2309  118A   	fcall	stringdir
+  1357  006B  3A31               	xorlw	031h
+  1358  006C  1D03               	skipz
+  1359  006D  286F               	goto	u901
+  1360  006E  2870               	goto	u900
+  1361  006F                     u901:
+  1362  006F  2886               	goto	l30000712
+  1363  0070                     u900:
+  1364                           	
+  1365  0070                     l30000710:	
+  1366  0070  0836               	movf	(main@pointer),w
+  1367  0071  3E01               	addlw	01h
+  1368  0072  3E01               	addlw	(main@Melody-__stringbase)
+  1369                           	FNCALL _main,stringtab
+  1370  0073  118A  2309  118A   	fcall	stringdir
+  1371  0076  3A36               	xorlw	036h
+  1372  0077  1D03               	skipz
+  1373  0078  287A               	goto	u911
+  1374  0079  287B               	goto	u910
+  1375  007A                     u911:
+  1376  007A  2886               	goto	l30000712
+  1377  007B                     u910:
+  1378                           	
+  1379  007B                     l30000711:	
+  1380                           	line	85
+  1381                           ;Buzzer_Melody.c: 84: {
+  1382                           ;Buzzer_Melody.c: 85: duration = 16;
+  1383  007B  3010               	movlw	low(010h)
+  1384  007C  00B4               	movwf	(main@duration)
+  1385  007D  3000               	movlw	high(010h)
+  1386  007E  00B5               	movwf	((main@duration))+1
+  1387                           	line	86
+  1388                           ;Buzzer_Melody.c: 86: pointer += 2;
+  1389  007F  3002               	movlw	low(02h)
+  1390  0080  07B6               	addwf	(main@pointer),f
+  1391  0081  1803               	skipnc
+  1392  0082  0AB7               	incf	(main@pointer+1),f
+  1393  0083  3000               	movlw	high(02h)
+  1394  0084  07B7               	addwf	(main@pointer+1),f
+  1395  0085  28E0               	goto	l30000721
+  1396                           	
+  1397  0086                     l30000712:	
+  1398                           	line	88
+  1399                           ;Buzzer_Melody.c: 88: else if (Melody[pointer] == '8')
+  1400  0086  0836               	movf	(main@pointer),w
+  1401  0087  3E01               	addlw	(main@Melody-__stringbase)
+  1402                           	FNCALL _main,stringtab
+  1403  0088  118A  2309  118A   	fcall	stringdir
+  1404  008B  3A38               	xorlw	038h
+  1405  008C  1D03               	skipz
+  1406  008D  288F               	goto	u921
+  1407  008E  2890               	goto	u920
+  1408  008F                     u921:
+  1409  008F  289B               	goto	l30000714
+  1410  0090                     u920:
+  1411                           	
+  1412  0090                     l30000713:	
+  1413                           	line	90
+  1414                           ;Buzzer_Melody.c: 89: {
+  1415                           ;Buzzer_Melody.c: 90: duration = 8;
+  1416  0090  3008               	movlw	low(08h)
+  1417  0091  00B4               	movwf	(main@duration)
+  1418  0092  3000               	movlw	high(08h)
+  1419  0093  00B5               	movwf	((main@duration))+1
+  1420                           	line	91
+  1421                           ;Buzzer_Melody.c: 91: pointer++;
+  1422  0094  3001               	movlw	low(01h)
+  1423  0095  07B6               	addwf	(main@pointer),f
+  1424  0096  1803               	skipnc
+  1425  0097  0AB7               	incf	(main@pointer+1),f
+  1426  0098  3000               	movlw	high(01h)
+  1427  0099  07B7               	addwf	(main@pointer+1),f
+  1428  009A  28E0               	goto	l30000721
+  1429                           	
+  1430  009B                     l30000714:	
+  1431                           	line	93
+  1432                           ;Buzzer_Melody.c: 93: else if (Melody[pointer] == '4')
+  1433  009B  0836               	movf	(main@pointer),w
+  1434  009C  3E01               	addlw	(main@Melody-__stringbase)
+  1435                           	FNCALL _main,stringtab
+  1436  009D  118A  2309  118A   	fcall	stringdir
+  1437  00A0  3A34               	xorlw	034h
+  1438  00A1  1D03               	skipz
+  1439  00A2  28A4               	goto	u931
+  1440  00A3  28A5               	goto	u930
+  1441  00A4                     u931:
+  1442  00A4  28B0               	goto	l30000716
+  1443  00A5                     u930:
+  1444                           	
+  1445  00A5                     l30000715:	
+  1446                           	line	95
+  1447                           ;Buzzer_Melody.c: 94: {
+  1448                           ;Buzzer_Melody.c: 95: duration = 4;
+  1449  00A5  3004               	movlw	low(04h)
+  1450  00A6  00B4               	movwf	(main@duration)
+  1451  00A7  3000               	movlw	high(04h)
+  1452  00A8  00B5               	movwf	((main@duration))+1
+  1453                           	line	96
+  1454                           ;Buzzer_Melody.c: 96: pointer++;
+  1455  00A9  3001               	movlw	low(01h)
+  1456  00AA  07B6               	addwf	(main@pointer),f
+  1457  00AB  1803               	skipnc
+  1458  00AC  0AB7               	incf	(main@pointer+1),f
+  1459  00AD  3000               	movlw	high(01h)
+  1460  00AE  07B7               	addwf	(main@pointer+1),f
+  1461  00AF  28E0               	goto	l30000721
+  1462                           	
+  1463  00B0                     l30000716:	
+  1464                           	line	98
+  1465                           ;Buzzer_Melody.c: 98: else if (Melody[pointer] == '2')
+  1466  00B0  0836               	movf	(main@pointer),w
+  1467  00B1  3E01               	addlw	(main@Melody-__stringbase)
+  1468                           	FNCALL _main,stringtab
+  1469  00B2  118A  2309  118A   	fcall	stringdir
+  1470  00B5  3A32               	xorlw	032h
+  1471  00B6  1D03               	skipz
+  1472  00B7  28B9               	goto	u941
+  1473  00B8  28BA               	goto	u940
+  1474  00B9                     u941:
+  1475  00B9  28C5               	goto	l30000718
+  1476  00BA                     u940:
+  1477                           	
+  1478  00BA                     l30000717:	
+  1479                           	line	100
+  1480                           ;Buzzer_Melody.c: 99: {
+  1481                           ;Buzzer_Melody.c: 100: duration = 2;
+  1482  00BA  3002               	movlw	low(02h)
+  1483  00BB  00B4               	movwf	(main@duration)
+  1484  00BC  3000               	movlw	high(02h)
+  1485  00BD  00B5               	movwf	((main@duration))+1
+  1486                           	line	101
+  1487                           ;Buzzer_Melody.c: 101: pointer++;
+  1488  00BE  3001               	movlw	low(01h)
+  1489  00BF  07B6               	addwf	(main@pointer),f
+  1490  00C0  1803               	skipnc
+  1491  00C1  0AB7               	incf	(main@pointer+1),f
+  1492  00C2  3000               	movlw	high(01h)
+  1493  00C3  07B7               	addwf	(main@pointer+1),f
+  1494  00C4  28E0               	goto	l30000721
+  1495                           	
+  1496  00C5                     l30000718:	
+  1497                           	line	103
+  1498                           ;Buzzer_Melody.c: 103: else if (Melody[pointer] == '1')
+  1499  00C5  0836               	movf	(main@pointer),w
+  1500  00C6  3E01               	addlw	(main@Melody-__stringbase)
+  1501                           	FNCALL _main,stringtab
+  1502  00C7  118A  2309  118A   	fcall	stringdir
+  1503  00CA  3A31               	xorlw	031h
+  1504  00CB  1D03               	skipz
+  1505  00CC  28CE               	goto	u951
+  1506  00CD  28CF               	goto	u950
+  1507  00CE                     u951:
+  1508  00CE  28DA               	goto	l30000720
+  1509  00CF                     u950:
+  1510                           	
+  1511  00CF                     l30000719:	
+  1512                           	line	105
+  1513                           ;Buzzer_Melody.c: 104: {
+  1514                           ;Buzzer_Melody.c: 105: duration = 1;
+  1515  00CF  3001               	movlw	low(01h)
+  1516  00D0  00B4               	movwf	(main@duration)
+  1517  00D1  3000               	movlw	high(01h)
+  1518  00D2  00B5               	movwf	((main@duration))+1
+  1519                           	line	106
+  1520                           ;Buzzer_Melody.c: 106: pointer++;
+  1521  00D3  3001               	movlw	low(01h)
+  1522  00D4  07B6               	addwf	(main@pointer),f
+  1523  00D5  1803               	skipnc
+  1524  00D6  0AB7               	incf	(main@pointer+1),f
+  1525  00D7  3000               	movlw	high(01h)
+  1526  00D8  07B7               	addwf	(main@pointer+1),f
+  1527  00D9  28E0               	goto	l30000721
+  1528                           	
+  1529  00DA                     l30000720:	
+  1530                           	line	108
+  1531                           ;Buzzer_Melody.c: 108: else duration = defaultduration;
+  1532  00DA  082F               	movf	(main@defaultduration+1),w
+  1533  00DB  01B5               	clrf	(main@duration+1)
+  1534  00DC  07B5               	addwf	(main@duration+1)
+  1535  00DD  082E               	movf	(main@defaultduration),w
+  1536  00DE  01B4               	clrf	(main@duration)
+  1537  00DF  07B4               	addwf	(main@duration)
+  1538                           
+  1539                           	
+  1540  00E0                     l30000721:	
+  1541                           	line	110
+  1542                           ;Buzzer_Melody.c: 110: if (Melody[pointer + 1] == '#')
+  1543  00E0  0836               	movf	(main@pointer),w
+  1544  00E1  3E01               	addlw	01h
+  1545  00E2  3E01               	addlw	(main@Melody-__stringbase)
+  1546                           	FNCALL _main,stringtab
+  1547  00E3  118A  2309  118A   	fcall	stringdir
+  1548  00E6  3A23               	xorlw	023h
+  1549  00E7  1D03               	skipz
+  1550  00E8  28EA               	goto	u961
+  1551  00E9  28EB               	goto	u960
+  1552  00EA                     u961:
+  1553  00EA  2949               	goto	l30000740
+  1554  00EB                     u960:
+  1555  00EB  2905               	goto	l30000729
+  1556                           	
+  1557  00EC                     l30000723:	
+  1558                           	line	115
+  1559  00EC  30E6               	movlw	low(029E6h)
+  1560  00ED  00B2               	movwf	(main@note)
+  1561  00EE  3029               	movlw	high(029E6h)
+  1562  00EF  00B3               	movwf	((main@note))+1
+  1563  00F0  291A               	goto	l30000730
+  1564                           	
+  1565  00F1                     l30000724:	
+  1566                           	line	117
+  1567  00F1  303B               	movlw	low(0233Bh)
+  1568  00F2  00B2               	movwf	(main@note)
+  1569  00F3  3023               	movlw	high(0233Bh)
+  1570  00F4  00B3               	movwf	((main@note))+1
+  1571  00F5  291A               	goto	l30000730
+  1572                           	
+  1573  00F6                     l30000725:	
+  1574                           	line	119
+  1575  00F6  3063               	movlw	low(01F63h)
+  1576  00F7  00B2               	movwf	(main@note)
+  1577  00F8  301F               	movlw	high(01F63h)
+  1578  00F9  00B3               	movwf	((main@note))+1
+  1579  00FA  291A               	goto	l30000730
+  1580                           	
+  1581  00FB                     l30000726:	
+  1582                           	line	121
+  1583  00FB  3065               	movlw	low(01A65h)
+  1584  00FC  00B2               	movwf	(main@note)
+  1585  00FD  301A               	movlw	high(01A65h)
+  1586  00FE  00B3               	movwf	((main@note))+1
+  1587  00FF  291A               	goto	l30000730
+  1588                           	
+  1589  0100                     l30000727:	
+  1590                           	line	123
+  1591  0100  3088               	movlw	low(01788h)
+  1592  0101  00B2               	movwf	(main@note)
+  1593  0102  3017               	movlw	high(01788h)
+  1594  0103  00B3               	movwf	((main@note))+1
+  1595  0104  291A               	goto	l30000730
+  1596                           	
+  1597  0105                     l30000729:	
+  1598                           	line	113
+  1599  0105  0836               	movf	(main@pointer),w
+  1600  0106  3E01               	addlw	(main@Melody-__stringbase)
+  1601                           	FNCALL _main,stringtab
+  1602  0107  118A  2309  118A   	fcall	stringdir
+  1603  010A  3A61               		xorlw	97^0
+  1604  010B  1903               	skipnz
+  1605  010C  28EC               	goto	l30000723
+  1606  010D  3A02               	xorlw	99^97
+  1607  010E  1903               	skipnz
+  1608  010F  28F1               	goto	l30000724
+  1609  0110  3A07               	xorlw	100^99
+  1610  0111  1903               	skipnz
+  1611  0112  28F6               	goto	l30000725
+  1612  0113  3A02               	xorlw	102^100
+  1613  0114  1903               	skipnz
+  1614  0115  28FB               	goto	l30000726
+  1615  0116  3A01               	xorlw	103^102
+  1616  0117  1903               	skipnz
+  1617  0118  2900               	goto	l30000727
+  1618  0119  291A               	goto	l30000730
+  1619                           
+  1620                           	
+  1621  011A                     l30000730:	
+  1622                           	line	126
+  1623                           ;Buzzer_Melody.c: 126: pointer +=2;
+  1624  011A  3002               	movlw	low(02h)
+  1625  011B  07B6               	addwf	(main@pointer),f
+  1626  011C  1803               	skipnc
+  1627  011D  0AB7               	incf	(main@pointer+1),f
+  1628  011E  3000               	movlw	high(02h)
+  1629  011F  07B7               	addwf	(main@pointer+1),f
+  1630  0120  296D               	goto	l30000742
+  1631                           	
+  1632  0121                     l30000731:	
+  1633                           	line	133
+  1634  0121  3064               	movlw	low(02C64h)
+  1635  0122  00B2               	movwf	(main@note)
+  1636  0123  302C               	movlw	high(02C64h)
+  1637  0124  00B3               	movwf	((main@note))+1
+  1638  0125  2967               	goto	l30000741
+  1639                           	
+  1640  0126                     l30000732:	
+  1641                           	line	135
+  1642  0126  308B               	movlw	low(0278Bh)
+  1643  0127  00B2               	movwf	(main@note)
+  1644  0128  3027               	movlw	high(0278Bh)
+  1645  0129  00B3               	movwf	((main@note))+1
+  1646  012A  2967               	goto	l30000741
+  1647                           	
+  1648  012B                     l30000733:	
+  1649                           	line	137
+  1650  012B  3053               	movlw	low(02553h)
+  1651  012C  00B2               	movwf	(main@note)
+  1652  012D  3025               	movlw	high(02553h)
+  1653  012E  00B3               	movwf	((main@note))+1
+  1654  012F  2967               	goto	l30000741
+  1655                           	
+  1656  0130                     l30000734:	
+  1657                           	line	139
+  1658  0130  3041               	movlw	low(02141h)
+  1659  0131  00B2               	movwf	(main@note)
+  1660  0132  3021               	movlw	high(02141h)
+  1661  0133  00B3               	movwf	((main@note))+1
+  1662  0134  2967               	goto	l30000741
+  1663                           	
+  1664  0135                     l30000735:	
+  1665                           	line	141
+  1666  0135  30A0               	movlw	low(01DA0h)
+  1667  0136  00B2               	movwf	(main@note)
+  1668  0137  301D               	movlw	high(01DA0h)
+  1669  0138  00B3               	movwf	((main@note))+1
+  1670  0139  2967               	goto	l30000741
+  1671                           	
+  1672  013A                     l30000736:	
+  1673                           	line	143
+  1674  013A  30F6               	movlw	low(01BF6h)
+  1675  013B  00B2               	movwf	(main@note)
+  1676  013C  301B               	movlw	high(01BF6h)
+  1677  013D  00B3               	movwf	((main@note))+1
+  1678  013E  2967               	goto	l30000741
+  1679                           	
+  1680  013F                     l30000737:	
+  1681                           	line	145
+  1682  013F  30EA               	movlw	low(018EAh)
+  1683  0140  00B2               	movwf	(main@note)
+  1684  0141  3018               	movlw	high(018EAh)
+  1685  0142  00B3               	movwf	((main@note))+1
+  1686  0143  2967               	goto	l30000741
+  1687                           	
+  1688  0144                     l30000738:	
+  1689                           	line	147
+  1690  0144  3000               	movlw	low(0)
+  1691  0145  00B2               	movwf	(main@note)
+  1692  0146  3000               	movlw	high(0)
+  1693  0147  00B3               	movwf	((main@note))+1
+  1694  0148  2967               	goto	l30000741
+  1695                           	
+  1696  0149                     l30000740:	
+  1697                           	line	131
+  1698  0149  0836               	movf	(main@pointer),w
+  1699  014A  3E01               	addlw	(main@Melody-__stringbase)
+  1700                           	FNCALL _main,stringtab
+  1701  014B  118A  2309  118A   	fcall	stringdir
+  1702  014E  3A61               		xorlw	97^0
+  1703  014F  1903               	skipnz
+  1704  0150  2921               	goto	l30000731
+  1705  0151  3A03               	xorlw	98^97
+  1706  0152  1903               	skipnz
+  1707  0153  2926               	goto	l30000732
+  1708  0154  3A01               	xorlw	99^98
+  1709  0155  1903               	skipnz
+  1710  0156  292B               	goto	l30000733
+  1711  0157  3A07               	xorlw	100^99
+  1712  0158  1903               	skipnz
+  1713  0159  2930               	goto	l30000734
+  1714  015A  3A01               	xorlw	101^100
+  1715  015B  1903               	skipnz
+  1716  015C  2935               	goto	l30000735
+  1717  015D  3A03               	xorlw	102^101
+  1718  015E  1903               	skipnz
+  1719  015F  293A               	goto	l30000736
+  1720  0160  3A01               	xorlw	103^102
+  1721  0161  1903               	skipnz
+  1722  0162  293F               	goto	l30000737
+  1723  0163  3A17               	xorlw	112^103
+  1724  0164  1903               	skipnz
+  1725  0165  2944               	goto	l30000738
+  1726  0166  2967               	goto	l30000741
+  1727                           
+  1728                           	
+  1729  0167                     l30000741:	
+  1730                           	line	150
+  1731                           ;Buzzer_Melody.c: 150: pointer++;
+  1732  0167  3001               	movlw	low(01h)
+  1733  0168  07B6               	addwf	(main@pointer),f
+  1734  0169  1803               	skipnc
+  1735  016A  0AB7               	incf	(main@pointer+1),f
+  1736  016B  3000               	movlw	high(01h)
+  1737  016C  07B7               	addwf	(main@pointer+1),f
+  1738                           	
+  1739  016D                     l30000742:	
+  1740                           	line	153
+  1741                           ;Buzzer_Melody.c: 151: }
+  1742                           ;Buzzer_Melody.c: 153: if (Melody[pointer] == '.')
+  1743  016D  0836               	movf	(main@pointer),w
+  1744  016E  3E01               	addlw	(main@Melody-__stringbase)
+  1745                           	FNCALL _main,stringtab
+  1746  016F  118A  2309  118A   	fcall	stringdir
+  1747  0172  3A2E               	xorlw	02Eh
+  1748  0173  1D03               	skipz
+  1749  0174  2976               	goto	u971
+  1750  0175  2977               	goto	u970
+  1751  0176                     u971:
+  1752  0176  2985               	goto	l30000745
+  1753  0177                     u970:
+  1754                           	
+  1755  0177                     l30000743:	
+  1756                           	line	156
+  1757                           ;Buzzer_Melody.c: 154: {
+  1758                           ;Buzzer_Melody.c: 156: duration = duration + 128;
+  1759  0177  0834               	movf	(main@duration),w
+  1760  0178  3E80               	addlw	low(080h)
+  1761  0179  00B4               	movwf	(main@duration)
+  1762  017A  0835               	movf	(main@duration+1),w
+  1763  017B  1803               	skipnc
+  1764  017C  3E01               	addlw	1
+  1765  017D  3E00               	addlw	high(080h)
+  1766  017E  00B5               	movwf	1+(main@duration)
+  1767                           	
+  1768  017F                     l30000744:	
+  1769                           	line	157
+  1770                           ;Buzzer_Melody.c: 157: pointer++;
+  1771  017F  3001               	movlw	low(01h)
+  1772  0180  07B6               	addwf	(main@pointer),f
+  1773  0181  1803               	skipnc
+  1774  0182  0AB7               	incf	(main@pointer+1),f
+  1775  0183  3000               	movlw	high(01h)
+  1776  0184  07B7               	addwf	(main@pointer+1),f
+  1777                           	
+  1778  0185                     l30000745:	
+  1779                           	line	160
+  1780                           ;Buzzer_Melody.c: 158: }
+  1781                           ;Buzzer_Melody.c: 160: if (Melody[pointer] == '4')
+  1782  0185  0836               	movf	(main@pointer),w
+  1783  0186  3E01               	addlw	(main@Melody-__stringbase)
+  1784                           	FNCALL _main,stringtab
+  1785  0187  118A  2309  118A   	fcall	stringdir
+  1786  018A  3A34               	xorlw	034h
+  1787  018B  1D03               	skipz
+  1788  018C  298E               	goto	u981
+  1789  018D  298F               	goto	u980
+  1790  018E                     u981:
+  1791  018E  299A               	goto	l30000747
+  1792  018F                     u980:
+  1793                           	
+  1794  018F                     l30000746:	
+  1795                           	line	162
+  1796                           ;Buzzer_Melody.c: 161: {
+  1797                           ;Buzzer_Melody.c: 162: octave = 4;
+  1798  018F  3004               	movlw	low(04h)
+  1799  0190  00B0               	movwf	(main@octave)
+  1800  0191  3000               	movlw	high(04h)
+  1801  0192  00B1               	movwf	((main@octave))+1
+  1802                           	line	163
+  1803                           ;Buzzer_Melody.c: 163: pointer++;
+  1804  0193  3001               	movlw	low(01h)
+  1805  0194  07B6               	addwf	(main@pointer),f
+  1806  0195  1803               	skipnc
+  1807  0196  0AB7               	incf	(main@pointer+1),f
+  1808  0197  3000               	movlw	high(01h)
+  1809  0198  07B7               	addwf	(main@pointer+1),f
+  1810  0199  29D9               	goto	l30000753
+  1811                           	
+  1812  019A                     l30000747:	
+  1813                           	line	165
+  1814                           ;Buzzer_Melody.c: 165: else if (Melody[pointer] == '5')
+  1815  019A  0836               	movf	(main@pointer),w
+  1816  019B  3E01               	addlw	(main@Melody-__stringbase)
+  1817                           	FNCALL _main,stringtab
+  1818  019C  118A  2309  118A   	fcall	stringdir
+  1819  019F  3A35               	xorlw	035h
+  1820  01A0  1D03               	skipz
+  1821  01A1  29A3               	goto	u991
+  1822  01A2  29A4               	goto	u990
+  1823  01A3                     u991:
+  1824  01A3  29AF               	goto	l30000749
+  1825  01A4                     u990:
+  1826                           	
+  1827  01A4                     l30000748:	
+  1828                           	line	167
+  1829                           ;Buzzer_Melody.c: 166: {
+  1830                           ;Buzzer_Melody.c: 167: octave = 5;
+  1831  01A4  3005               	movlw	low(05h)
+  1832  01A5  00B0               	movwf	(main@octave)
+  1833  01A6  3000               	movlw	high(05h)
+  1834  01A7  00B1               	movwf	((main@octave))+1
+  1835                           	line	168
+  1836                           ;Buzzer_Melody.c: 168: pointer++;
+  1837  01A8  3001               	movlw	low(01h)
+  1838  01A9  07B6               	addwf	(main@pointer),f
+  1839  01AA  1803               	skipnc
+  1840  01AB  0AB7               	incf	(main@pointer+1),f
+  1841  01AC  3000               	movlw	high(01h)
+  1842  01AD  07B7               	addwf	(main@pointer+1),f
+  1843  01AE  29D9               	goto	l30000753
+  1844                           	
+  1845  01AF                     l30000749:	
+  1846                           	line	170
+  1847                           ;Buzzer_Melody.c: 170: else if (Melody[pointer] == '6')
+  1848  01AF  0836               	movf	(main@pointer),w
+  1849  01B0  3E01               	addlw	(main@Melody-__stringbase)
+  1850                           	FNCALL _main,stringtab
+  1851  01B1  118A  2309  118A   	fcall	stringdir
+  1852  01B4  3A36               	xorlw	036h
+  1853  01B5  1D03               	skipz
+  1854  01B6  29B8               	goto	u1001
+  1855  01B7  29B9               	goto	u1000
+  1856  01B8                     u1001:
+  1857  01B8  29C4               	goto	l30000751
+  1858  01B9                     u1000:
+  1859                           	
+  1860  01B9                     l30000750:	
+  1861                           	line	172
+  1862                           ;Buzzer_Melody.c: 171: {
+  1863                           ;Buzzer_Melody.c: 172: octave = 6;
+  1864  01B9  3006               	movlw	low(06h)
+  1865  01BA  00B0               	movwf	(main@octave)
+  1866  01BB  3000               	movlw	high(06h)
+  1867  01BC  00B1               	movwf	((main@octave))+1
+  1868                           	line	173
+  1869                           ;Buzzer_Melody.c: 173: pointer++;
+  1870  01BD  3001               	movlw	low(01h)
+  1871  01BE  07B6               	addwf	(main@pointer),f
+  1872  01BF  1803               	skipnc
+  1873  01C0  0AB7               	incf	(main@pointer+1),f
+  1874  01C1  3000               	movlw	high(01h)
+  1875  01C2  07B7               	addwf	(main@pointer+1),f
+  1876  01C3  29D9               	goto	l30000753
+  1877                           	
+  1878  01C4                     l30000751:	
+  1879                           	line	175
+  1880                           ;Buzzer_Melody.c: 175: else if (Melody[pointer] == '7')
+  1881  01C4  0836               	movf	(main@pointer),w
+  1882  01C5  3E01               	addlw	(main@Melody-__stringbase)
+  1883                           	FNCALL _main,stringtab
+  1884  01C6  118A  2309  118A   	fcall	stringdir
+  1885  01C9  3A37               	xorlw	037h
+  1886  01CA  1D03               	skipz
+  1887  01CB  29CD               	goto	u1011
+  1888  01CC  29CE               	goto	u1010
+  1889  01CD                     u1011:
+  1890  01CD  29D9               	goto	l40
+  1891  01CE                     u1010:
+  1892                           	
+  1893  01CE                     l30000752:	
+  1894                           	line	177
+  1895                           ;Buzzer_Melody.c: 176: {
+  1896                           ;Buzzer_Melody.c: 177: octave = 7;
+  1897  01CE  3007               	movlw	low(07h)
+  1898  01CF  00B0               	movwf	(main@octave)
+  1899  01D0  3000               	movlw	high(07h)
+  1900  01D1  00B1               	movwf	((main@octave))+1
+  1901                           	line	178
+  1902                           ;Buzzer_Melody.c: 178: pointer++;
+  1903  01D2  3001               	movlw	low(01h)
+  1904  01D3  07B6               	addwf	(main@pointer),f
+  1905  01D4  1803               	skipnc
+  1906  01D5  0AB7               	incf	(main@pointer+1),f
+  1907  01D6  3000               	movlw	high(01h)
+  1908  01D7  07B7               	addwf	(main@pointer+1),f
+  1909  01D8  29D9               	goto	l30000753
+  1910                           	
+  1911  01D9                     l40:	
+  1912                           	
+  1913  01D9                     l30000753:	
+  1914                           	line	181
+  1915                           ;Buzzer_Melody.c: 179: }
+  1916                           ;Buzzer_Melody.c: 181: if (Melody[pointer] == '.')
+  1917  01D9  0836               	movf	(main@pointer),w
+  1918  01DA  3E01               	addlw	(main@Melody-__stringbase)
+  1919                           	FNCALL _main,stringtab
+  1920  01DB  118A  2309  118A   	fcall	stringdir
+  1921  01DE  3A2E               	xorlw	02Eh
+  1922  01DF  1D03               	skipz
+  1923  01E0  29E2               	goto	u1021
+  1924  01E1  29E3               	goto	u1020
+  1925  01E2                     u1021:
+  1926  01E2  29F1               	goto	l30000756
+  1927  01E3                     u1020:
+  1928                           	
+  1929  01E3                     l30000754:	
+  1930                           	line	184
+  1931                           ;Buzzer_Melody.c: 182: {
+  1932                           ;Buzzer_Melody.c: 184: duration = duration + 128;
+  1933  01E3  0834               	movf	(main@duration),w
+  1934  01E4  3E80               	addlw	low(080h)
+  1935  01E5  00B4               	movwf	(main@duration)
+  1936  01E6  0835               	movf	(main@duration+1),w
+  1937  01E7  1803               	skipnc
+  1938  01E8  3E01               	addlw	1
+  1939  01E9  3E00               	addlw	high(080h)
+  1940  01EA  00B5               	movwf	1+(main@duration)
+  1941                           	
+  1942  01EB                     l30000755:	
+  1943                           	line	185
+  1944                           ;Buzzer_Melody.c: 185: pointer++;
+  1945  01EB  3001               	movlw	low(01h)
+  1946  01EC  07B6               	addwf	(main@pointer),f
+  1947  01ED  1803               	skipnc
+  1948  01EE  0AB7               	incf	(main@pointer+1),f
+  1949  01EF  3000               	movlw	high(01h)
+  1950  01F0  07B7               	addwf	(main@pointer+1),f
+  1951                           	
+  1952  01F1                     l30000756:	
+  1953                           	line	188
+  1954                           ;Buzzer_Melody.c: 186: }
+  1955                           ;Buzzer_Melody.c: 188: PlayNote(note, octave, duration);
+  1956  01F1  0833               	movf	(main@note+1),w
+  1957  01F2  01A8               	clrf	(?_PlayNote+1)
+  1958  01F3  07A8               	addwf	(?_PlayNote+1)
+  1959  01F4  0832               	movf	(main@note),w
+  1960  01F5  01A7               	clrf	(?_PlayNote)
+  1961  01F6  07A7               	addwf	(?_PlayNote)
+  1962                           
+  1963  01F7  0830               	movf	(main@octave),w
+  1964  01F8  00F3               	movwf	(??_main+0+0)
+  1965  01F9  0873               	movf	(??_main+0+0),w
+  1966  01FA  00A9               	movwf	0+(?_PlayNote)+02h
+  1967  01FB  0835               	movf	(main@duration+1),w
+  1968  01FC  01AB               	clrf	1+(?_PlayNote)+03h
+  1969  01FD  07AB               	addwf	1+(?_PlayNote)+03h
+  1970  01FE  0834               	movf	(main@duration),w
+  1971  01FF  01AA               	clrf	0+(?_PlayNote)+03h
+  1972  0200  07AA               	addwf	0+(?_PlayNote)+03h
+  1973                           
+  1974  0201  118A  23C9  118A   	fcall	_PlayNote
+  1975                           	
+  1976  0204                     l30000757:	
+  1977                           	line	190
+  1978                           ;Buzzer_Melody.c: 189: }
+  1979                           ;Buzzer_Melody.c: 190: while (Melody[pointer++] == ',');
+  1980  0204  1283               	bcf	status, 5	;RP0=0, select bank0
+  1981  0205  1303               	bcf	status, 6	;RP1=0, select bank0
+  1982  0206  0837               	movf	(main@pointer+1),w
+  1983  0207  00F4               	movwf	(??_main+0+0+1)
+  1984  0208  0836               	movf	(main@pointer),w
+  1985  0209  00F3               	movwf	(??_main+0+0)
+  1986  020A  3001               	movlw	(01h)
+  1987  020B  07B6               	addwf	(main@pointer),f
+  1988  020C  1803               	skipnc
+  1989  020D  0AB7               	incf	(main@pointer+1),f
+  1990  020E  0873               	movf	0+(??_main+0+0),w
+  1991  020F  3E01               	addlw	(main@Melody-__stringbase)
+  1992                           	FNCALL _main,stringtab
+  1993  0210  118A  2309  118A   	fcall	stringdir
+  1994  0213  3A2C               	xorlw	02Ch
+  1995  0214  1903               	skipnz
+  1996  0215  2A17               	goto	u1031
+  1997  0216  2A18               	goto	u1030
+  1998  0217                     u1031:
+  1999  0217  2840               	goto	l30000705
+  2000  0218                     u1030:
+  2001                           	
+  2002  0218                     l30000758:	
+  2003                           	line	193
+  2004  0218  0876               	movf	((_TMR0Count+1)),w
+  2005  0219  0475               	iorwf	((_TMR0Count)),w
+  2006  021A  1D03               	skipz
+  2007  021B  2A1D               	goto	u1041
+  2008  021C  2A1E               	goto	u1040
+  2009  021D                     u1041:
+  2010  021D  2A18               	goto	l30000758
+  2011  021E                     u1040:
+  2012                           	
+  2013  021E                     l30000759:	
+  2014                           	line	194
+  2015                           ;Buzzer_Melody.c: 194: beep = 0;
+  2016  021E  1003               	clrc
+  2017  021F  3000               	movlw	0
+  2018  0220  1803               	btfsc	status,0
+  2019  0221  3001               	movlw	1
+  2020  0222  00F7               	movwf	(_beep)
+  2021                           	
+  2022  0223                     l48:	
+  2023  0223  2A23               	goto	l48
+  2024                           	global	start
+  2025  0224  118A  2811         	ljmp	start
+  2026                           	opt stack 0
+  2027                           GLOBAL	__end_of_main
+  2028  0226                     	__end_of_main:
+  2029                           ; =============== function _main ends ============
+  2030                           
+  2031                           psect	maintext
+  2032                           	line	198
+  2033                           	signat	_main,88
+  2034                           	global	_PlayNote
+  2035                           psect	text41,local,class=CODE,delta=2
+  2036                           global __ptext41
+  2037  03C9                     __ptext41:
+  2038                           
+  2039                           ; *************** function _PlayNote *****************
+  2040                           ; Defined at:
+  2041                           ;		line 201 in file "D:\Amit\E-Projects\PIC Projects\Buzzer\Melody\Buzzer_Melody.c"
+  2042                           ; Parameters:    Size  Location     Type
+  2043                           ;  note            2    7[BANK0 ] unsigned short 
+  2044                           ;  octave          1    9[BANK0 ] unsigned char 
+  2045                           ;  duration        2   10[BANK0 ] unsigned int 
+  2046                           ; Auto vars:     Size  Location     Type
+  2047                           ;		None
+  2048                           ; Return value:  Size  Location     Type
+  2049                           ;		None               void
+  2050                           ; Registers used:
+  2051                           ;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+  2052                           ; Tracked objects:
+  2053                           ;		On entry : 0/0
+  2054                           ;		On exit  : 0/0
+  2055                           ;		Unchanged: 0/0
+  2056                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2057                           ;      Locals:         2       5       0       0
+  2058                           ;      Temp:     2
+  2059                           ;      Total:    7
+  2060                           ; This function calls:
+  2061                           ;		___lwdiv
+  2062                           ; This function is called by:
+  2063                           ;		_main
+  2064                           ; This function uses a non-reentrant model
+  2065                           ; 
+  2066                           psect	text41
+  2067                           	file	"D:\Amit\E-Projects\PIC Projects\Buzzer\Melody\Buzzer_Melody.c"
+  2068                           	line	201
+  2069                           	global	__size_of_PlayNote
+  2070  008F                     	__size_of_PlayNote	equ	__end_of_PlayNote-_PlayNote
+  2071                           ;Buzzer_Melody.c: 200: void PlayNote(unsigned short note, unsigned char octave, unsigned
+                                  int duration)
+  2072                           ;Buzzer_Melody.c: 201: {
+  2073                           	
+  2074  03C9                     _PlayNote:	
+  2075                           	opt stack 5
+  2076                           ; Regs used in _PlayNote: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+  2077                           	
+  2078  03C9                     l30000682:	
+  2079  03C9  2BFA               	goto	l30000687
+  2080                           	
+  2081  03CA                     l30000683:	
+  2082                           	line	209
+  2083                           ;Buzzer_Melody.c: 209: note = note >> 1;
+  2084  03CA  0828               	movf	(PlayNote@note+1),w
+  2085  03CB  00F2               	movwf	(??_PlayNote+0+0+1)
+  2086  03CC  0827               	movf	(PlayNote@note),w
+  2087  03CD  00F1               	movwf	(??_PlayNote+0+0)
+  2088  03CE  3001               	movlw	01h
+  2089  03CF                     u805:
+  2090  03CF  1003               	clrc
+  2091  03D0  0CF2               	rrf	(??_PlayNote+0+1),f
+  2092  03D1  0CF1               	rrf	(??_PlayNote+0+0),f
+  2093  03D2  3EFF               	addlw	-1
+  2094  03D3  1D03               	skipz
+  2095  03D4  2BCF               	goto	u805
+  2096  03D5  0871               	movf	0+(??_PlayNote+0+0),w
+  2097  03D6  00A7               	movwf	(PlayNote@note)
+  2098  03D7  0872               	movf	1+(??_PlayNote+0+0),w
+  2099  03D8  00A8               	movwf	(PlayNote@note+1)
+  2100  03D9  2C0A               	goto	l30000688
+  2101                           	
+  2102  03DA                     l30000684:	
+  2103                           	line	212
+  2104                           ;Buzzer_Melody.c: 212: note = note >> 2;
+  2105  03DA  0828               	movf	(PlayNote@note+1),w
+  2106  03DB  00F2               	movwf	(??_PlayNote+0+0+1)
+  2107  03DC  0827               	movf	(PlayNote@note),w
+  2108  03DD  00F1               	movwf	(??_PlayNote+0+0)
+  2109  03DE  3002               	movlw	02h
+  2110  03DF                     u815:
+  2111  03DF  1003               	clrc
+  2112  03E0  0CF2               	rrf	(??_PlayNote+0+1),f
+  2113  03E1  0CF1               	rrf	(??_PlayNote+0+0),f
+  2114  03E2  3EFF               	addlw	-1
+  2115  03E3  1D03               	skipz
+  2116  03E4  2BDF               	goto	u815
+  2117  03E5  0871               	movf	0+(??_PlayNote+0+0),w
+  2118  03E6  00A7               	movwf	(PlayNote@note)
+  2119  03E7  0872               	movf	1+(??_PlayNote+0+0),w
+  2120  03E8  00A8               	movwf	(PlayNote@note+1)
+  2121  03E9  2C0A               	goto	l30000688
+  2122                           	
+  2123  03EA                     l30000685:	
+  2124                           	line	215
+  2125                           ;Buzzer_Melody.c: 215: note = note >> 4;
+  2126  03EA  0828               	movf	(PlayNote@note+1),w
+  2127  03EB  00F2               	movwf	(??_PlayNote+0+0+1)
+  2128  03EC  0827               	movf	(PlayNote@note),w
+  2129  03ED  00F1               	movwf	(??_PlayNote+0+0)
+  2130  03EE  3004               	movlw	04h
+  2131  03EF                     u825:
+  2132  03EF  1003               	clrc
+  2133  03F0  0CF2               	rrf	(??_PlayNote+0+1),f
+  2134  03F1  0CF1               	rrf	(??_PlayNote+0+0),f
+  2135  03F2  3EFF               	addlw	-1
+  2136  03F3  1D03               	skipz
+  2137  03F4  2BEF               	goto	u825
+  2138  03F5  0871               	movf	0+(??_PlayNote+0+0),w
+  2139  03F6  00A7               	movwf	(PlayNote@note)
+  2140  03F7  0872               	movf	1+(??_PlayNote+0+0),w
+  2141  03F8  00A8               	movwf	(PlayNote@note+1)
+  2142  03F9  2C0A               	goto	l30000688
+  2143                           	
+  2144  03FA                     l30000687:	
+  2145                           	line	204
+  2146  03FA  1283               	bcf	status, 5	;RP0=0, select bank0
+  2147  03FB  1303               	bcf	status, 6	;RP1=0, select bank0
+  2148  03FC  0829               	movf	(PlayNote@octave),w
+  2149  03FD  3A04               		xorlw	4^0
+  2150  03FE  1903               	skipnz
+  2151  03FF  2C0A               	goto	l30000688
+  2152  0400  3A01               	xorlw	5^4
+  2153  0401  1903               	skipnz
+  2154  0402  2BCA               	goto	l30000683
+  2155  0403  3A03               	xorlw	6^5
+  2156  0404  1903               	skipnz
+  2157  0405  2BDA               	goto	l30000684
+  2158  0406  3A01               	xorlw	7^6
+  2159  0407  1903               	skipnz
+  2160  0408  2BEA               	goto	l30000685
+  2161  0409  2C0A               	goto	l30000688
+  2162                           
+  2163                           	
+  2164  040A                     l30000688:	
+  2165                           	line	220
+  2166  040A  0876               	movf	((_TMR0Count+1)),w
+  2167  040B  0475               	iorwf	((_TMR0Count)),w
+  2168  040C  1D03               	skipz
+  2169  040D  2C0F               	goto	u831
+  2170  040E  2C10               	goto	u830
+  2171  040F                     u831:
+  2172  040F  2C0A               	goto	l30000688
+  2173  0410                     u830:
+  2174                           	
+  2175  0410                     l30000689:	
+  2176                           	line	221
+  2177                           ;Buzzer_Melody.c: 221: beep = 0;
+  2178  0410  1003               	clrc
+  2179  0411  3000               	movlw	0
+  2180  0412  1803               	btfsc	status,0
+  2181  0413  3001               	movlw	1
+  2182  0414  00F7               	movwf	(_beep)
+  2183                           	
+  2184  0415                     l30000690:	
+  2185                           	line	224
+  2186                           ;Buzzer_Melody.c: 224: if (note)
+  2187  0415  0828               	movf	(PlayNote@note+1),w
+  2188  0416  0427               	iorwf	(PlayNote@note),w
+  2189  0417  1903               	skipnz
+  2190  0418  2C1A               	goto	u841
+  2191  0419  2C1B               	goto	u840
+  2192  041A                     u841:
+  2193  041A  2C21               	goto	l30000694
+  2194  041B                     u840:
+  2195                           	
+  2196  041B                     l30000691:	
+  2197                           	line	226
+  2198                           ;Buzzer_Melody.c: 225: {
+  2199                           ;Buzzer_Melody.c: 226: note = ~note;
+  2200  041B  09A7               	comf	(PlayNote@note),f
+  2201  041C  09A8               	comf	(PlayNote@note+1),f
+  2202                           	
+  2203  041D                     l30000692:	
+  2204                           	line	227
+  2205                           ;Buzzer_Melody.c: 227: preloadTMR1L = (note & 0xFF);
+  2206  041D  0827               	movf	(PlayNote@note),w
+  2207  041E  00F9               	movwf	(_preloadTMR1L)
+  2208                           	
+  2209  041F                     l30000693:	
+  2210                           	line	228
+  2211                           ;Buzzer_Melody.c: 228: preloadTMR1H = ((note & 0xFF00) >> 8);
+  2212  041F  0828               	movf	(PlayNote@note+1),w
+  2213  0420  00F8               	movwf	(_preloadTMR1H)
+  2214                           	
+  2215  0421                     l30000694:	
+  2216                           	line	232
+  2217                           ;Buzzer_Melody.c: 229: }
+  2218                           ;Buzzer_Melody.c: 232: TMR0Count = 255/(duration & 0x7F);
+  2219  0421  30FF               	movlw	low(0FFh)
+  2220  0422  00A3               	movwf	(?___lwdiv)
+  2221  0423  3000               	movlw	high(0FFh)
+  2222  0424  00A4               	movwf	((?___lwdiv))+1
+  2223  0425  307F               	movlw	low(07Fh)
+  2224  0426  052A               	andwf	(PlayNote@duration),w
+  2225  0427  00A5               	movwf	0+(?___lwdiv)+02h
+  2226  0428  3000               	movlw	high(07Fh)
+  2227  0429  052B               	andwf	(PlayNote@duration+1),w
+  2228  042A  00A6               	movwf	1+0+(?___lwdiv)+02h
+  2229  042B  118A  2458  118A   	fcall	___lwdiv
+  2230  042E  1383               	bcf	status, 7	;select IRP bank0
+  2231  042F  1283               	bcf	status, 5	;RP0=0, select bank0
+  2232  0430  1303               	bcf	status, 6	;RP1=0, select bank0
+  2233  0431  0824               	movf	(1+(?___lwdiv)),w
+  2234  0432  01F6               	clrf	(_TMR0Count+1)
+  2235  0433  07F6               	addwf	(_TMR0Count+1)
+  2236  0434  0823               	movf	(0+(?___lwdiv)),w
+  2237  0435  01F5               	clrf	(_TMR0Count)
+  2238  0436  07F5               	addwf	(_TMR0Count)
+  2239                           
+  2240                           	
+  2241  0437                     l30000695:	
+  2242                           	line	235
+  2243                           ;Buzzer_Melody.c: 235: if (duration & 0x80) TMR0Count = (TMR0Count + (TMR0Count >> 1));
+  2244  0437  1FAA               	btfss	(PlayNote@duration),(7)&7
+  2245  0438  2C3A               	goto	u851
+  2246  0439  2C3B               	goto	u850
+  2247  043A                     u851:
+  2248  043A  2C4E               	goto	l30000697
+  2249  043B                     u850:
+  2250                           	
+  2251  043B                     l30000696:	
+  2252  043B  0876               	movf	(_TMR0Count+1),w
+  2253  043C  00F2               	movwf	(??_PlayNote+0+0+1)
+  2254  043D  0875               	movf	(_TMR0Count),w
+  2255  043E  00F1               	movwf	(??_PlayNote+0+0)
+  2256  043F  3001               	movlw	01h
+  2257  0440                     u865:
+  2258  0440  1003               	clrc
+  2259  0441  0CF2               	rrf	(??_PlayNote+0+1),f
+  2260  0442  0CF1               	rrf	(??_PlayNote+0+0),f
+  2261  0443  3EFF               	addlw	-1
+  2262  0444  1D03               	skipz
+  2263  0445  2C40               	goto	u865
+  2264  0446  0875               	movf	(_TMR0Count),w
+  2265  0447  0771               	addwf	0+(??_PlayNote+0+0),w
+  2266  0448  00F5               	movwf	(_TMR0Count)
+  2267  0449  0876               	movf	(_TMR0Count+1),w
+  2268  044A  1803               	skipnc
+  2269  044B  0A76               	incf	(_TMR0Count+1),w
+  2270  044C  0772               	addwf	1+(??_PlayNote+0+0),w
+  2271  044D  00F6               	movwf	1+(_TMR0Count)
+  2272                           	
+  2273  044E                     l30000697:	
+  2274                           	line	237
+  2275                           ;Buzzer_Melody.c: 237: if (note) beep = 1;
+  2276  044E  0828               	movf	(PlayNote@note+1),w
+  2277  044F  0427               	iorwf	(PlayNote@note),w
+  2278  0450  1903               	skipnz
+  2279  0451  2C53               	goto	u871
+  2280  0452  2C54               	goto	u870
+  2281  0453                     u871:
+  2282  0453  2C57               	goto	l51
+  2283  0454                     u870:
+  2284                           	
+  2285  0454                     l30000698:	
+  2286  0454  01F7               	clrf	(_beep)
+  2287  0455  1403               	bsf	status,0
+  2288  0456  0DF7               	rlf	(_beep),f
+  2289                           	
+  2290  0457                     l51:	
+  2291  0457  0008               	return
+  2292                           	opt stack 0
+  2293                           GLOBAL	__end_of_PlayNote
+  2294  0458                     	__end_of_PlayNote:
+  2295                           ; =============== function _PlayNote ends ============
+  2296                           
+  2297                           psect	text42,local,class=CODE,delta=2
+  2298                           global __ptext42
+  2299  04D2                     __ptext42:
+  2300                           	line	238
+  2301                           	signat	_PlayNote,12408
+  2302                           	global	_InitTimer
+  2303                           
+  2304                           ; *************** function _InitTimer *****************
+  2305                           ; Defined at:
+  2306                           ;		line 241 in file "D:\Amit\E-Projects\PIC Projects\Buzzer\Melody\Buzzer_Melody.c"
+  2307                           ; Parameters:    Size  Location     Type
+  2308                           ;		None
+  2309                           ; Auto vars:     Size  Location     Type
+  2310                           ;		None
+  2311                           ; Return value:  Size  Location     Type
+  2312                           ;		None               void
+  2313                           ; Registers used:
+  2314                           ;		wreg, status,2, status,0
+  2315                           ; Tracked objects:
+  2316                           ;		On entry : 0/0
+  2317                           ;		On exit  : 0/0
+  2318                           ;		Unchanged: 0/0
+  2319                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2320                           ;      Locals:         0       0       0       0
+  2321                           ;      Temp:     0
+  2322                           ;      Total:    0
+  2323                           ; This function calls:
+  2324                           ;		Nothing
+  2325                           ; This function is called by:
+  2326                           ;		_main
+  2327                           ; This function uses a non-reentrant model
+  2328                           ; 
+  2329                           psect	text42
+  2330                           	file	"D:\Amit\E-Projects\PIC Projects\Buzzer\Melody\Buzzer_Melody.c"
+  2331                           	line	241
+  2332                           	global	__size_of_InitTimer
+  2333  0010                     	__size_of_InitTimer	equ	__end_of_InitTimer-_InitTimer
+  2334                           ;Buzzer_Melody.c: 240: void InitTimer(void)
+  2335                           ;Buzzer_Melody.c: 241: {
+  2336                           	
+  2337  04D2                     _InitTimer:	
+  2338                           	opt stack 5
+  2339                           ; Regs used in _InitTimer: [wreg+status,2+status,0]
+  2340                           	line	243
+  2341                           	
+  2342  04D2                     l30000654:	
+  2343                           ;Buzzer_Melody.c: 243: OPTION = 0b11010111;
+  2344  04D2  30D7               	movlw	(0D7h)
+  2345  04D3  1683               	bsf	status, 5	;RP0=1, select bank1
+  2346  04D4  1303               	bcf	status, 6	;RP1=0, select bank1
+  2347  04D5  0081               	movwf	(129)^080h
+  2348                           	
+  2349  04D6                     l30000655:	
+  2350                           	line	246
+  2351                           ;Buzzer_Melody.c: 246: T0IF = 0;
+  2352  04D6  1283               	bcf	status, 5	;RP0=0, select bank0
+  2353  04D7  1303               	bcf	status, 6	;RP1=0, select bank0
+  2354  04D8  110B               	bcf	(90/8),(90)&7
+  2355                           	
+  2356  04D9                     l30000656:	
+  2357                           	line	247
+  2358                           ;Buzzer_Melody.c: 247: T0IE = 1;
+  2359  04D9  168B               	bsf	(93/8),(93)&7
+  2360                           	
+  2361  04DA                     l30000657:	
+  2362                           	line	250
+  2363                           ;Buzzer_Melody.c: 250: T1CON = 0b00000001;
+  2364  04DA  0190               	clrf	(16)
+  2365  04DB  1403               	bsf	status,0
+  2366  04DC  0D90               	rlf	(16),f
+  2367                           	
+  2368  04DD                     l30000658:	
+  2369                           	line	251
+  2370                           ;Buzzer_Melody.c: 251: TMR1IF = 0;
+  2371  04DD  100C               	bcf	(96/8),(96)&7
+  2372                           	
+  2373  04DE                     l30000659:	
+  2374                           	line	252
+  2375                           ;Buzzer_Melody.c: 252: TMR1IE = 1;
+  2376  04DE  1683               	bsf	status, 5	;RP0=1, select bank1
+  2377  04DF  1303               	bcf	status, 6	;RP1=0, select bank1
+  2378  04E0  140C               	bsf	(1120/8)^080h,(1120)&7
+  2379                           	
+  2380  04E1                     l64:	
+  2381  04E1  0008               	return
+  2382                           	opt stack 0
+  2383                           GLOBAL	__end_of_InitTimer
+  2384  04E2                     	__end_of_InitTimer:
+  2385                           ; =============== function _InitTimer ends ============
+  2386                           
+  2387                           psect	text43,local,class=CODE,delta=2
+  2388                           global __ptext43
+  2389  0458                     __ptext43:
+  2390                           	line	253
+  2391                           	signat	_InitTimer,88
+  2392                           	global	___lwdiv
+  2393                           
+  2394                           ; *************** function ___lwdiv *****************
+  2395                           ; Defined at:
+  2396                           ;		line 5 in file "C:\Program Files\HI-TECH Software\PICC\9.70\sources\lwdiv.c"
+  2397                           ; Parameters:    Size  Location     Type
+  2398                           ;  dividend        2    3[BANK0 ] unsigned int 
+  2399                           ;  divisor         2    5[BANK0 ] unsigned int 
+  2400                           ; Auto vars:     Size  Location     Type
+  2401                           ;  quotient        2    1[BANK0 ] unsigned int 
+  2402                           ;  counter         1    0[BANK0 ] unsigned char 
+  2403                           ; Return value:  Size  Location     Type
+  2404                           ;                  2    3[BANK0 ] unsigned int 
+  2405                           ; Registers used:
+  2406                           ;		wreg, status,2, status,0
+  2407                           ; Tracked objects:
+  2408                           ;		On entry : 0/0
+  2409                           ;		On exit  : 0/0
+  2410                           ;		Unchanged: 0/0
+  2411                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2412                           ;      Locals:         1       7       0       0
+  2413                           ;      Temp:     1
+  2414                           ;      Total:    8
+  2415                           ; This function calls:
+  2416                           ;		Nothing
+  2417                           ; This function is called by:
+  2418                           ;		_PlayNote
+  2419                           ; This function uses a non-reentrant model
+  2420                           ; 
+  2421                           psect	text43
+  2422                           	file	"C:\Program Files\HI-TECH Software\PICC\9.70\sources\lwdiv.c"
+  2423                           	line	5
+  2424                           	global	__size_of___lwdiv
+  2425  004B                     	__size_of___lwdiv	equ	__end_of___lwdiv-___lwdiv
+  2426                           	
+  2427  0458                     ___lwdiv:	
+  2428                           	opt stack 4
+  2429                           ; Regs used in ___lwdiv: [wreg+status,2+status,0]
+  2430                           	line	9
+  2431                           	
+  2432  0458                     l30000670:	
+  2433  0458  3000               	movlw	low(0)
+  2434  0459  1283               	bcf	status, 5	;RP0=0, select bank0
+  2435  045A  1303               	bcf	status, 6	;RP1=0, select bank0
+  2436  045B  00A1               	movwf	(___lwdiv@quotient)
+  2437  045C  3000               	movlw	high(0)
+  2438  045D  00A2               	movwf	((___lwdiv@quotient))+1
+  2439                           	line	10
+  2440  045E  0826               	movf	(___lwdiv@divisor+1),w
+  2441  045F  0425               	iorwf	(___lwdiv@divisor),w
+  2442  0460  1903               	skipnz
+  2443  0461  2C63               	goto	u731
+  2444  0462  2C64               	goto	u730
+  2445  0463                     u731:
+  2446  0463  2C9C               	goto	l30000680
+  2447  0464                     u730:
+  2448                           	
+  2449  0464                     l30000671:	
+  2450                           	line	11
+  2451  0464  01A0               	clrf	(___lwdiv@counter)
+  2452  0465  1403               	bsf	status,0
+  2453  0466  0DA0               	rlf	(___lwdiv@counter),f
+  2454  0467  2C73               	goto	l30000674
+  2455                           	
+  2456  0468                     l30000672:	
+  2457                           	line	13
+  2458  0468  3001               	movlw	01h
+  2459  0469                     u745:
+  2460  0469  1003               	clrc
+  2461  046A  0DA5               	rlf	(___lwdiv@divisor),f
+  2462  046B  0DA6               	rlf	(___lwdiv@divisor+1),f
+  2463  046C  3EFF               	addlw	-1
+  2464  046D  1D03               	skipz
+  2465  046E  2C69               	goto	u745
+  2466                           	
+  2467  046F                     l30000673:	
+  2468                           	line	14
+  2469  046F  3001               	movlw	(01h)
+  2470  0470  00F0               	movwf	(??___lwdiv+0+0)
+  2471  0471  0870               	movf	(??___lwdiv+0+0),w
+  2472  0472  07A0               	addwf	(___lwdiv@counter),f
+  2473                           	
+  2474  0473                     l30000674:	
+  2475                           	line	12
+  2476  0473  1FA6               	btfss	(___lwdiv@divisor+1),(15)&7
+  2477  0474  2C76               	goto	u751
+  2478  0475  2C77               	goto	u750
+  2479  0476                     u751:
+  2480  0476  2C68               	goto	l30000672
+  2481  0477                     u750:
+  2482                           	
+  2483  0477                     l30000675:	
+  2484                           	line	17
+  2485  0477  3001               	movlw	01h
+  2486  0478                     u765:
+  2487  0478  1003               	clrc
+  2488  0479  0DA1               	rlf	(___lwdiv@quotient),f
+  2489  047A  0DA2               	rlf	(___lwdiv@quotient+1),f
+  2490  047B  3EFF               	addlw	-1
+  2491  047C  1D03               	skipz
+  2492  047D  2C78               	goto	u765
+  2493                           	line	18
+  2494  047E  0826               	movf	(___lwdiv@divisor+1),w
+  2495  047F  0224               	subwf	(___lwdiv@dividend+1),w
+  2496  0480  1D03               	skipz
+  2497  0481  2C84               	goto	u775
+  2498  0482  0825               	movf	(___lwdiv@divisor),w
+  2499  0483  0223               	subwf	(___lwdiv@dividend),w
+  2500  0484                     u775:
+  2501  0484  1C03               	skipc
+  2502  0485  2C87               	goto	u771
+  2503  0486  2C88               	goto	u770
+  2504  0487                     u771:
+  2505  0487  2C8F               	goto	l30000678
+  2506  0488                     u770:
+  2507                           	
+  2508  0488                     l30000676:	
+  2509                           	line	19
+  2510  0488  0825               	movf	(___lwdiv@divisor),w
+  2511  0489  02A3               	subwf	(___lwdiv@dividend),f
+  2512  048A  0826               	movf	(___lwdiv@divisor+1),w
+  2513  048B  1C03               	skipc
+  2514  048C  03A4               	decf	(___lwdiv@dividend+1),f
+  2515  048D  02A4               	subwf	(___lwdiv@dividend+1),f
+  2516                           	
+  2517  048E                     l30000677:	
+  2518                           	line	20
+  2519  048E  1421               	bsf	(___lwdiv@quotient)+(0/8),(0)&7
+  2520                           	
+  2521  048F                     l30000678:	
+  2522                           	line	22
+  2523  048F  3001               	movlw	01h
+  2524  0490                     u785:
+  2525  0490  1003               	clrc
+  2526  0491  0CA6               	rrf	(___lwdiv@divisor+1),f
+  2527  0492  0CA5               	rrf	(___lwdiv@divisor),f
+  2528  0493  3EFF               	addlw	-1
+  2529  0494  1D03               	skipz
+  2530  0495  2C90               	goto	u785
+  2531                           	
+  2532  0496                     l30000679:	
+  2533                           	line	23
+  2534  0496  3001               	movlw	low(01h)
+  2535  0497  02A0               	subwf	(___lwdiv@counter),f
+  2536  0498  1D03               	btfss	status,2
+  2537  0499  2C9B               	goto	u791
+  2538  049A  2C9C               	goto	u790
+  2539  049B                     u791:
+  2540  049B  2C77               	goto	l30000675
+  2541  049C                     u790:
+  2542                           	
+  2543  049C                     l30000680:	
+  2544                           	line	25
+  2545  049C  0822               	movf	(___lwdiv@quotient+1),w
+  2546  049D  01A4               	clrf	(?___lwdiv+1)
+  2547  049E  07A4               	addwf	(?___lwdiv+1)
+  2548  049F  0821               	movf	(___lwdiv@quotient),w
+  2549  04A0  01A3               	clrf	(?___lwdiv)
+  2550  04A1  07A3               	addwf	(?___lwdiv)
+  2551                           
+  2552                           	
+  2553  04A2                     l81:	
+  2554  04A2  0008               	return
+  2555                           	opt stack 0
+  2556                           GLOBAL	__end_of___lwdiv
+  2557  04A3                     	__end_of___lwdiv:
+  2558                           ; =============== function ___lwdiv ends ============
+  2559                           
+  2560                           psect	text44,local,class=CODE,delta=2
+  2561                           global __ptext44
+  2562  04A3                     __ptext44:
+  2563                           	line	26
+  2564                           	signat	___lwdiv,8314
+  2565                           	global	_interr
+  2566                           
+  2567                           ; *************** function _interr *****************
+  2568                           ; Defined at:
+  2569                           ;		line 256 in file "D:\Amit\E-Projects\PIC Projects\Buzzer\Melody\Buzzer_Melody.c"
+  2570                           ; Parameters:    Size  Location     Type
+  2571                           ;		None
+  2572                           ; Auto vars:     Size  Location     Type
+  2573                           ;		None
+  2574                           ; Return value:  Size  Location     Type
+  2575                           ;		None               void
+  2576                           ; Registers used:
+  2577                           ;		wreg
+  2578                           ; Tracked objects:
+  2579                           ;		On entry : 0/0
+  2580                           ;		On exit  : 0/0
+  2581                           ;		Unchanged: 0/0
+  2582                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+  2583                           ;      Locals:         0       4       0       0
+  2584                           ;      Temp:     4
+  2585                           ;      Total:    4
+  2586                           ; This function calls:
+  2587                           ;		Nothing
+  2588                           ; This function is called by:
+  2589                           ;		Interrupt level 1
+  2590                           ; This function uses a non-reentrant model
+  2591                           ; 
+  2592                           psect	text44
+  2593                           	file	"D:\Amit\E-Projects\PIC Projects\Buzzer\Melody\Buzzer_Melody.c"
+  2594                           	line	256
+  2595                           	global	__size_of_interr
+  2596  002F                     	__size_of_interr	equ	__end_of_interr-_interr
+  2597                           ;Buzzer_Melody.c: 255: void interrupt interr(void)
+  2598                           ;Buzzer_Melody.c: 256: {
+  2599                           	
+  2600  04A3                     _interr:	
+  2601                           	opt stack 5
+  2602                           ; Regs used in _interr: [wreg]
+  2603                           psect	intentry,class=CODE,delta=2
+  2604                           global __pintentry
+  2605  0004                     __pintentry:
+  2606                           global interrupt_function
+  2607  0004                     interrupt_function:
+  2608                           	global saved_w
+  2609  007F                     	saved_w	set	btemp+1
+  2610  0004  00FF               	movwf	saved_w
+  2611  0005  0803               	movf	status,w
+  2612  0006  1283               	bcf	status, 5	;RP0=0, select bank0
+  2613  0007  1303               	bcf	status, 6	;RP1=0, select bank0
+  2614  0008  00B8               	movwf	(??_interr+0)
+  2615  0009  0804               	movf	fsr0,w
+  2616  000A  00B9               	movwf	(??_interr+1)
+  2617  000B  080A               	movf	pclath,w
+  2618  000C  00BA               	movwf	(??_interr+2)
+  2619  000D  087E               	movf	btemp+0,w
+  2620  000E  00BB               	movwf	(??_interr+3)
+  2621  000F  118A  2CA3         	ljmp	_interr
+  2622                           psect	text44
+  2623                           	line	257
+  2624                           	
+  2625  04A3                     i1l30000660:	
+  2626                           ;Buzzer_Melody.c: 257: if (T0IF)
+  2627  04A3  1D0B               	btfss	(90/8),(90)&7
+  2628  04A4  2CA6               	goto	u69_21
+  2629  04A5  2CA7               	goto	u69_20
+  2630  04A6                     u69_21:
+  2631  04A6  2CB6               	goto	i1l30000664
+  2632  04A7                     u69_20:
+  2633                           	
+  2634  04A7                     i1l30000661:	
+  2635                           	line	259
+  2636                           ;Buzzer_Melody.c: 258: {
+  2637                           ;Buzzer_Melody.c: 259: TMR0 = beat_speed;
+  2638  04A7  087A               	movf	(_beat_speed),w
+  2639  04A8  0081               	movwf	(1)	;volatile
+  2640                           	line	260
+  2641                           ;Buzzer_Melody.c: 260: if (TMR0Count) TMR0Count--;
+  2642  04A9  0876               	movf	(_TMR0Count+1),w
+  2643  04AA  0475               	iorwf	(_TMR0Count),w
+  2644  04AB  1903               	skipnz
+  2645  04AC  2CAE               	goto	u70_21
+  2646  04AD  2CAF               	goto	u70_20
+  2647  04AE                     u70_21:
+  2648  04AE  2CB5               	goto	i1l30000663
+  2649  04AF                     u70_20:
+  2650                           	
+  2651  04AF                     i1l30000662:	
+  2652  04AF  3001               	movlw	low(01h)
+  2653  04B0  02F5               	subwf	(_TMR0Count),f
+  2654  04B1  3000               	movlw	high(01h)
+  2655  04B2  1C03               	skipc
+  2656  04B3  03F6               	decf	(_TMR0Count+1),f
+  2657  04B4  02F6               	subwf	(_TMR0Count+1),f
+  2658                           	
+  2659  04B5                     i1l30000663:	
+  2660                           	line	261
+  2661                           ;Buzzer_Melody.c: 261: T0IF = 0;
+  2662  04B5  110B               	bcf	(90/8),(90)&7
+  2663                           	
+  2664  04B6                     i1l30000664:	
+  2665                           	line	263
+  2666                           ;Buzzer_Melody.c: 262: }
+  2667                           ;Buzzer_Melody.c: 263: if (TMR1IF)
+  2668  04B6  1C0C               	btfss	(96/8),(96)&7
+  2669  04B7  2CB9               	goto	u71_21
+  2670  04B8  2CBA               	goto	u71_20
+  2671  04B9                     u71_21:
+  2672  04B9  2CC7               	goto	i1l65
+  2673  04BA                     u71_20:
+  2674                           	
+  2675  04BA                     i1l30000665:	
+  2676                           	line	265
+  2677                           ;Buzzer_Melody.c: 264: {
+  2678                           ;Buzzer_Melody.c: 265: if (beep) RC2 = !RC2;
+  2679  04BA  0877               	movf	(_beep),w
+  2680  04BB  1D03               	skipz
+  2681  04BC  2CBE               	goto	u72_20
+  2682  04BD  2CC1               	goto	i1l69
+  2683  04BE                     u72_20:
+  2684                           	
+  2685  04BE                     i1l30000666:	
+  2686  04BE  3004               	movlw	1<<((58)&7)
+  2687  04BF  0687               	xorwf	((58)/8),f
+  2688  04C0  2CC2               	goto	i1l30000667
+  2689                           	
+  2690  04C1                     i1l69:	
+  2691                           	line	266
+  2692                           ;Buzzer_Melody.c: 266: else RC2 = 0;
+  2693  04C1  1107               	bcf	(58/8),(58)&7
+  2694                           	
+  2695  04C2                     i1l30000667:	
+  2696                           	line	267
+  2697                           ;Buzzer_Melody.c: 267: TMR1H = preloadTMR1H;
+  2698  04C2  0878               	movf	(_preloadTMR1H),w
+  2699  04C3  008F               	movwf	(15)	;volatile
+  2700                           	line	268
+  2701                           ;Buzzer_Melody.c: 268: TMR1L = preloadTMR1L;
+  2702  04C4  0879               	movf	(_preloadTMR1L),w
+  2703  04C5  008E               	movwf	(14)	;volatile
+  2704                           	
+  2705  04C6                     i1l30000668:	
+  2706                           	line	269
+  2707                           ;Buzzer_Melody.c: 269: TMR1IF = 0;
+  2708  04C6  100C               	bcf	(96/8),(96)&7
+  2709                           	
+  2710  04C7                     i1l65:	
+  2711  04C7  083B               	movf	(??_interr+3),w
+  2712  04C8  00FE               	movwf	btemp+0
+  2713  04C9  083A               	movf	(??_interr+2),w
+  2714  04CA  008A               	movwf	pclath
+  2715  04CB  0839               	movf	(??_interr+1),w
+  2716  04CC  0084               	movwf	fsr0
+  2717  04CD  0838               	movf	(??_interr+0),w
+  2718  04CE  0083               	movwf	status
+  2719  04CF  0EFF               	swapf	saved_w,f
+  2720  04D0  0E7F               	swapf	saved_w,w
+  2721  04D1  0009               	retfie
+  2722                           	opt stack 0
+  2723                           GLOBAL	__end_of_interr
+  2724  04D2                     	__end_of_interr:
+  2725                           ; =============== function _interr ends ============
+  2726                           
+  2727                           psect	text45,local,class=CODE,delta=2
+  2728                           global __ptext45
+  2729  04EA                     __ptext45:
+  2730                           	line	271
+  2731                           	signat	_interr,88
+  2732                           	global	btemp
+  2733  007E                     	btemp set 07Eh
+
+
+HI-TECH Software PICC Macro Assembler V9.70 build 5239 
+Symbol Table                                                                                   Thu Jun 28 18:57:54 2012
+
+           ?_PlayNote 0027           ??_InitTimer 0070                     pc 0002                    _DA 04A5  
+                  _BF 04A0                    _DC 0019                    l40 01D9                    l51 0457  
+                  l64 04E1                    l48 0223                    l81 04A2                    _PD 001B  
+                  _RD 0C60                    _UA 04A1                    _TO 001C                    _RW 04A2  
+                  _WR 0C61            ??_PlayNote 0071                    fsr 0004           __pbssCOMMON 0075  
+                 _C1R 08CA                   _C2R 08D2                   _CKE 04A6                   _CKP 00A4  
+                 _GIE 005F                   _BOR 0470                   _RA0 0028                   _RA1 0029  
+                 _RA2 002A                   _RA3 002B                   _RC0 0038                   _RA4 002C  
+                 _RC1 0039                   _RA5 002D                   _RC2 003A                   _RB4 0034  
+                 _RC3 003B                   _RB5 0035                   _RC4 003C                   _RB6 0036  
+                 _RC5 003D                   _RB7 0037                   _RC6 003E                   _RC7 003F  
+                 _FSR 0004                   _PCL 0002                   _PS0 0408                   _PR2 0092  
+                 _PS1 0409                   _PS2 040A                   _RP0 001D                   _IRP 001F  
+                 _RP1 001E                   _HTS 047A                   _SR0 0CF6                   _SR1 0CF7  
+                 u730 0464                   u731 0463                   u900 0070                   u805 03CF  
+                 u901 006F                   _SCS 0478                   u750 0477                   u830 0410  
+                 u910 007B                   u751 0476                   u831 040F                   u815 03DF  
+                 u911 007A                   _PSA 040B                   u840 041B                   u920 0090  
+                 u745 0469                   u841 041A                   u825 03EF                   u921 008F  
+                 u770 0488                   u850 043B                   u930 00A5                   u771 0487  
+                 u851 043A                   u931 00A4                   _LTS 0479                   u940 00BA  
+                 _VR0 08C0                   u765 0478                   u941 00B9                   _VR1 08C1  
+                 u790 049C                   u870 0454                   u950 00CF                   _VR2 08C2  
+                 u791 049B                   u775 0484                   u871 0453                   u951 00CE  
+                 _VR3 08C3                   u960 00EB                   u880 0050                   _POR 0471  
+                 u785 0490                   u865 0440                   u961 00EA                   u881 004F  
+                 _RX9 00C6                   u970 0177                   u890 005B                   u971 0176  
+                 u891 005A                   u980 018F                   u981 018E                   u990 01A4  
+                 _SMP 04A7                   u991 01A3                   _TX9 04C6                   _WUE 04D9  
+                 _VRR 08C5       __size_of_interr 002F                   fsr0 0004                   indf 0000  
+    __size_of___lwdiv 004B     __size_of_PlayNote 008F                  _C1IE 046D                  _C1IF 006D  
+                _C2IE 046E                  _C2IF 006E                  _C1OE 08CD                  _C2OE 08D5  
+                _C1ON 08CF                  _C2ON 08D7                  _ADIE 0466                  _ADIF 0066  
+                _ADFM 00FF                  _ADON 00F8              __ptext41 03C9              __ptext42 04D2  
+            __ptext43 0458              __ptext44 04A3              __ptext45 04EA                  _P1M0 00BE  
+                _CHS0 00FA                  _P1M1 00BF                  _CHS1 00FB                  _CHS2 00FC  
+                _CHS3 00FD                  _EEIE 046C                  _EEIF 006C                  _ANS0 08F0  
+                _BRG0 04C8                  _ANS1 08F1                  _BRG1 04C9                  _ANS2 08F2  
+                _BRG2 04CA                  _ANS3 08F3                  _BRG3 04CB                  _ANS4 08F4  
+                _BRG4 04CC                  _ANS5 08F5                  _BRG5 04CD                  _ANS6 08F6  
+                _BRG6 04CE                  _ANS7 08F7                  _BRG7 04CF                  _ANS8 08F8  
+                _BRG8 04D0                  _ANS9 08F9                  _BRG9 04D1                  _BRGH 04C2  
+                _T0IE 005D                  u1000 01B9                  _T0IF 005A                  _CREN 00C4  
+                u1001 01B8                  _T0CS 040D                  u1010 01CE                  _FERR 00C2  
+                u1011 01CD                  u1020 01E3                  u1021 01E2                  u1030 0218  
+                u1031 0217                  u1040 021E                  u1041 021D                  _PDC0 00E0  
+                _PDC1 00E1                  _PDC2 00E2                  _PDC3 00E3                  _PDC4 00E4  
+                _T0SE 040C                  _CSRC 04C7                  _IOCA 0096                  _PDC5 00E5  
+                _IOCB 0116                  _PDC6 00E6                  _INDF 0000                  _PIE1 008C  
+                _PIE2 008D                  _PEIE 005E                  _INTE 005C                  _INTF 0059  
+                _RBIE 005B                  _RBIF 0058                  _RCIE 0465                  _RCIF 0065  
+                _PCON 008E                  i1l65 04C7                  _PIR1 000C                  _PIR2 000D  
+                i1l69 04C1                  _OERR 00C1                  _SCKP 04DC                  _RBPU 040F  
+                _VCFG 00FE                  _RX9D 00C0                  _TMR0 0001                  _TMR2 0011  
+                _WCOL 00A7                  _SPEN 00C7                  _TX9D 04C0                  _SREN 00C5  
+                _OSTS 047B                  _TUN0 0480                  _TUN1 0481                  _TUN2 0482  
+                _TUN3 0483                  _TUN4 0484                  _STRA 0CE8                  _STRB 0CE9  
+                _STRC 0CEA                  _STRD 0CEB                  _TRMT 04C1                  _STOP 04A4  
+                _TXIE 0464                  _ZERO 001A                  _WREN 0C62                  _TXEN 04C5  
+                _TXIF 0064                  _SYNC 04C4                  _WPUA 0095                  _WPUB 0115  
+                _beep 0077                  _main 0013                  btemp 007E    __size_of_InitTimer 0010  
+                start 0011     interrupt_function 0004   start_initialization 04E2            main@Melody 030F  
+        main@duration 0034             stringcode 0308       __end_of___lwdiv 04A3               _CM1CON0 0119  
+             _CM2CON0 011A               _CCP1CON 0017               _CM2CON1 011B               _BAUDCTL 009B  
+             _ECCPAS0 00EC               _ECCPAS1 00ED               _ECCPAS2 00EE               _ECCPASE 00EF  
+             ?_interr 003C                 _C1CH0 08C8                 _C1CH1 08C9                 _C2CH0 08D0  
+               _C2CH1 08D1                 _DC1B0 00BC                 _DC1B1 00BD                 _C1SEN 0CF5  
+               _C2REN 0CF4                 _C1POL 08CC              ??_interr 0038                 _C2POL 08D4  
+               _C1OUT 08CE                 _C2OUT 08D6                 _ABDEN 04D8                 _ADCS0 04FC  
+               _ADCS1 04FD                 _ADCS2 04FE            main@octave 0030                 _ADDEN 00C3  
+               ?_main 0038                 _EEADR 010D                 _ANS10 08FA                 _EEDAT 010C  
+               _BRG10 04D2                 _ANS11 08FB                 _BRG11 04D3                 _BRG12 04D4  
+               _BRG13 04D5                 _BRG14 04D6                 _BRG15 04D7                 _BRG16 04DB  
+     ___lwdiv@divisor 0025                 _CARRY 0018                 _EEPGD 0C67              main@note 0032  
+               _ANSEL 011E                 _T1CON 0010                 _IOCA0 04B0                 _IOCA1 04B1  
+               _IOCA2 04B2                 _T2CON 0012                 _IOCA3 04B3                 _IOCA4 04B4  
+               _IOCA5 04B5                 _IOCB4 08B4                 _IOCB5 08B5                 _IOCB6 08B6  
+               _IOCB7 08B7                 _T1GSS 08D9               _T1CKPS0 0084               _T1CKPS1 0085  
+               _IRCF0 047C                 _IRCF1 047D                 _IRCF2 047E               _T2CKPS0 0090  
+             _T2CKPS1 0091       ___lwdiv@counter 0020                 _RABIE 005B                 _RABIF 0058  
+               _RABPU 040F                 _RCIDL 04DE                 _RCREG 001A                 _SENDB 04C3  
+               _RCSTA 0018                 _OSFIE 046F                 _OSFIF 006F                 _VP6EN 08C4  
+               _TMR1H 000F                 _TMR1L 000E                 _SPBRG 0099                 _PORTA 0005  
+               _PORTB 0006               _T1OSCEN 0083                 _PORTC 0007                 _PRSEN 00E7  
+               _SRCON 019E                 u70_20 04AF                 u70_21 04AE                 u71_20 04BA  
+               u71_21 04B9                 _START 04A3                 u72_20 04BE                 _PULSR 0CF2  
+               _PULSS 0CF3                 _SSPM0 00A0                 _SSPM1 00A1                 _SSPM2 00A2  
+               _SSPM3 00A3                 _TRISA 0085                 _TRISB 0086                 _TRISC 0087  
+               _SSPIE 0463                 _SSPIF 0063                 _SSPEN 00A5                 _VRCON 0118  
+               _WPUA0 04A8                 _WPUA1 04A9                 u69_20 04A7                 _WPUA2 04AA  
+               u69_21 04A6                 _WPUA4 04AC                 _WPUA5 04AD                 _WPUB4 08AC  
+               _SSPOV 00A6                 _WPUB5 08AD                 _WPUB6 08AE                 _WPUB7 08AF  
+        PlayNote@note 0027                 _WRERR 0C63                 _TXREG 0019                 _TXSTA 0098  
+           __pstrings 0300     main@defaultoctave 002C        __pcstackCOMMON 0070               _OSCTUNE 0090  
+             _PWM1CON 001C               _PSTRCON 019D        PlayNote@octave 0029               _SSPSTAT 0094  
+             _TOUTPS0 0093               _TOUTPS1 0094               _TOUTPS2 0095               _TOUTPS3 0096  
+             _STRSYNC 0CEC                 pclath 000A              intlevel1 0004                 status 0003  
+ main@defaultduration 002E            _beat_speed 007A      __end_of_PlayNote 0458         __size_of_main 0213  
+            l30000700 0031              l30000701 0034              l30000710 0070              l30000702 0039  
+            l30000711 007B              l30000703 003C              l30000720 00DA              l30000712 0086  
+            l30000704 003F              l30000713 0090              l30000721 00E0              l30000705 0040  
+            l30000730 011A              l30000714 009B              l30000706 0046              l30000731 0121  
+            l30000723 00EC              l30000715 00A5              l30000707 0050              l30000732 0126  
+            l30000724 00F1              l30000740 0149              l30000716 00B0              l30000708 005B  
+            l30000733 012B              l30000741 0167              l30000725 00F6              l30000717 00BA  
+            l30000709 0066              l30000670 0458              l30000654 04D2              l30000750 01B9  
+            l30000734 0130              l30000742 016D              l30000726 00FB              l30000718 00C5  
+            l30000671 0464              l30000655 04D6              l30000751 01C4              l30000743 0177  
+            l30000735 0135              l30000727 0100              l30000719 00CF              l30000672 0468  
+            l30000680 049C              l30000656 04D9              l30000752 01CE              l30000744 017F  
+            l30000736 013A              l30000673 046F              l30000657 04DA              l30000753 01D9  
+            l30000745 0185              l30000737 013F              l30000729 0105              l30000674 0473  
+            l30000658 04DD              l30000690 0415              l30000682 03C9              l30000754 01E3  
+            l30000746 018F              l30000738 0144              l30000675 0477              l30000659 04DE  
+            l30000691 041B              l30000683 03CA              l30000755 01EB              l30000747 019A  
+            l30000676 0488              l30000692 041D              l30000684 03DA              l30000756 01F1  
+            l30000748 01A4              l30000677 048E              l30000693 041F              l30000685 03EA  
+            l30000757 0204              l30000749 01AF              l30000678 048F              l30000694 0421  
+            l30000758 0218              l30000679 0496              l30000695 0437              l30000687 03FA  
+            l30000759 021E              l30000696 043B              l30000688 040A              l30000697 044E  
+            l30000689 0410              l30000698 0454              l30000699 0013           __stringbase 030E  
+        _preloadTMR1H 0078          _preloadTMR1L 0079               ___lwdiv 0458            __pnvCOMMON 007A  
+            ?___lwdiv 0023             ??___lwdiv 0070                ??_main 0073             _TMR0Count 0075  
+          __pmaintext 0013            __pintentry 0004                _C1VREN 08C7              stringdir 0309  
+              _C2VREN 08C6                _C2SYNC 08D8              stringjmp 030D              stringtab 0300  
+              _ADCON0 001F                _ADCON1 009F                _ABDOVF 04DF                _CCP1M0 00B8  
+              _CCP1M1 00B9                _CCP1M2 00BA                _CCP1M3 00BB                _CCP1IE 0462  
+    ___lwdiv@dividend 0023                _CCP1IF 0062      PlayNote@duration 002A                _ADRESH 001E  
+              _EEADRH 010F                _ADRESL 009E                _EEADRL 010D                _EEDATA 010C  
+              _ECCPAS 001D                _CCPR1H 0016                _EEDATH 010E                _CCPR1L 0015  
+              _EEDATL 010C                _EECON1 018C                _EECON2 018D                _ANSELH 011F  
+              _MC1OUT 08DF                _MC2OUT 08DE          __end_of_main 0226                _T1GINV 0087  
+              _GODONE 00F9           main@pointer 0036  end_of_initialization 04E7                _T1SYNC 0082  
+              _INTEDG 040E                _PCLATH 000A                _INTCON 000B         __pcstackBANK0 0020  
+      __end_of_interr 04D2                _SBOREN 0474                _OSCCON 008F                _TMR1GE 0086  
+              _TMR1IE 0460                _TMR1IF 0060                _TMR1CS 0081                _TMR2IE 0461  
+              _TMR2IF 0061                _PSSAC0 00EA                _PSSAC1 00EB                _PSSBD0 00E8  
+              _PSSBD1 00E9                _SPBRGH 009A                _OPTION 0081                _TMR1ON 0080  
+              _TMR2ON 0092                _WDTCON 0097                _WDTPS0 04B9                _WDTPS1 04BA  
+              _WDTPS2 04BB                _WDTPS3 04BC                _SSPADD 0093                _TRISA0 0428  
+              _TRISA1 0429                _TRISA2 042A                _TRISA3 042B                _TRISC0 0438  
+              _TRISA4 042C                _TRISC1 0439                _TRISA5 042D                _TRISC2 043A  
+              _TRISB4 0434                _TRISC3 043B                _TRISB5 0435                _TRISC4 043C  
+              _TRISB6 0436                _TRISC5 043D                _TRISB7 0437                _TRISC6 043E  
+              _TRISC7 043F                _STATUS 0003                _SSPCON 0014                _SSPBUF 0013  
+              _SWDTEN 04B8                _ULPWUE 0475                _SSPMSK 0093      ___lwdiv@quotient 0021  
+              _interr 04A3            i1l30000660 04A3            i1l30000661 04A7            i1l30000662 04AF  
+          i1l30000663 04B5            i1l30000664 04B6            i1l30000665 04BA            i1l30000666 04BE  
+          i1l30000667 04C2            i1l30000668 04C6                saved_w 007F             _InitTimer 04D2  
+   __end_of_InitTimer 04E2            ?_InitTimer 0070              _PlayNote 03C9  

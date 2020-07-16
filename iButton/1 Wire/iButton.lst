@@ -1,0 +1,2159 @@
+
+
+HI-TECH Software PIC LITE Macro Assembler V9.70 build 5239 
+                                                                                               Tue Jul 10 10:19:35 2012
+
+HI-TECH Software Omniscient Code Generator (Lite mode) build 5239
+     1  0000                     opt subtitle "HI-TECH Software Omniscient Code Generator (Lite mode) build 5239"
+     2                           
+     3                           opt pagewidth 120
+     4                           
+     5                           	opt lm
+     6                           
+     7                           	processor	16F677
+     8                           clrc	macro
+     9                           	bcf	3,0
+    10  0000                     	endm
+    11                           clrz	macro
+    12                           	bcf	3,2
+    13  0000                     	endm
+    14                           setc	macro
+    15                           	bsf	3,0
+    16  0000                     	endm
+    17                           setz	macro
+    18                           	bsf	3,2
+    19  0000                     	endm
+    20                           skipc	macro
+    21                           	btfss	3,0
+    22  0000                     	endm
+    23                           skipz	macro
+    24                           	btfss	3,2
+    25  0000                     	endm
+    26                           skipnc	macro
+    27                           	btfsc	3,0
+    28  0000                     	endm
+    29                           skipnz	macro
+    30                           	btfsc	3,2
+    31  0000                     	endm
+    32  0000                     indf	equ	0
+    33  0000                     indf0	equ	0
+    34  0002                     pc	equ	2
+    35  0002                     pcl	equ	2
+    36  0003                     status	equ	3
+    37  0004                     fsr	equ	4
+    38  0004                     fsr0	equ	4
+    39  0001                     c	equ	1
+    40  0000                     z	equ	0
+    41  000A                     pclath	equ	10
+    42                           ;COMMON:	_main->_ReadiButton
+    43                           ;COMMON:	_ReadiButton->_CRCCheck
+    44                           ;BANK0:	_main->_ReadiButton
+    45                           ;COMMON:	_ReadiButton->_CRCCheck
+    46                           	FNCALL	_main,_PowerInit
+    47                           	FNCALL	_main,_ReadiButton
+    48                           	FNCALL	_ReadiButton,_InitiButton
+    49                           	FNCALL	_ReadiButton,_WriteByteToiButton
+    50                           	FNCALL	_ReadiButton,_ReadByteToiButton
+    51                           	FNCALL	_ReadiButton,_CRCCheck
+    52                           	FNCALL	_ReadByteToiButton,_delay_10us
+    53                           	FNCALL	_WriteByteToiButton,_delay_10us
+    54                           	FNCALL	_InitiButton,_delay_10us
+    55                           	FNROOT	_main
+    56                           	global	_t
+    57                           	global	_USER
+    58                           	global	_ADCON0
+    59                           psect	text60,local,class=CODE,delta=2
+    60                           global __ptext60
+    61  0001                     __ptext60:
+    62  001F                     _ADCON0  equ     31
+    63                           	global	_ADRESH
+    64  001E                     _ADRESH  equ     30
+    65                           	global	_FSR
+    66  0004                     _FSR  equ     4
+    67                           	global	_INDF
+    68  0000                     _INDF  equ     0
+    69                           	global	_INTCON
+    70  000B                     _INTCON  equ     11
+    71                           	global	_PCL
+    72  0002                     _PCL  equ     2
+    73                           	global	_PCLATH
+    74  000A                     _PCLATH  equ     10
+    75                           	global	_PIR1
+    76  000C                     _PIR1  equ     12
+    77                           	global	_PIR2
+    78  000D                     _PIR2  equ     13
+    79                           	global	_PORTA
+    80  0005                     _PORTA  equ     5
+    81                           	global	_PORTB
+    82  0006                     _PORTB  equ     6
+    83                           	global	_PORTC
+    84  0007                     _PORTC  equ     7
+    85                           	global	_SSPBUF
+    86  0013                     _SSPBUF  equ     19
+    87                           	global	_SSPCON
+    88  0014                     _SSPCON  equ     20
+    89                           	global	_STATUS
+    90  0003                     _STATUS  equ     3
+    91                           	global	_T1CON
+    92  0010                     _T1CON  equ     16
+    93                           	global	_TMR0
+    94  0001                     _TMR0  equ     1
+    95                           	global	_TMR1H
+    96  000F                     _TMR1H  equ     15
+    97                           	global	_TMR1L
+    98  000E                     _TMR1L  equ     14
+    99                           	global	_ADFM
+   100  00FF                     _ADFM  equ     255
+   101                           	global	_ADIF
+   102  0066                     _ADIF  equ     102
+   103                           	global	_ADON
+   104  00F8                     _ADON  equ     248
+   105                           	global	_C1IF
+   106  006D                     _C1IF  equ     109
+   107                           	global	_C2IF
+   108  006E                     _C2IF  equ     110
+   109                           	global	_CARRY
+   110  0018                     _CARRY  equ     24
+   111                           	global	_CHS0
+   112  00FA                     _CHS0  equ     250
+   113                           	global	_CHS1
+   114  00FB                     _CHS1  equ     251
+   115                           	global	_CHS2
+   116  00FC                     _CHS2  equ     252
+   117                           	global	_CHS3
+   118  00FD                     _CHS3  equ     253
+   119                           	global	_CKP
+   120  00A4                     _CKP  equ     164
+   121                           	global	_DC
+   122  0019                     _DC  equ     25
+   123                           	global	_EEIF
+   124  006C                     _EEIF  equ     108
+   125                           	global	_GIE
+   126  005F                     _GIE  equ     95
+   127                           	global	_GODONE
+   128  00F9                     _GODONE  equ     249
+   129                           	global	_INTE
+   130  005C                     _INTE  equ     92
+   131                           	global	_INTF
+   132  0059                     _INTF  equ     89
+   133                           	global	_IRP
+   134  001F                     _IRP  equ     31
+   135                           	global	_OSFIF
+   136  006F                     _OSFIF  equ     111
+   137                           	global	_PD
+   138  001B                     _PD  equ     27
+   139                           	global	_PEIE
+   140  005E                     _PEIE  equ     94
+   141                           	global	_RA0
+   142  0028                     _RA0  equ     40
+   143                           	global	_RA1
+   144  0029                     _RA1  equ     41
+   145                           	global	_RA2
+   146  002A                     _RA2  equ     42
+   147                           	global	_RA3
+   148  002B                     _RA3  equ     43
+   149                           	global	_RA4
+   150  002C                     _RA4  equ     44
+   151                           	global	_RA5
+   152  002D                     _RA5  equ     45
+   153                           	global	_RABIE
+   154  005B                     _RABIE  equ     91
+   155                           	global	_RABIF
+   156  0058                     _RABIF  equ     88
+   157                           	global	_RB4
+   158  0034                     _RB4  equ     52
+   159                           	global	_RB5
+   160  0035                     _RB5  equ     53
+   161                           	global	_RB6
+   162  0036                     _RB6  equ     54
+   163                           	global	_RB7
+   164  0037                     _RB7  equ     55
+   165                           	global	_RBIE
+   166  005B                     _RBIE  equ     91
+   167                           	global	_RBIF
+   168  0058                     _RBIF  equ     88
+   169                           	global	_RC0
+   170  0038                     _RC0  equ     56
+   171                           	global	_RC1
+   172  0039                     _RC1  equ     57
+   173                           	global	_RC2
+   174  003A                     _RC2  equ     58
+   175                           	global	_RC3
+   176  003B                     _RC3  equ     59
+   177                           	global	_RC4
+   178  003C                     _RC4  equ     60
+   179                           	global	_RC5
+   180  003D                     _RC5  equ     61
+   181                           	global	_RC6
+   182  003E                     _RC6  equ     62
+   183                           	global	_RC7
+   184  003F                     _RC7  equ     63
+   185                           	global	_RP0
+   186  001D                     _RP0  equ     29
+   187                           	global	_RP1
+   188  001E                     _RP1  equ     30
+   189                           	global	_SSPEN
+   190  00A5                     _SSPEN  equ     165
+   191                           	global	_SSPIF
+   192  0063                     _SSPIF  equ     99
+   193                           	global	_SSPM0
+   194  00A0                     _SSPM0  equ     160
+   195                           	global	_SSPM1
+   196  00A1                     _SSPM1  equ     161
+   197                           	global	_SSPM2
+   198  00A2                     _SSPM2  equ     162
+   199                           	global	_SSPM3
+   200  00A3                     _SSPM3  equ     163
+   201                           	global	_SSPOV
+   202  00A6                     _SSPOV  equ     166
+   203                           	global	_T0IE
+   204  005D                     _T0IE  equ     93
+   205                           	global	_T0IF
+   206  005A                     _T0IF  equ     90
+   207                           	global	_T1CKPS0
+   208  0084                     _T1CKPS0  equ     132
+   209                           	global	_T1CKPS1
+   210  0085                     _T1CKPS1  equ     133
+   211                           	global	_T1GINV
+   212  0087                     _T1GINV  equ     135
+   213                           	global	_T1OSCEN
+   214  0083                     _T1OSCEN  equ     131
+   215                           	global	_T1SYNC
+   216  0082                     _T1SYNC  equ     130
+   217                           	global	_TMR1CS
+   218  0081                     _TMR1CS  equ     129
+   219                           	global	_TMR1GE
+   220  0086                     _TMR1GE  equ     134
+   221+                          	global	_TMR1IF
+   222+ 0060                     _TMR1IF  equ     96
+   223                           	global	_TMR1ON
+   224  0080                     _TMR1ON  equ     128
+   225+                          	global	_TO
+   226+ 001C                     _TO  equ     28
+   227                           	global	_VCFG
+   228  00FE                     _VCFG  equ     254
+   229+                          	global	_WCOL
+   230+ 00A7                     _WCOL  equ     167
+   231                           	global	_ZERO
+   232  001A                     _ZERO  equ     26
+   233+                          	global	_ADCON1
+   234+ 009F                     _ADCON1  equ     159
+   235+                          	global	_ADRESL
+   236+ 009E                     _ADRESL  equ     158
+   237+                          	global	_IOCA
+   238+ 0096                     _IOCA  equ     150
+   239+                          	global	_OPTION
+   240+ 0081                     _OPTION  equ     129
+   241+                          	global	_OSCCON
+   242+ 008F                     _OSCCON  equ     143
+   243                           	global	_OSCTUNE
+   244  0090                     _OSCTUNE  equ     144
+   245+                          	global	_PCON
+   246+ 008E                     _PCON  equ     142
+   247+                          	global	_PIE1
+   248+ 008C                     _PIE1  equ     140
+   249+                          	global	_PIE2
+   250+ 008D                     _PIE2  equ     141
+   251+                          	global	_SSPADD
+   252+ 0093                     _SSPADD  equ     147
+   253+                          	global	_SSPMSK
+   254+ 0093                     _SSPMSK  equ     147
+   255                           	global	_SSPSTAT
+   256  0094                     _SSPSTAT  equ     148
+   257+                          	global	_TRISA
+   258+ 0085                     _TRISA  equ     133
+   259                           	global	_TRISB
+   260  0086                     _TRISB  equ     134
+   261+                          	global	_TRISC
+   262+ 0087                     _TRISC  equ     135
+   263+                          	global	_WDTCON
+   264+ 0097                     _WDTCON  equ     151
+   265+                          	global	_WPUA
+   266+ 0095                     _WPUA  equ     149
+   267+                          	global	_ADCS0
+   268+ 04FC                     _ADCS0  equ     1276
+   269+                          	global	_ADCS1
+   270+ 04FD                     _ADCS1  equ     1277
+   271                           	global	_ADCS2
+   272  04FE                     _ADCS2  equ     1278
+   273+                          	global	_ADIE
+   274+ 0466                     _ADIE  equ     1126
+   275+                          	global	_BF
+   276+ 04A0                     _BF  equ     1184
+   277+                          	global	_BOR
+   278+ 0470                     _BOR  equ     1136
+   279+                          	global	_C1IE
+   280+ 046D                     _C1IE  equ     1133
+   281+                          	global	_C2IE
+   282+ 046E                     _C2IE  equ     1134
+   283                           	global	_CKE
+   284  04A6                     _CKE  equ     1190
+   285+                          	global	_DA
+   286+ 04A5                     _DA  equ     1189
+   287                           	global	_EEIE
+   288  046C                     _EEIE  equ     1132
+   289+                          	global	_HTS
+   290+ 047A                     _HTS  equ     1146
+   291+                          	global	_INTEDG
+   292+ 040E                     _INTEDG  equ     1038
+   293+                          	global	_IOCA0
+   294+ 04B0                     _IOCA0  equ     1200
+   295+                          	global	_IOCA1
+   296+ 04B1                     _IOCA1  equ     1201
+   297+                          	global	_IOCA2
+   298+ 04B2                     _IOCA2  equ     1202
+   299                           	global	_IOCA3
+   300  04B3                     _IOCA3  equ     1203
+   301+                          	global	_IOCA4
+   302+ 04B4                     _IOCA4  equ     1204
+   303+                          	global	_IOCA5
+   304+ 04B5                     _IOCA5  equ     1205
+   305+                          	global	_IRCF0
+   306+ 047C                     _IRCF0  equ     1148
+   307+                          	global	_IRCF1
+   308+ 047D                     _IRCF1  equ     1149
+   309+                          	global	_IRCF2
+   310+ 047E                     _IRCF2  equ     1150
+   311                           	global	_LTS
+   312  0479                     _LTS  equ     1145
+   313+                          	global	_OSFIE
+   314+ 046F                     _OSFIE  equ     1135
+   315                           	global	_OSTS
+   316  047B                     _OSTS  equ     1147
+   317+                          	global	_POR
+   318+ 0471                     _POR  equ     1137
+   319+                          	global	_PS0
+   320+ 0408                     _PS0  equ     1032
+   321+                          	global	_PS1
+   322+ 0409                     _PS1  equ     1033
+   323+                          	global	_PS2
+   324+ 040A                     _PS2  equ     1034
+   325+                          	global	_PSA
+   326+ 040B                     _PSA  equ     1035
+   327                           	global	_RABPU
+   328  040F                     _RABPU  equ     1039
+   329+                          	global	_RBPU
+   330+ 040F                     _RBPU  equ     1039
+   331+                          	global	_RW
+   332+ 04A2                     _RW  equ     1186
+   333+                          	global	_SBOREN
+   334+ 0474                     _SBOREN  equ     1140
+   335+                          	global	_SCS
+   336+ 0478                     _SCS  equ     1144
+   337+                          	global	_SMP
+   338+ 04A7                     _SMP  equ     1191
+   339                           	global	_SSPIE
+   340  0463                     _SSPIE  equ     1123
+   341+                          	global	_START
+   342+ 04A3                     _START  equ     1187
+   343                           	global	_STOP
+   344  04A4                     _STOP  equ     1188
+   345+                          	global	_SWDTEN
+   346+ 04B8                     _SWDTEN  equ     1208
+   347+                          	global	_T0CS
+   348+ 040D                     _T0CS  equ     1037
+   349+                          	global	_T0SE
+   350+ 040C                     _T0SE  equ     1036
+   351+                          	global	_TMR1IE
+   352+ 0460                     _TMR1IE  equ     1120
+   353+                          	global	_TRISA0
+   354+ 0428                     _TRISA0  equ     1064
+   355                           	global	_TRISA1
+   356  0429                     _TRISA1  equ     1065
+   357                           	global	_TRISA2
+   358  042A                     _TRISA2  equ     1066
+   359+                          	global	_TRISA3
+   360+ 042B                     _TRISA3  equ     1067
+   361+                          	global	_TRISA4
+   362+ 042C                     _TRISA4  equ     1068
+   363                           	global	_TRISA5
+   364  042D                     _TRISA5  equ     1069
+   365+                          	global	_TRISB4
+   366+ 0434                     _TRISB4  equ     1076
+   367                           	global	_TRISB5
+   368  0435                     _TRISB5  equ     1077
+   369+                          	global	_TRISB6
+   370+ 0436                     _TRISB6  equ     1078
+   371                           	global	_TRISB7
+   372  0437                     _TRISB7  equ     1079
+   373+                          	global	_TRISC0
+   374+ 0438                     _TRISC0  equ     1080
+   375+                          	global	_TRISC1
+   376+ 0439                     _TRISC1  equ     1081
+   377+                          	global	_TRISC2
+   378+ 043A                     _TRISC2  equ     1082
+   379+                          	global	_TRISC3
+   380+ 043B                     _TRISC3  equ     1083
+   381+                          	global	_TRISC4
+   382+ 043C                     _TRISC4  equ     1084
+   383                           	global	_TRISC5
+   384  043D                     _TRISC5  equ     1085
+   385+                          	global	_TRISC6
+   386+ 043E                     _TRISC6  equ     1086
+   387+                          	global	_TRISC7
+   388+ 043F                     _TRISC7  equ     1087
+   389+                          	global	_TUN0
+   390+ 0480                     _TUN0  equ     1152
+   391+                          	global	_TUN1
+   392+ 0481                     _TUN1  equ     1153
+   393+                          	global	_TUN2
+   394+ 0482                     _TUN2  equ     1154
+   395                           	global	_TUN3
+   396  0483                     _TUN3  equ     1155
+   397+                          	global	_TUN4
+   398+ 0484                     _TUN4  equ     1156
+   399                           	global	_UA
+   400  04A1                     _UA  equ     1185
+   401+                          	global	_ULPWUE
+   402+ 0475                     _ULPWUE  equ     1141
+   403+                          	global	_WDTPS0
+   404+ 04B9                     _WDTPS0  equ     1209
+   405+                          	global	_WDTPS1
+   406+ 04BA                     _WDTPS1  equ     1210
+   407+                          	global	_WDTPS2
+   408+ 04BB                     _WDTPS2  equ     1211
+   409+                          	global	_WDTPS3
+   410+ 04BC                     _WDTPS3  equ     1212
+   411                           	global	_WPUA0
+   412  04A8                     _WPUA0  equ     1192
+   413+                          	global	_WPUA1
+   414+ 04A9                     _WPUA1  equ     1193
+   415+                          	global	_WPUA2
+   416+ 04AA                     _WPUA2  equ     1194
+   417+                          	global	_WPUA4
+   418+ 04AC                     _WPUA4  equ     1196
+   419+                          	global	_WPUA5
+   420+ 04AD                     _WPUA5  equ     1197
+   421+                          	global	_ANSEL
+   422+ 011E                     _ANSEL  equ     286
+   423+                          	global	_ANSELH
+   424+ 011F                     _ANSELH  equ     287
+   425+                          	global	_CM1CON0
+   426+ 0119                     _CM1CON0  equ     281
+   427+                          	global	_CM2CON0
+   428+ 011A                     _CM2CON0  equ     282
+   429+                          	global	_CM2CON1
+   430+ 011B                     _CM2CON1  equ     283
+   431                           	global	_EEADR
+   432  010D                     _EEADR  equ     269
+   433+                          	global	_EEADRL
+   434+ 010D                     _EEADRL  equ     269
+   435+                          	global	_EEDAT
+   436+ 010C                     _EEDAT  equ     268
+   437+                          	global	_EEDATA
+   438+ 010C                     _EEDATA  equ     268
+   439                           	global	_EEDATL
+   440  010C                     _EEDATL  equ     268
+   441+                          	global	_IOCB
+   442+ 0116                     _IOCB  equ     278
+   443                           	global	_VRCON
+   444  0118                     _VRCON  equ     280
+   445+                          	global	_WPUB
+   446+ 0115                     _WPUB  equ     277
+   447                           	global	_ANS0
+   448  08F0                     _ANS0  equ     2288
+   449+                          	global	_ANS1
+   450+ 08F1                     _ANS1  equ     2289
+   451+                          	global	_ANS10
+   452+ 08FA                     _ANS10  equ     2298
+   453+                          	global	_ANS11
+   454+ 08FB                     _ANS11  equ     2299
+   455+                          	global	_ANS2
+   456+ 08F2                     _ANS2  equ     2290
+   457+                          	global	_ANS3
+   458+ 08F3                     _ANS3  equ     2291
+   459                           	global	_ANS4
+   460  08F4                     _ANS4  equ     2292
+   461                           	global	_ANS5
+   462  08F5                     _ANS5  equ     2293
+   463+                          	global	_ANS6
+   464+ 08F6                     _ANS6  equ     2294
+   465+                          	global	_ANS7
+   466+ 08F7                     _ANS7  equ     2295
+   467+                          	global	_ANS8
+   468+ 08F8                     _ANS8  equ     2296
+   469+                          	global	_ANS9
+   470+ 08F9                     _ANS9  equ     2297
+   471                           	global	_C1CH0
+   472  08C8                     _C1CH0  equ     2248
+   473+                          	global	_C1CH1
+   474+ 08C9                     _C1CH1  equ     2249
+   475                           	global	_C1OE
+   476  08CD                     _C1OE  equ     2253
+   477+                          	global	_C1ON
+   478+ 08CF                     _C1ON  equ     2255
+   479+                          	global	_C1OUT
+   480+ 08CE                     _C1OUT  equ     2254
+   481+                          	global	_C1POL
+   482+ 08CC                     _C1POL  equ     2252
+   483+                          	global	_C1R
+   484+ 08CA                     _C1R  equ     2250
+   485+                          	global	_C1VREN
+   486+ 08C7                     _C1VREN  equ     2247
+   487                           	global	_C2CH0
+   488  08D0                     _C2CH0  equ     2256
+   489+                          	global	_C2CH1
+   490+ 08D1                     _C2CH1  equ     2257
+   491+                          	global	_C2OE
+   492+ 08D5                     _C2OE  equ     2261
+   493+                          	global	_C2ON
+   494+ 08D7                     _C2ON  equ     2263
+   495+                          	global	_C2OUT
+   496+ 08D6                     _C2OUT  equ     2262
+   497+                          	global	_C2POL
+   498+ 08D4                     _C2POL  equ     2260
+   499                           	global	_C2R
+   500  08D2                     _C2R  equ     2258
+   501+                          	global	_C2SYNC
+   502+ 08D8                     _C2SYNC  equ     2264
+   503                           	global	_C2VREN
+   504  08C6                     _C2VREN  equ     2246
+   505+                          	global	_IOCB4
+   506+ 08B4                     _IOCB4  equ     2228
+   507+                          	global	_IOCB5
+   508+ 08B5                     _IOCB5  equ     2229
+   509+                          	global	_IOCB6
+   510+ 08B6                     _IOCB6  equ     2230
+   511+                          	global	_IOCB7
+   512+ 08B7                     _IOCB7  equ     2231
+   513+                          	global	_MC1OUT
+   514+ 08DF                     _MC1OUT  equ     2271
+   515                           	global	_MC2OUT
+   516  08DE                     _MC2OUT  equ     2270
+   517+                          	global	_T1GSS
+   518+ 08D9                     _T1GSS  equ     2265
+   519+                          	global	_VP6EN
+   520+ 08C4                     _VP6EN  equ     2244
+   521+                          	global	_VR0
+   522+ 08C0                     _VR0  equ     2240
+   523+                          	global	_VR1
+   524+ 08C1                     _VR1  equ     2241
+   525+                          	global	_VR2
+   526+ 08C2                     _VR2  equ     2242
+   527                           	global	_VR3
+   528  08C3                     _VR3  equ     2243
+   529+                          	global	_VRR
+   530+ 08C5                     _VRR  equ     2245
+   531                           	global	_WPUB4
+   532  08AC                     _WPUB4  equ     2220
+   533+                          	global	_WPUB5
+   534+ 08AD                     _WPUB5  equ     2221
+   535+                          	global	_WPUB6
+   536+ 08AE                     _WPUB6  equ     2222
+   537+                          	global	_WPUB7
+   538+ 08AF                     _WPUB7  equ     2223
+   539+                          	global	_EECON1
+   540+ 018C                     _EECON1  equ     396
+   541+                          	global	_EECON2
+   542+ 018D                     _EECON2  equ     397
+   543                           	global	_SRCON
+   544  019E                     _SRCON  equ     414
+   545+                          	global	_C1SEN
+   546+ 0CF5                     _C1SEN  equ     3317
+   547+                          	global	_C2REN
+   548+ 0CF4                     _C2REN  equ     3316
+   549+                          	global	_PULSR
+   550+ 0CF2                     _PULSR  equ     3314
+   551+                          	global	_PULSS
+   552+ 0CF3                     _PULSS  equ     3315
+   553+                          	global	_RD
+   554+ 0C60                     _RD  equ     3168
+   555                           	global	_SR0
+   556  0CF6                     _SR0  equ     3318
+   557+                          	global	_SR1
+   558+ 0CF7                     _SR1  equ     3319
+   559                           	global	_WR
+   560  0C61                     _WR  equ     3169
+   561+                          	global	_WREN
+   562+ 0C62                     _WREN  equ     3170
+   563+                          	global	_WRERR
+   564+ 0C63                     _WRERR  equ     3171
+   565+                          	file	"iButton.as"
+   566+                          	line	#
+   567+                          psect cinit,class=CODE,delta=2
+   568+                          global start_initialization
+   569+ 0679                     start_initialization:
+   570+                          
+   571+                          psect	bssCOMMON,class=COMMON,space=1
+   572+                          global __pbssCOMMON
+   573+ 007A                     __pbssCOMMON:
+   574+ 007A                     _t:
+   575  007A                            ds      1
+   576+                          
+   577+                          psect	bssBANK0,class=BANK0,space=1
+   578+                          global __pbssBANK0
+   579+ 0020                     __pbssBANK0:
+   580+ 0020                     _USER:
+   581+ 0020                            ds      13
+   582+                          
+   583+                          psect clrtext,class=CODE,delta=2
+   584+                          global clear_ram
+   585+                          ;	Called with FSR containing the base address, and
+   586+                          ;	W with the last address+1
+   587+ 0681                     clear_ram:
+   588+ 0681  0064               	clrwdt			;clear the watchdog before getting into this loop
+   589  0682                     clrloop:
+   590+ 0682  0180               	clrf	indf		;clear RAM location pointed to by FSR
+   591  0683  0A84               	incf	fsr,f		;increment pointer
+   592+ 0684  0604               	xorwf	fsr,w		;XOR with final address
+   593+ 0685  1903               	btfsc	status,2	;have we reached the end yet?
+   594+ 0686  3400               	retlw	0		;all done for this memory range, return
+   595+ 0687  0604               	xorwf	fsr,w		;XOR again to restore value
+   596+ 0688  2E82               	goto	clrloop		;do the next byte
+   597                           
+   598                           ; Clear objects allocated to COMMON
+   599                           psect cinit,class=CODE,delta=2
+   600  0679  01FA               	clrf	((__pbssCOMMON)+0)&07Fh
+   601                           ; Clear objects allocated to BANK0
+   602                           psect cinit,class=CODE,delta=2
+   603  067A  1383               	bcf	status, 7	;select IRP bank0
+   604+ 067B  3020               	movlw	low(__pbssBANK0)
+   605+ 067C  0084               	movwf	fsr
+   606  067D  302D               	movlw	low((__pbssBANK0)+0Dh)
+   607+ 067E  2681               	fcall	clear_ram
+   608                           psect cinit,class=CODE,delta=2
+   609                           global end_of_initialization
+   610                           
+   611                           ;End of C runtime variable initationation code
+   612                           
+   613  067F                     end_of_initialization:
+   614+ 067F  0183               clrf status
+   615  0680  2E96               ljmp _main	;jump to C main() function
+   616+                          psect	cstackCOMMON,class=COMMON,space=1
+   617+                          global __pcstackCOMMON
+   618+ 0070                     __pcstackCOMMON:
+   619+                          	global	??_PowerInit
+   620+ 0070                     ??_PowerInit: ;@ 0x0
+   621                           	global	?_PowerInit
+   622  0070                     ?_PowerInit: ;@ 0x0
+   623                           	global	??_WriteByteToiButton
+   624  0070                     ??_WriteByteToiButton: ;@ 0x0
+   625                           	global	??_ReadByteToiButton
+   626  0070                     ??_ReadByteToiButton: ;@ 0x0
+   627                           	global	??_CRCCheck
+   628  0070                     ??_CRCCheck: ;@ 0x0
+   629                           	global	?_delay_10us
+   630  0070                     ?_delay_10us: ;@ 0x0
+   631                           	global	??_delay_10us
+   632  0070                     ??_delay_10us: ;@ 0x0
+   633                           	global	??_InitiButton
+   634  0070                     ??_InitiButton: ;@ 0x0
+   635                           	global	InitiButton@PresencePulse
+   636  0070                     InitiButton@PresencePulse:	; 1 bytes @ 0x0
+   637  0070                     	ds	1
+   638                           	global	?_InitiButton
+   639  0071                     ?_InitiButton: ;@ 0x1
+   640                           	global	CRCCheck@crc_lsb_bit
+   641  0071                     CRCCheck@crc_lsb_bit:	; 1 bytes @ 0x1
+   642                           	global	WriteByteToiButton@d
+   643  0071                     WriteByteToiButton@d:	; 1 bytes @ 0x1
+   644                           	global	ReadByteToiButton@temp
+   645  0071                     ReadByteToiButton@temp:	; 1 bytes @ 0x1
+   646  0071                     	ds	1
+   647                           	global	??_main
+   648  0072                     ??_main: ;@ 0x2
+   649                           	global	CRCCheck@data_lsb_bit
+   650  0072                     CRCCheck@data_lsb_bit:	; 1 bytes @ 0x2
+   651                           	global	WriteByteToiButton@n
+   652  0072                     WriteByteToiButton@n:	; 1 bytes @ 0x2
+   653                           	global	ReadByteToiButton@n
+   654  0072                     ReadByteToiButton@n:	; 1 bytes @ 0x2
+   655  0072                     	ds	1
+   656                           	global	?_WriteByteToiButton
+   657  0073                     ?_WriteByteToiButton: ;@ 0x3
+   658                           	global	CRCCheck@KeyAllByteZero
+   659  0073                     CRCCheck@KeyAllByteZero:	; 1 bytes @ 0x3
+   660                           	global	ReadByteToiButton@i_byte
+   661  0073                     ReadByteToiButton@i_byte:	; 1 bytes @ 0x3
+   662  0073                     	ds	1
+   663                           	global	?_ReadByteToiButton
+   664  0074                     ?_ReadByteToiButton: ;@ 0x4
+   665                           	global	CRCCheck@USER_PTR
+   666  0074                     CRCCheck@USER_PTR:	; 1 bytes @ 0x4
+   667  0074                     	ds	1
+   668                           	global	CRCCheck@TmpByte
+   669  0075                     CRCCheck@TmpByte:	; 1 bytes @ 0x5
+   670  0075                     	ds	1
+   671                           	global	CRCCheck@CRC
+   672  0076                     CRCCheck@CRC:	; 1 bytes @ 0x6
+   673  0076                     	ds	1
+   674                           	global	CRCCheck@j
+   675  0077                     CRCCheck@j:	; 1 bytes @ 0x7
+   676  0077                     	ds	1
+   677                           	global	CRCCheck@i
+   678  0078                     CRCCheck@i:	; 1 bytes @ 0x8
+   679  0078                     	ds	1
+   680                           	global	??_ReadiButton
+   681  0079                     ??_ReadiButton: ;@ 0x9
+   682                           	global	?_CRCCheck
+   683  0079                     ?_CRCCheck: ;@ 0x9
+   684  0079                     	ds	1
+   685                           	global	?_main
+   686  007A                     ?_main: ;@ 0xA
+   687                           	global	?_ReadiButton
+   688  007A                     ?_ReadiButton: ;@ 0xA
+   689                           psect	cstackBANK0,class=BANK0,space=1
+   690                           global __pcstackBANK0
+   691  002D                     __pcstackBANK0:
+   692                           	global	ReadiButton@iButtonPresent
+   693  002D                     ReadiButton@iButtonPresent:	; 1 bytes @ 0x0
+   694  002D                     	ds	1
+   695                           	global	ReadiButton@n
+   696  002E                     ReadiButton@n:	; 1 bytes @ 0x1
+   697  002E                     	ds	1
+   698                           ;Data sizes: Strings 0, constant 0, data 0, bss 14, persistent 0 stack 0
+   699                           ;Auto spaces:   Size  Autos    Used
+   700                           ; COMMON          14     10      11
+   701                           ; BANK0           80      2      15
+   702                           ; BANK1           32      0       0
+   703                           
+   704                           
+   705                           ;Pointer list with targets:
+   706                           
+   707                           ;CRCCheck@USER_PTR	PTR struct USR size(1); Largest target is 13
+   708                           ;		 -> USER(BANK0[13]), 
+   709                           
+   710                           
+   711                           ;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   712                           
+   713                           
+   714                           ;Call graph:                      Base Space Used Autos Args Refs Density
+   715                           ;_main                                                0    0  822   0.00
+   716                           ;          _PowerInit
+   717                           ;        _ReadiButton
+   718                           ;  _ReadiButton                                       3    0  822   0.00
+   719                           ;                                    9 COMMO    1
+   720                           ;                                    0 BANK0    2
+   721                           ;        _InitiButton
+   722                           ; _WriteByteToiButton
+   723                           ;  _ReadByteToiButton
+   724                           ;           _CRCCheck
+   725                           ;  _PowerInit                                         0    0    0   0.00
+   726                           ;    _ReadByteToiButton                               5    0  159   0.00
+   727                           ;                                    0 COMMO    4
+   728                           ;         _delay_10us
+   729                           ;    _CRCCheck                                        9    0  396   0.00
+   730                           ;                                    0 COMMO    9
+   731                           ;    _WriteByteToiButton                              3    0  105   0.00
+   732                           ;                                    0 COMMO    3
+   733                           ;         _delay_10us
+   734                           ;    _InitiButton                                     1    0   30   0.00
+   735                           ;                                    0 COMMO    1
+   736                           ;         _delay_10us
+   737                           ;      _delay_10us                                    0    0    0   0.00
+   738                           ; Estimated maximum call depth 3
+   739                           ; Address spaces:
+   740                           
+   741                           ;Name               Size   Autos  Total    Cost      Usage
+   742                           ;BITCOMMON            E      0       0       0        0.0%
+   743                           ;CODE                 0      0       0       0        0.0%
+   744                           ;NULL                 0      0       0       0        0.0%
+   745                           ;COMMON               E      A       B       1       78.6%
+   746                           ;SFR0                 0      0       0       1        0.0%
+   747                           ;BITSFR0              0      0       0       1        0.0%
+   748                           ;SFR1                 0      0       0       2        0.0%
+   749                           ;BITSFR1              0      0       0       2        0.0%
+   750                           ;STACK                0      0       0       2        0.0%
+   751                           ;ABS                  0      0      1A       3        0.0%
+   752                           ;BITBANK0            50      0       0       4        0.0%
+   753                           ;BITSFR3              0      0       0       4        0.0%
+   754                           ;SFR3                 0      0       0       4        0.0%
+   755                           ;BANK0               50      2       F       5       18.8%
+   756                           ;BITSFR2              0      0       0       5        0.0%
+   757                           ;SFR2                 0      0       0       5        0.0%
+   758                           ;BITBANK1            20      0       0       6        0.0%
+   759                           ;BANK1               20      0       0       7        0.0%
+   760                           ;DATA                 0      0      1A       8        0.0%
+   761                           ;EEDATA             100      0       0    1000        0.0%
+   762                           
+   763                           	global	_main
+   764                           psect	maintext,local,class=CODE,delta=2
+   765                           global __pmaintext
+   766  0696                     __pmaintext:
+   767                           
+   768                           ; *************** function _main *****************
+   769                           ; Defined at:
+   770                           ;		line 61 in file "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\main.c"
+   771                           ; Parameters:    Size  Location     Type
+   772                           ;		None
+   773                           ; Auto vars:     Size  Location     Type
+   774                           ;		None
+   775                           ; Return value:  Size  Location     Type
+   776                           ;		None               void
+   777                           ; Registers used:
+   778                           ;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   779                           ; Tracked objects:
+   780                           ;		On entry : 17F/0
+   781                           ;		On exit  : 0/0
+   782                           ;		Unchanged: 0/0
+   783                           ; Data sizes:     COMMON   BANK0   BANK1
+   784                           ;      Locals:         0       0       0
+   785                           ;      Temp:     0
+   786                           ;      Total:    0
+   787                           ; This function calls:
+   788                           ;		_PowerInit
+   789                           ;		_ReadiButton
+   790                           ; This function is called by:
+   791                           ;		Startup code after reset
+   792                           ; This function uses a non-reentrant model
+   793                           ; 
+   794                           psect	maintext
+   795                           	file	"D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\main.c"
+   796                           	line	61
+   797                           	global	__size_of_main
+   798  0010                     	__size_of_main	equ	__end_of_main-_main
+   799                           ;main.c: 60: void main()
+   800                           ;main.c: 61: {
+   801                           	
+   802  0696                     _main:	
+   803                           	opt stack 8
+   804                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   805                           	line	62
+   806                           	
+   807  0696                     l30000811:	
+   808                           ;main.c: 62: PowerInit();
+   809  0696  276E               	fcall	_PowerInit
+   810                           	
+   811  0697                     l30000812:	
+   812                           	line	66
+   813                           ;main.c: 65: {
+   814                           ;main.c: 66: if(ReadiButton())
+   815  0697  26D2               	fcall	_ReadiButton
+   816  0698  3A00               	xorlw	0
+   817  0699  1903               	skipnz
+   818  069A  2E9C               	goto	u341
+   819  069B  2E9D               	goto	u340
+   820  069C                     u341:
+   821  069C  2EA1               	goto	l46
+   822  069D                     u340:
+   823                           	
+   824  069D                     l30000813:	
+   825                           	line	68
+   826                           ;main.c: 67: {
+   827                           ;main.c: 68: RC2 = 0;
+   828  069D  1283               	bcf	status, 5	;RP0=0, select bank0
+   829  069E  1303               	bcf	status, 6	;RP1=0, select bank0
+   830  069F  1107               	bcf	(58/8),(58)&7
+   831  06A0  2E97               	goto	l30000812
+   832                           	
+   833  06A1                     l46:	
+   834                           	line	72
+   835                           ;main.c: 70: else
+   836                           ;main.c: 71: {
+   837                           ;main.c: 72: RC2 = 1;
+   838  06A1  1283               	bcf	status, 5	;RP0=0, select bank0
+   839  06A2  1303               	bcf	status, 6	;RP1=0, select bank0
+   840  06A3  1507               	bsf	(58/8),(58)&7
+   841  06A4  2E97               	goto	l30000812
+   842                           	global	start
+   843  06A5  2800               	ljmp	start
+   844                           	opt stack 0
+   845                           GLOBAL	__end_of_main
+   846  06A6                     	__end_of_main:
+   847                           ; =============== function _main ends ============
+   848                           
+   849                           psect	maintext
+   850                           	line	75
+   851                           	signat	_main,88
+   852                           	global	_ReadiButton
+   853                           psect	text61,local,class=CODE,delta=2
+   854                           global __ptext61
+   855  06D2                     __ptext61:
+   856                           
+   857                           ; *************** function _ReadiButton *****************
+   858                           ; Defined at:
+   859                           ;		line 55 in file "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+   860                           ; Parameters:    Size  Location     Type
+   861                           ;		None
+   862                           ; Auto vars:     Size  Location     Type
+   863                           ;  n               1    1[BANK0 ] char 
+   864                           ;  iButtonPrese    1    0[BANK0 ] char 
+   865                           ; Return value:  Size  Location     Type
+   866                           ;                  1    wreg      unsigned char 
+   867                           ; Registers used:
+   868                           ;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   869                           ; Tracked objects:
+   870                           ;		On entry : 0/0
+   871                           ;		On exit  : 0/0
+   872                           ;		Unchanged: 0/0
+   873                           ; Data sizes:     COMMON   BANK0   BANK1
+   874                           ;      Locals:         1       2       0
+   875                           ;      Temp:     1
+   876                           ;      Total:    3
+   877                           ; This function calls:
+   878                           ;		_InitiButton
+   879                           ;		_WriteByteToiButton
+   880                           ;		_ReadByteToiButton
+   881                           ;		_CRCCheck
+   882                           ; This function is called by:
+   883                           ;		_main
+   884                           ; This function uses a non-reentrant model
+   885                           ; 
+   886                           psect	text61
+   887                           	file	"D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+   888                           	line	55
+   889                           	global	__size_of_ReadiButton
+   890  0032                     	__size_of_ReadiButton	equ	__end_of_ReadiButton-_ReadiButton
+   891                           ;OneWire.c: 54: unsigned char ReadiButton(void)
+   892                           ;OneWire.c: 55: {
+   893                           	
+   894  06D2                     _ReadiButton:	
+   895                           	opt stack 7
+   896                           ; Regs used in _ReadiButton: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   897                           	
+   898  06D2                     l30000792:	
+   899                           	
+   900  06D2                     l30000793:	
+   901                           	line	57
+   902                           ;OneWire.c: 57: iButtonPresent = InitiButton();
+   903  06D2  2739               	fcall	_InitiButton
+   904  06D3  1283               	bcf	status, 5	;RP0=0, select bank0
+   905  06D4  1303               	bcf	status, 6	;RP1=0, select bank0
+   906  06D5  00AD               	movwf	(ReadiButton@iButtonPresent)
+   907                           	
+   908  06D6                     l30000794:	
+   909                           	line	59
+   910                           ;OneWire.c: 59: USER.DATA.KEY.CRC=0x00;
+   911  06D6  1003               	clrc
+   912  06D7  3000               	movlw	0
+   913  06D8  1803               	btfsc	status,0
+   914  06D9  3001               	movlw	1
+   915  06DA  00A0               	movwf	(_USER)
+   916                           	
+   917  06DB                     l30000795:	
+   918                           	line	61
+   919                           ;OneWire.c: 61: if(iButtonPresent)
+   920  06DB  082D               	movf	(ReadiButton@iButtonPresent),w
+   921  06DC  1D03               	skipz
+   922  06DD  2EDF               	goto	u310
+   923  06DE  2F02               	goto	l30000809
+   924  06DF                     u310:
+   925                           	
+   926  06DF                     l30000796:	
+   927                           	line	63
+   928                           ;OneWire.c: 62: {
+   929                           ;OneWire.c: 63: WriteByteToiButton(0x33);
+   930  06DF  3033               	movlw	(033h)
+   931  06E0  26A6               	fcall	_WriteByteToiButton
+   932                           	
+   933  06E1                     l30000797:	
+   934                           	line	64
+   935                           ;OneWire.c: 64: for (n=7; n>=0; n--)
+   936  06E1  3007               	movlw	(07h)
+   937  06E2  1283               	bcf	status, 5	;RP0=0, select bank0
+   938  06E3  1303               	bcf	status, 6	;RP1=0, select bank0
+   939  06E4  00AE               	movwf	(ReadiButton@n)
+   940                           	
+   941  06E5                     l30000800:	
+   942                           	line	65
+   943                           ;OneWire.c: 65: USER.DATA.KEY.BYTE[n]=ReadByteToiButton();
+   944  06E5  2704               	fcall	_ReadByteToiButton
+   945  06E6  00F9               	movwf	(??_ReadiButton+0+0)
+   946  06E7  1283               	bcf	status, 5	;RP0=0, select bank0
+   947  06E8  1303               	bcf	status, 6	;RP1=0, select bank0
+   948  06E9  082E               	movf	(ReadiButton@n),w
+   949  06EA  3E20               	addlw	(_USER)&0ffh
+   950  06EB  0084               	movwf	fsr0
+   951  06EC  0879               	movf	(??_ReadiButton+0+0),w
+   952  06ED  1383               	bcf	status, 7	;select IRP bank0
+   953  06EE  0080               	movwf	indf
+   954                           	
+   955  06EF                     l30000801:	
+   956                           	line	64
+   957  06EF  30FF               	movlw	(-1)
+   958  06F0  00F9               	movwf	(??_ReadiButton+0+0)
+   959  06F1  0879               	movf	(??_ReadiButton+0+0),w
+   960  06F2  07AE               	addwf	(ReadiButton@n),f
+   961                           	
+   962  06F3                     l30000802:	
+   963  06F3  1FAE               	btfss	(ReadiButton@n),7
+   964  06F4  2EF6               	goto	u321
+   965  06F5  2EF7               	goto	u320
+   966  06F6                     u321:
+   967  06F6  2EE5               	goto	l30000800
+   968  06F7                     u320:
+   969                           	
+   970  06F7                     l30000803:	
+   971                           	line	67
+   972                           ;OneWire.c: 67: if(CRCCheck(&USER))
+   973  06F7  3020               	movlw	((_USER))&0ffh
+   974  06F8  27A6               	fcall	_CRCCheck
+   975  06F9  3A00               	xorlw	0
+   976  06FA  1903               	skipnz
+   977  06FB  2EFD               	goto	u331
+   978  06FC  2EFE               	goto	u330
+   979  06FD                     u331:
+   980  06FD  2F00               	goto	l30000807
+   981  06FE                     u330:
+   982                           	
+   983  06FE                     l30000804:	
+   984                           	line	68
+   985                           ;OneWire.c: 68: return(1);
+   986  06FE  3001               	movlw	(01h)
+   987  06FF  2F03               	goto	l14
+   988                           	
+   989  0700                     l30000807:	
+   990                           	line	70
+   991                           ;OneWire.c: 69: else
+   992                           ;OneWire.c: 70: return(0);
+   993  0700  3000               	movlw	(0)
+   994  0701  2F03               	goto	l14
+   995                           	
+   996  0702                     l30000809:	
+   997                           	line	72
+   998                           ;OneWire.c: 71: }
+   999                           ;OneWire.c: 72: return(iButtonPresent);
+  1000  0702  082D               	movf	(ReadiButton@iButtonPresent),w
+  1001                           	
+  1002  0703                     l14:	
+  1003  0703  0008               	return
+  1004                           	opt stack 0
+  1005                           GLOBAL	__end_of_ReadiButton
+  1006  0704                     	__end_of_ReadiButton:
+  1007                           ; =============== function _ReadiButton ends ============
+  1008                           
+  1009                           psect	text62,local,class=CODE,delta=2
+  1010                           global __ptext62
+  1011  076E                     __ptext62:
+  1012                           	line	73
+  1013                           	signat	_ReadiButton,89
+  1014                           	global	_PowerInit
+  1015                           
+  1016                           ; *************** function _PowerInit *****************
+  1017                           ; Defined at:
+  1018                           ;		line 7 in file "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\main.c"
+  1019                           ; Parameters:    Size  Location     Type
+  1020                           ;		None
+  1021                           ; Auto vars:     Size  Location     Type
+  1022                           ;		None
+  1023                           ; Return value:  Size  Location     Type
+  1024                           ;		None               void
+  1025                           ; Registers used:
+  1026                           ;		wreg, status,2, status,0
+  1027                           ; Tracked objects:
+  1028                           ;		On entry : 0/0
+  1029                           ;		On exit  : 0/0
+  1030                           ;		Unchanged: 0/0
+  1031                           ; Data sizes:     COMMON   BANK0   BANK1
+  1032                           ;      Locals:         0       0       0
+  1033                           ;      Temp:     0
+  1034                           ;      Total:    0
+  1035                           ; This function calls:
+  1036                           ;		Nothing
+  1037                           ; This function is called by:
+  1038                           ;		_main
+  1039                           ; This function uses a non-reentrant model
+  1040                           ; 
+  1041                           psect	text62
+  1042                           	file	"D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\main.c"
+  1043                           	line	7
+  1044                           	global	__size_of_PowerInit
+  1045  0038                     	__size_of_PowerInit	equ	__end_of_PowerInit-_PowerInit
+  1046                           ;main.c: 6: void PowerInit(void)
+  1047                           ;main.c: 7: {
+  1048                           	
+  1049  076E                     _PowerInit:	
+  1050                           	opt stack 7
+  1051                           ; Regs used in _PowerInit: [wreg+status,2+status,0]
+  1052                           	line	8
+  1053                           	
+  1054  076E                     l30000693:	
+  1055                           ;main.c: 8: IRCF0=0x00;
+  1056  076E  1683               	bsf	status, 5	;RP0=1, select bank1
+  1057  076F  1303               	bcf	status, 6	;RP1=0, select bank1
+  1058  0770  120F               	bcf	(1148/8)^080h,(1148)&7
+  1059                           	line	9
+  1060                           ;main.c: 9: SCS=0x01;
+  1061  0771  140F               	bsf	(1144/8)^080h,(1144)&7
+  1062                           	line	10
+  1063                           ;main.c: 10: IRCF1=0x01;
+  1064  0772  168F               	bsf	(1149/8)^080h,(1149)&7
+  1065                           	line	11
+  1066                           ;main.c: 11: IRCF2=0x01;
+  1067  0773  170F               	bsf	(1150/8)^080h,(1150)&7
+  1068                           	
+  1069  0774                     l30000694:	
+  1070                           	line	13
+  1071                           ;main.c: 13: OSCTUNE=0x00;
+  1072  0774  1003               	clrc
+  1073  0775  3000               	movlw	0
+  1074  0776  1803               	btfsc	status,0
+  1075  0777  3001               	movlw	1
+  1076  0778  0090               	movwf	(144)^080h
+  1077                           	line	15
+  1078                           ;main.c: 15: CM1CON0=0x00;
+  1079  0779  1003               	clrc
+  1080  077A  3000               	movlw	0
+  1081  077B  1803               	btfsc	status,0
+  1082  077C  3001               	movlw	1
+  1083  077D  1283               	bcf	status, 5	;RP0=0, select bank2
+  1084  077E  1703               	bsf	status, 6	;RP1=1, select bank2
+  1085  077F  0099               	movwf	(281)^0100h	;volatile
+  1086                           	line	16
+  1087                           ;main.c: 16: ANSEL=0x00;
+  1088  0780  1003               	clrc
+  1089  0781  3000               	movlw	0
+  1090  0782  1803               	btfsc	status,0
+  1091  0783  3001               	movlw	1
+  1092  0784  009E               	movwf	(286)^0100h
+  1093                           	line	17
+  1094                           ;main.c: 17: ANSELH=0x00;
+  1095  0785  1003               	clrc
+  1096  0786  3000               	movlw	0
+  1097  0787  1803               	btfsc	status,0
+  1098  0788  3001               	movlw	1
+  1099  0789  009F               	movwf	(287)^0100h
+  1100                           	
+  1101  078A                     l30000695:	
+  1102                           	line	19
+  1103                           ;main.c: 19: TRISC2 = 0;
+  1104  078A  1683               	bsf	status, 5	;RP0=1, select bank1
+  1105  078B  1303               	bcf	status, 6	;RP1=0, select bank1
+  1106  078C  1107               	bcf	(1082/8)^080h,(1082)&7
+  1107                           	
+  1108  078D                     l30000696:	
+  1109                           	line	22
+  1110                           ;main.c: 22: TRISA5 |= 0x24;
+  1111                           	
+  1112  078D                     l30000697:	
+  1113                           	line	25
+  1114                           ;main.c: 25: WPUA=0x24;
+  1115  078D  3024               	movlw	(024h)
+  1116  078E  0095               	movwf	(149)^080h
+  1117                           	
+  1118  078F                     l30000698:	
+  1119                           	line	26
+  1120                           ;main.c: 26: WPUB=0xA0;
+  1121  078F  30A0               	movlw	(0A0h)
+  1122  0790  1283               	bcf	status, 5	;RP0=0, select bank2
+  1123  0791  1703               	bsf	status, 6	;RP1=1, select bank2
+  1124  0792  0095               	movwf	(277)^0100h
+  1125                           	
+  1126  0793                     l30000699:	
+  1127                           	line	28
+  1128                           ;main.c: 28: RABPU=0x00;
+  1129  0793  1683               	bsf	status, 5	;RP0=1, select bank1
+  1130  0794  1303               	bcf	status, 6	;RP1=0, select bank1
+  1131  0795  1381               	bcf	(1039/8)^080h,(1039)&7
+  1132                           	line	33
+  1133                           ;main.c: 33: EECON1=0x00;
+  1134  0796  1003               	clrc
+  1135  0797  3000               	movlw	0
+  1136  0798  1803               	btfsc	status,0
+  1137  0799  3001               	movlw	1
+  1138  079A  1683               	bsf	status, 5	;RP0=1, select bank3
+  1139  079B  1703               	bsf	status, 6	;RP1=1, select bank3
+  1140  079C  008C               	movwf	(396)^0180h	;volatile
+  1141                           	
+  1142  079D                     l30000700:	
+  1143                           	line	47
+  1144                           ;main.c: 47: INTCON=0x88;
+  1145  079D  3088               	movlw	(088h)
+  1146  079E  1283               	bcf	status, 5	;RP0=0, select bank0
+  1147  079F  1303               	bcf	status, 6	;RP1=0, select bank0
+  1148  07A0  008B               	movwf	(11)	;volatile
+  1149                           	
+  1150  07A1                     l30000701:	
+  1151                           	line	48
+  1152                           ;main.c: 48: IOCA=0x24;
+  1153  07A1  3024               	movlw	(024h)
+  1154  07A2  1683               	bsf	status, 5	;RP0=1, select bank1
+  1155  07A3  1303               	bcf	status, 6	;RP1=0, select bank1
+  1156  07A4  0096               	movwf	(150)^080h
+  1157                           	
+  1158  07A5                     l41:	
+  1159  07A5  0008               	return
+  1160                           	opt stack 0
+  1161                           GLOBAL	__end_of_PowerInit
+  1162  07A6                     	__end_of_PowerInit:
+  1163                           ; =============== function _PowerInit ends ============
+  1164                           
+  1165                           psect	text63,local,class=CODE,delta=2
+  1166                           global __ptext63
+  1167  0704                     __ptext63:
+  1168                           	line	58
+  1169                           	signat	_PowerInit,88
+  1170                           	global	_ReadByteToiButton
+  1171                           
+  1172                           ; *************** function _ReadByteToiButton *****************
+  1173                           ; Defined at:
+  1174                           ;		line 163 in file "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1175                           ; Parameters:    Size  Location     Type
+  1176                           ;		None
+  1177                           ; Auto vars:     Size  Location     Type
+  1178                           ;  i_byte          1    3[COMMON] unsigned char 
+  1179                           ;  n               1    2[COMMON] unsigned char 
+  1180                           ;  temp            1    1[COMMON] unsigned char 
+  1181                           ;  mask            1    0        unsigned char 
+  1182                           ; Return value:  Size  Location     Type
+  1183                           ;                  1    wreg      unsigned char 
+  1184                           ; Registers used:
+  1185                           ;		wreg, status,2, status,0, pclath, cstack
+  1186                           ; Tracked objects:
+  1187                           ;		On entry : 0/0
+  1188                           ;		On exit  : 0/0
+  1189                           ;		Unchanged: 0/0
+  1190                           ; Data sizes:     COMMON   BANK0   BANK1
+  1191                           ;      Locals:         4       0       0
+  1192                           ;      Temp:     1
+  1193                           ;      Total:    4
+  1194                           ; This function calls:
+  1195                           ;		_delay_10us
+  1196                           ; This function is called by:
+  1197                           ;		_ReadiButton
+  1198                           ; This function uses a non-reentrant model
+  1199                           ; 
+  1200                           psect	text63
+  1201                           	file	"D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1202                           	line	163
+  1203                           	global	__size_of_ReadByteToiButton
+  1204  0035                     	__size_of_ReadByteToiButton	equ	__end_of_ReadByteToiButton-_ReadByteToiButton
+  1205                           ;OneWire.c: 162: unsigned char ReadByteToiButton(void)
+  1206                           ;OneWire.c: 163: {
+  1207                           	
+  1208  0704                     _ReadByteToiButton:	
+  1209                           	opt stack 6
+  1210                           ; Regs used in _ReadByteToiButton: [wreg+status,2+status,0+pclath+cstack]
+  1211                           	line	165
+  1212                           	
+  1213  0704                     l30000826:	
+  1214                           ;OneWire.c: 164: unsigned char n, i_byte, temp, mask;
+  1215                           ;OneWire.c: 165: for (n=0; n<8; n++)
+  1216  0704  1003               	clrc
+  1217  0705  3000               	movlw	0
+  1218  0706  1803               	btfsc	status,0
+  1219  0707  3001               	movlw	1
+  1220  0708  00F2               	movwf	(ReadByteToiButton@n)
+  1221                           	
+  1222  0709                     l32:	
+  1223                           	line	167
+  1224                           ;OneWire.c: 166: {
+  1225                           ;OneWire.c: 167: TRISA2=0x00;
+  1226  0709  1683               	bsf	status, 5	;RP0=1, select bank1
+  1227  070A  1303               	bcf	status, 6	;RP1=0, select bank1
+  1228  070B  1105               	bcf	(1066/8)^080h,(1066)&7
+  1229                           	line	168
+  1230                           ;OneWire.c: 168: RA2=0x00;
+  1231  070C  1283               	bcf	status, 5	;RP0=0, select bank0
+  1232  070D  1303               	bcf	status, 6	;RP1=0, select bank0
+  1233  070E  1105               	bcf	(42/8),(42)&7
+  1234                           	line	170
+  1235                           # 170 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1236  070F  0000                    NOP ;#
+  1237                           	line	171
+  1238                           # 171 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1239  0710  0000                NOP ;#
+  1240                           	line	173
+  1241                           # 173 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1242                           # 172 ;#
+  1243                           psect	text63
+  1244                           	line	175
+  1245                           ;OneWire.c: 175: TRISA2=0x01;
+  1246  0711  1683               	bsf	status, 5	;RP0=1, select bank1
+  1247  0712  1303               	bcf	status, 6	;RP1=0, select bank1
+  1248  0713  1505               	bsf	(1066/8)^080h,(1066)&7
+  1249                           # 175 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1250  0714  0000                    NOP ;#
+  1251                           	line	176
+  1252                           # 176 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1253  0715  0000                NOP ;#
+  1254                           	line	178
+  1255                           # 178 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1256                           # 177 ;#
+  1257                           psect	text63
+  1258                           	
+  1259  0716                     l30000829:	
+  1260                           	line	180
+  1261                           ;OneWire.c: 180: temp=PORTA;
+  1262  0716  1283               	bcf	status, 5	;RP0=0, select bank0
+  1263  0717  1303               	bcf	status, 6	;RP1=0, select bank0
+  1264  0718  0805               	movf	(5),w	;volatile
+  1265  0719  00F1               	movwf	(ReadByteToiButton@temp)
+  1266                           	
+  1267  071A                     l30000830:	
+  1268                           	line	181
+  1269                           ;OneWire.c: 181: if (temp & 4)
+  1270  071A  1D71               	btfss	(ReadByteToiButton@temp),(2)&7
+  1271  071B  2F1D               	goto	u371
+  1272  071C  2F1E               	goto	u370
+  1273  071D                     u371:
+  1274  071D  2F25               	goto	l30000832
+  1275  071E                     u370:
+  1276                           	
+  1277  071E                     l30000831:	
+  1278                           	line	183
+  1279                           ;OneWire.c: 182: {
+  1280                           ;OneWire.c: 183: i_byte=(i_byte>>1) | 0x80;
+  1281  071E  0873               	movf	(ReadByteToiButton@i_byte),w
+  1282  071F  00F0               	movwf	(??_ReadByteToiButton+0+0)
+  1283  0720  1003               	clrc
+  1284  0721  0C70               	rrf	(??_ReadByteToiButton+0+0),w
+  1285  0722  3880               	iorlw	080h
+  1286  0723  00F3               	movwf	(ReadByteToiButton@i_byte)
+  1287  0724  2F2A               	goto	l30000833
+  1288                           	
+  1289  0725                     l30000832:	
+  1290                           	line	187
+  1291                           ;OneWire.c: 185: else
+  1292                           ;OneWire.c: 186: {
+  1293                           ;OneWire.c: 187: i_byte=i_byte >> 1;
+  1294  0725  0873               	movf	(ReadByteToiButton@i_byte),w
+  1295  0726  00F0               	movwf	(??_ReadByteToiButton+0+0)
+  1296  0727  1003               	clrc
+  1297  0728  0C70               	rrf	(??_ReadByteToiButton+0+0),w
+  1298  0729  00F3               	movwf	(ReadByteToiButton@i_byte)
+  1299                           	
+  1300  072A                     l30000833:	
+  1301                           	line	189
+  1302                           ;OneWire.c: 188: }
+  1303                           ;OneWire.c: 189: t=6;
+  1304  072A  3006               	movlw	(06h)
+  1305  072B  00FA               	movwf	(_t)
+  1306                           	
+  1307  072C                     l30000834:	
+  1308                           	line	190
+  1309                           ;OneWire.c: 190: delay_10us();
+  1310  072C  2689               	fcall	_delay_10us
+  1311                           	
+  1312  072D                     l30000835:	
+  1313                           	line	165
+  1314  072D  3001               	movlw	(01h)
+  1315  072E  00F0               	movwf	(??_ReadByteToiButton+0+0)
+  1316  072F  0870               	movf	(??_ReadByteToiButton+0+0),w
+  1317  0730  07F2               	addwf	(ReadByteToiButton@n),f
+  1318                           	
+  1319  0731                     l30000836:	
+  1320  0731  3008               	movlw	(08h)
+  1321  0732  0272               	subwf	(ReadByteToiButton@n),w
+  1322  0733  1C03               	skipc
+  1323  0734  2F36               	goto	u381
+  1324  0735  2F37               	goto	u380
+  1325  0736                     u381:
+  1326  0736  2F09               	goto	l32
+  1327  0737                     u380:
+  1328                           	
+  1329  0737                     l30000837:	
+  1330                           	line	192
+  1331                           ;OneWire.c: 191: }
+  1332                           ;OneWire.c: 192: return(i_byte);
+  1333  0737  0873               	movf	(ReadByteToiButton@i_byte),w
+  1334                           	
+  1335  0738                     l31:	
+  1336  0738  0008               	return
+  1337                           	opt stack 0
+  1338                           GLOBAL	__end_of_ReadByteToiButton
+  1339  0739                     	__end_of_ReadByteToiButton:
+  1340                           ; =============== function _ReadByteToiButton ends ============
+  1341                           
+  1342                           psect	text64,local,class=CODE,delta=2
+  1343                           global __ptext64
+  1344  07A6                     __ptext64:
+  1345                           	line	193
+  1346                           	signat	_ReadByteToiButton,89
+  1347                           	global	_CRCCheck
+  1348                           
+  1349                           ; *************** function _CRCCheck *****************
+  1350                           ; Defined at:
+  1351                           ;		line 19 in file "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1352                           ; Parameters:    Size  Location     Type
+  1353                           ;  USER_PTR        1    wreg     PTR struct USR
+  1354                           ;		 -> USER(13), 
+  1355                           ; Auto vars:     Size  Location     Type
+  1356                           ;  USER_PTR        1    4[COMMON] PTR struct USR
+  1357                           ;		 -> USER(13), 
+  1358                           ;  j               1    7[COMMON] unsigned char 
+  1359                           ;  i               1    8[COMMON] unsigned char 
+  1360                           ;  CRC             1    6[COMMON] unsigned char 
+  1361                           ;  TmpByte         1    5[COMMON] unsigned char 
+  1362                           ;  KeyAllByteZe    1    3[COMMON] unsigned char 
+  1363                           ;  data_lsb_bit    1    2[COMMON] unsigned char 
+  1364                           ;  crc_lsb_bit     1    1[COMMON] unsigned char 
+  1365                           ; Return value:  Size  Location     Type
+  1366                           ;                  1    wreg      unsigned char 
+  1367                           ; Registers used:
+  1368                           ;		wreg, fsr0l, fsr0h, status,2, status,0
+  1369                           ; Tracked objects:
+  1370                           ;		On entry : 0/0
+  1371                           ;		On exit  : 0/0
+  1372                           ;		Unchanged: 0/0
+  1373                           ; Data sizes:     COMMON   BANK0   BANK1
+  1374                           ;      Locals:         9       0       0
+  1375                           ;      Temp:     1
+  1376                           ;      Total:    9
+  1377                           ; This function calls:
+  1378                           ;		Nothing
+  1379                           ; This function is called by:
+  1380                           ;		_ReadiButton
+  1381                           ; This function uses a non-reentrant model
+  1382                           ; 
+  1383                           psect	text64
+  1384                           	file	"D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1385                           	line	19
+  1386                           	global	__size_of_CRCCheck
+  1387  005A                     	__size_of_CRCCheck	equ	__end_of_CRCCheck-_CRCCheck
+  1388                           ;OneWire.c: 18: unsigned char CRCCheck(union USR * USER_PTR)
+  1389                           ;OneWire.c: 19: {
+  1390                           	
+  1391  07A6                     _CRCCheck:	
+  1392                           	opt stack 6
+  1393                           ; Regs used in _CRCCheck: [wreg-fsr0h+status,2+status,0]
+  1394                           ;CRCCheck@USER_PTR stored from wreg
+  1395                           	line	23
+  1396  07A6  00F4               	movwf	(CRCCheck@USER_PTR)
+  1397                           	
+  1398  07A7                     l30000855:	
+  1399                           ;OneWire.c: 20: unsigned char i, j, CRC, KeyAllByteZero;
+  1400                           ;OneWire.c: 21: unsigned char crc_lsb_bit, data_lsb_bit,TmpByte;
+  1401                           ;OneWire.c: 23: CRC=0x00;
+  1402  07A7  1003               	clrc
+  1403  07A8  3000               	movlw	0
+  1404  07A9  1803               	btfsc	status,0
+  1405  07AA  3001               	movlw	1
+  1406  07AB  00F6               	movwf	(CRCCheck@CRC)
+  1407                           	line	24
+  1408                           ;OneWire.c: 24: KeyAllByteZero=0x00;
+  1409  07AC  1003               	clrc
+  1410  07AD  3000               	movlw	0
+  1411  07AE  1803               	btfsc	status,0
+  1412  07AF  3001               	movlw	1
+  1413  07B0  00F3               	movwf	(CRCCheck@KeyAllByteZero)
+  1414                           	line	26
+  1415                           ;OneWire.c: 26: for(i=8;i>1;i--)
+  1416  07B1  3008               	movlw	(08h)
+  1417  07B2  00F8               	movwf	(CRCCheck@i)
+  1418                           	
+  1419  07B3                     l30000858:	
+  1420                           	line	28
+  1421                           ;OneWire.c: 27: {
+  1422                           ;OneWire.c: 28: TmpByte = USER_PTR->BYTE[i];
+  1423  07B3  0878               	movf	(CRCCheck@i),w
+  1424  07B4  0774               	addwf	(CRCCheck@USER_PTR),w
+  1425  07B5  0084               	movwf	fsr0
+  1426  07B6  1383               	bcf	status, 7	;select IRP bank0
+  1427  07B7  0800               	movf	indf,w
+  1428  07B8  00F5               	movwf	(CRCCheck@TmpByte)
+  1429                           	
+  1430  07B9                     l30000859:	
+  1431                           	line	29
+  1432                           ;OneWire.c: 29: KeyAllByteZero |= TmpByte;
+  1433  07B9  0875               	movf	(CRCCheck@TmpByte),w
+  1434  07BA  00F0               	movwf	(??_CRCCheck+0+0)
+  1435  07BB  0870               	movf	(??_CRCCheck+0+0),w
+  1436  07BC  04F3               	iorwf	(CRCCheck@KeyAllByteZero),f
+  1437                           	
+  1438  07BD                     l30000860:	
+  1439                           	line	30
+  1440                           ;OneWire.c: 30: for(j=0;j<8;j++)
+  1441  07BD  1003               	clrc
+  1442  07BE  3000               	movlw	0
+  1443  07BF  1803               	btfsc	status,0
+  1444  07C0  3001               	movlw	1
+  1445  07C1  00F7               	movwf	(CRCCheck@j)
+  1446                           	
+  1447  07C2                     l30000863:	
+  1448                           	line	32
+  1449                           ;OneWire.c: 31: {
+  1450                           ;OneWire.c: 32: data_lsb_bit = (TmpByte>>j) & 0x01;
+  1451  07C2  0875               	movf	(CRCCheck@TmpByte),w
+  1452  07C3  00F0               	movwf	(??_CRCCheck+0+0)
+  1453  07C4  0A77               	incf	(CRCCheck@j),w
+  1454  07C5  2FC8               	goto	u404
+  1455  07C6                     u405:
+  1456  07C6  1003               	clrc
+  1457  07C7  0CF0               	rrf	(??_CRCCheck+0+0),f
+  1458  07C8                     u404:
+  1459  07C8  3EFF               	addlw	-1
+  1460  07C9  1D03               	skipz
+  1461  07CA  2FC6               	goto	u405
+  1462  07CB  0870               	movf	0+(??_CRCCheck+0+0),w
+  1463  07CC  3901               	andlw	01h
+  1464  07CD  00F2               	movwf	(CRCCheck@data_lsb_bit)
+  1465                           	
+  1466  07CE                     l30000864:	
+  1467                           	line	33
+  1468                           ;OneWire.c: 33: crc_lsb_bit=(CRC & 0x01);
+  1469  07CE  0876               	movf	(CRCCheck@CRC),w
+  1470  07CF  3901               	andlw	01h
+  1471  07D0  00F1               	movwf	(CRCCheck@crc_lsb_bit)
+  1472                           	
+  1473  07D1                     l30000865:	
+  1474                           	line	35
+  1475                           ;OneWire.c: 35: CRC >>= 1;
+  1476  07D1  1003               	clrc
+  1477  07D2  0CF6               	rrf	(CRCCheck@CRC),f
+  1478                           
+  1479                           	
+  1480  07D3                     l30000866:	
+  1481                           	line	36
+  1482                           ;OneWire.c: 36: if(data_lsb_bit !=crc_lsb_bit)
+  1483  07D3  0872               	movf	(CRCCheck@data_lsb_bit),w
+  1484  07D4  0671               	xorwf	(CRCCheck@crc_lsb_bit),w
+  1485  07D5  1903               	skipnz
+  1486  07D6  2FD8               	goto	u411
+  1487  07D7  2FD9               	goto	u410
+  1488  07D8                     u411:
+  1489  07D8  2FDD               	goto	l11
+  1490  07D9                     u410:
+  1491                           	
+  1492  07D9                     l30000867:	
+  1493                           	line	37
+  1494                           ;OneWire.c: 37: CRC ^= 0x8C;
+  1495  07D9  308C               	movlw	(08Ch)
+  1496  07DA  00F0               	movwf	(??_CRCCheck+0+0)
+  1497  07DB  0870               	movf	(??_CRCCheck+0+0),w
+  1498  07DC  06F6               	xorwf	(CRCCheck@CRC),f
+  1499                           	
+  1500  07DD                     l11:	
+  1501                           	line	30
+  1502  07DD  3001               	movlw	(01h)
+  1503  07DE  00F0               	movwf	(??_CRCCheck+0+0)
+  1504  07DF  0870               	movf	(??_CRCCheck+0+0),w
+  1505  07E0  07F7               	addwf	(CRCCheck@j),f
+  1506                           	
+  1507  07E1                     l30000868:	
+  1508  07E1  3008               	movlw	(08h)
+  1509  07E2  0277               	subwf	(CRCCheck@j),w
+  1510  07E3  1C03               	skipc
+  1511  07E4  2FE6               	goto	u421
+  1512  07E5  2FE7               	goto	u420
+  1513  07E6                     u421:
+  1514  07E6  2FC2               	goto	l30000863
+  1515  07E7                     u420:
+  1516                           	
+  1517  07E7                     l30000869:	
+  1518                           	line	26
+  1519  07E7  3001               	movlw	low(01h)
+  1520  07E8  02F8               	subwf	(CRCCheck@i),f
+  1521                           	
+  1522  07E9                     l30000870:	
+  1523  07E9  3002               	movlw	(02h)
+  1524  07EA  0278               	subwf	(CRCCheck@i),w
+  1525  07EB  1803               	skipnc
+  1526  07EC  2FEE               	goto	u431
+  1527  07ED  2FEF               	goto	u430
+  1528  07EE                     u431:
+  1529  07EE  2FB3               	goto	l30000858
+  1530  07EF                     u430:
+  1531                           	
+  1532  07EF                     l30000871:	
+  1533                           	line	40
+  1534                           ;OneWire.c: 38: }
+  1535                           ;OneWire.c: 39: }
+  1536                           ;OneWire.c: 40: if(USER_PTR->DATA.KEY.CRC == CRC && KeyAllByteZero != 0)
+  1537  07EF  0874               	movf	(CRCCheck@USER_PTR),w
+  1538  07F0  0084               	movwf	fsr0
+  1539  07F1  1383               	bcf	status, 7	;select IRP bank0
+  1540  07F2  0800               	movf	indf,w
+  1541  07F3  0676               	xorwf	(CRCCheck@CRC),w
+  1542  07F4  1D03               	skipz
+  1543  07F5  2FF7               	goto	u441
+  1544  07F6  2FF8               	goto	u440
+  1545  07F7                     u441:
+  1546  07F7  2FFE               	goto	l30000876
+  1547  07F8                     u440:
+  1548                           	
+  1549  07F8                     l30000872:	
+  1550  07F8  0873               	movf	(CRCCheck@KeyAllByteZero),w
+  1551  07F9  1D03               	skipz
+  1552  07FA  2FFC               	goto	u450
+  1553  07FB  2FFE               	goto	l30000876
+  1554  07FC                     u450:
+  1555                           	
+  1556  07FC                     l30000873:	
+  1557                           	line	41
+  1558                           ;OneWire.c: 41: return(1);
+  1559  07FC  3001               	movlw	(01h)
+  1560  07FD  2FFF               	goto	l4
+  1561                           	
+  1562  07FE                     l30000876:	
+  1563                           	line	43
+  1564                           ;OneWire.c: 42: else
+  1565                           ;OneWire.c: 43: return(0);
+  1566  07FE  3000               	movlw	(0)
+  1567                           	
+  1568  07FF                     l4:	
+  1569  07FF  0008               	return
+  1570                           	opt stack 0
+  1571                           GLOBAL	__end_of_CRCCheck
+  1572  0800                     	__end_of_CRCCheck:
+  1573                           ; =============== function _CRCCheck ends ============
+  1574                           
+  1575                           psect	text65,local,class=CODE,delta=2
+  1576                           global __ptext65
+  1577  06A6                     __ptext65:
+  1578                           	line	44
+  1579                           	signat	_CRCCheck,4217
+  1580                           	global	_WriteByteToiButton
+  1581                           
+  1582                           ; *************** function _WriteByteToiButton *****************
+  1583                           ; Defined at:
+  1584                           ;		line 134 in file "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1585                           ; Parameters:    Size  Location     Type
+  1586                           ;  d               1    wreg     unsigned char 
+  1587                           ; Auto vars:     Size  Location     Type
+  1588                           ;  d               1    1[COMMON] unsigned char 
+  1589                           ;  n               1    2[COMMON] unsigned char 
+  1590                           ; Return value:  Size  Location     Type
+  1591                           ;		None               void
+  1592                           ; Registers used:
+  1593                           ;		wreg, status,2, status,0, pclath, cstack
+  1594                           ; Tracked objects:
+  1595                           ;		On entry : 0/0
+  1596                           ;		On exit  : 0/0
+  1597                           ;		Unchanged: 0/0
+  1598                           ; Data sizes:     COMMON   BANK0   BANK1
+  1599                           ;      Locals:         3       0       0
+  1600                           ;      Temp:     1
+  1601                           ;      Total:    3
+  1602                           ; This function calls:
+  1603                           ;		_delay_10us
+  1604                           ; This function is called by:
+  1605                           ;		_ReadiButton
+  1606                           ; This function uses a non-reentrant model
+  1607                           ; 
+  1608                           psect	text65
+  1609                           	file	"D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1610                           	line	134
+  1611                           	global	__size_of_WriteByteToiButton
+  1612  002C                     	__size_of_WriteByteToiButton	equ	__end_of_WriteByteToiButton-_WriteByteToiButton
+  1613                           ;OneWire.c: 133: void WriteByteToiButton(unsigned char d)
+  1614                           ;OneWire.c: 134: {
+  1615                           	
+  1616  06A6                     _WriteByteToiButton:	
+  1617                           	opt stack 6
+  1618                           ; Regs used in _WriteByteToiButton: [wreg+status,2+status,0+pclath+cstack]
+  1619                           ;WriteByteToiButton@d stored from wreg
+  1620                           	line	136
+  1621  06A6  00F1               	movwf	(WriteByteToiButton@d)
+  1622                           	
+  1623  06A7                     l30000814:	
+  1624                           ;OneWire.c: 135: unsigned char n;
+  1625                           ;OneWire.c: 136: for(n=0; n<8; n++)
+  1626  06A7  1003               	clrc
+  1627  06A8  3000               	movlw	0
+  1628  06A9  1803               	btfsc	status,0
+  1629  06AA  3001               	movlw	1
+  1630  06AB  00F2               	movwf	(WriteByteToiButton@n)
+  1631                           	
+  1632  06AC                     l26:	
+  1633                           	line	138
+  1634                           ;OneWire.c: 137: {
+  1635                           ;OneWire.c: 138: TRISA2=0x00;
+  1636  06AC  1683               	bsf	status, 5	;RP0=1, select bank1
+  1637  06AD  1303               	bcf	status, 6	;RP1=0, select bank1
+  1638  06AE  1105               	bcf	(1066/8)^080h,(1066)&7
+  1639                           	line	139
+  1640                           ;OneWire.c: 139: RA2=0x00;
+  1641  06AF  1283               	bcf	status, 5	;RP0=0, select bank0
+  1642  06B0  1303               	bcf	status, 6	;RP1=0, select bank0
+  1643  06B1  1105               	bcf	(42/8),(42)&7
+  1644                           	
+  1645  06B2                     l30000817:	
+  1646                           	line	140
+  1647                           ;OneWire.c: 140: t=6;
+  1648  06B2  3006               	movlw	(06h)
+  1649  06B3  00FA               	movwf	(_t)
+  1650                           	
+  1651  06B4                     l30000818:	
+  1652                           	line	141
+  1653                           ;OneWire.c: 141: if (d&0x01)
+  1654  06B4  1C71               	btfss	(WriteByteToiButton@d),(0)&7
+  1655  06B5  2EB7               	goto	u351
+  1656  06B6  2EB8               	goto	u350
+  1657  06B7                     u351:
+  1658  06B7  2EBE               	goto	l30000821
+  1659  06B8                     u350:
+  1660                           	
+  1661  06B8                     l30000819:	
+  1662                           	line	143
+  1663                           # 143 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1664  06B8  0000               nop ;#
+  1665                           psect	text65
+  1666                           	line	144
+  1667                           ;OneWire.c: 144: TRISA2=0x01;
+  1668  06B9  1683               	bsf	status, 5	;RP0=1, select bank1
+  1669  06BA  1303               	bcf	status, 6	;RP1=0, select bank1
+  1670  06BB  1505               	bsf	(1066/8)^080h,(1066)&7
+  1671                           	
+  1672  06BC                     l30000820:	
+  1673                           	line	145
+  1674                           ;OneWire.c: 145: delay_10us();
+  1675  06BC  2689               	fcall	_delay_10us
+  1676  06BD  2EC2               	goto	l30000823
+  1677                           	
+  1678  06BE                     l30000821:	
+  1679                           	line	149
+  1680                           ;OneWire.c: 147: else
+  1681                           ;OneWire.c: 148: {
+  1682                           ;OneWire.c: 149: delay_10us();
+  1683  06BE  2689               	fcall	_delay_10us
+  1684                           	
+  1685  06BF                     l30000822:	
+  1686                           	line	150
+  1687                           ;OneWire.c: 150: TRISA2=0x01;
+  1688  06BF  1683               	bsf	status, 5	;RP0=1, select bank1
+  1689  06C0  1303               	bcf	status, 6	;RP1=0, select bank1
+  1690  06C1  1505               	bsf	(1066/8)^080h,(1066)&7
+  1691                           	
+  1692  06C2                     l30000823:	
+  1693                           	line	152
+  1694                           ;OneWire.c: 151: }
+  1695                           ;OneWire.c: 152: d=d>>1;
+  1696  06C2  0871               	movf	(WriteByteToiButton@d),w
+  1697  06C3  00F0               	movwf	(??_WriteByteToiButton+0+0)
+  1698  06C4  1003               	clrc
+  1699  06C5  0C70               	rrf	(??_WriteByteToiButton+0+0),w
+  1700  06C6  00F1               	movwf	(WriteByteToiButton@d)
+  1701                           	
+  1702  06C7                     l30000824:	
+  1703                           	line	136
+  1704  06C7  3001               	movlw	(01h)
+  1705  06C8  00F0               	movwf	(??_WriteByteToiButton+0+0)
+  1706  06C9  0870               	movf	(??_WriteByteToiButton+0+0),w
+  1707  06CA  07F2               	addwf	(WriteByteToiButton@n),f
+  1708                           	
+  1709  06CB                     l30000825:	
+  1710  06CB  3008               	movlw	(08h)
+  1711  06CC  0272               	subwf	(WriteByteToiButton@n),w
+  1712  06CD  1C03               	skipc
+  1713  06CE  2ED0               	goto	u361
+  1714  06CF  2ED1               	goto	u360
+  1715  06D0                     u361:
+  1716  06D0  2EAC               	goto	l26
+  1717  06D1                     u360:
+  1718                           	
+  1719  06D1                     l25:	
+  1720  06D1  0008               	return
+  1721                           	opt stack 0
+  1722                           GLOBAL	__end_of_WriteByteToiButton
+  1723  06D2                     	__end_of_WriteByteToiButton:
+  1724                           ; =============== function _WriteByteToiButton ends ============
+  1725                           
+  1726                           psect	text66,local,class=CODE,delta=2
+  1727                           global __ptext66
+  1728  0739                     __ptext66:
+  1729                           	line	154
+  1730                           	signat	_WriteByteToiButton,4216
+  1731                           	global	_InitiButton
+  1732                           
+  1733                           ; *************** function _InitiButton *****************
+  1734                           ; Defined at:
+  1735                           ;		line 95 in file "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1736                           ; Parameters:    Size  Location     Type
+  1737                           ;		None
+  1738                           ; Auto vars:     Size  Location     Type
+  1739                           ;  PresencePuls    1    0[COMMON] unsigned char 
+  1740                           ; Return value:  Size  Location     Type
+  1741                           ;                  1    wreg      unsigned char 
+  1742                           ; Registers used:
+  1743                           ;		wreg, status,2, status,0, pclath, cstack
+  1744                           ; Tracked objects:
+  1745                           ;		On entry : 0/0
+  1746                           ;		On exit  : 0/0
+  1747                           ;		Unchanged: 0/0
+  1748                           ; Data sizes:     COMMON   BANK0   BANK1
+  1749                           ;      Locals:         1       0       0
+  1750                           ;      Temp:     0
+  1751                           ;      Total:    1
+  1752                           ; This function calls:
+  1753                           ;		_delay_10us
+  1754                           ; This function is called by:
+  1755                           ;		_ReadiButton
+  1756                           ; This function uses a non-reentrant model
+  1757                           ; 
+  1758                           psect	text66
+  1759                           	file	"D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1760                           	line	95
+  1761                           	global	__size_of_InitiButton
+  1762  0035                     	__size_of_InitiButton	equ	__end_of_InitiButton-_InitiButton
+  1763                           ;OneWire.c: 94: unsigned char InitiButton(void)
+  1764                           ;OneWire.c: 95: {
+  1765                           	
+  1766  0739                     _InitiButton:	
+  1767                           	opt stack 6
+  1768                           ; Regs used in _InitiButton: [wreg+status,2+status,0+pclath+cstack]
+  1769                           	line	98
+  1770                           	
+  1771  0739                     l30000839:	
+  1772                           ;OneWire.c: 96: unsigned char PresencePulse;
+  1773                           ;OneWire.c: 98: TRISA2=0x00;
+  1774  0739  1683               	bsf	status, 5	;RP0=1, select bank1
+  1775  073A  1303               	bcf	status, 6	;RP1=0, select bank1
+  1776  073B  1105               	bcf	(1066/8)^080h,(1066)&7
+  1777                           	line	99
+  1778                           ;OneWire.c: 99: RA2=0x01;
+  1779  073C  1283               	bcf	status, 5	;RP0=0, select bank0
+  1780  073D  1303               	bcf	status, 6	;RP1=0, select bank0
+  1781  073E  1505               	bsf	(42/8),(42)&7
+  1782                           	line	100
+  1783                           ;OneWire.c: 100: TRISA2=0x00;
+  1784  073F  1683               	bsf	status, 5	;RP0=1, select bank1
+  1785  0740  1303               	bcf	status, 6	;RP1=0, select bank1
+  1786  0741  1105               	bcf	(1066/8)^080h,(1066)&7
+  1787                           	line	101
+  1788                           ;OneWire.c: 101: RA2=0x00;
+  1789  0742  1283               	bcf	status, 5	;RP0=0, select bank0
+  1790  0743  1303               	bcf	status, 6	;RP1=0, select bank0
+  1791  0744  1105               	bcf	(42/8),(42)&7
+  1792                           	
+  1793  0745                     l30000840:	
+  1794                           	line	103
+  1795                           ;OneWire.c: 103: t=42;
+  1796  0745  302A               	movlw	(02Ah)
+  1797  0746  00FA               	movwf	(_t)
+  1798                           	
+  1799  0747                     l30000841:	
+  1800                           	line	104
+  1801                           ;OneWire.c: 104: delay_10us();
+  1802  0747  2689               	fcall	_delay_10us
+  1803                           	
+  1804  0748                     l30000842:	
+  1805                           	line	106
+  1806                           ;OneWire.c: 106: TRISA2=0x00;
+  1807  0748  1683               	bsf	status, 5	;RP0=1, select bank1
+  1808  0749  1303               	bcf	status, 6	;RP1=0, select bank1
+  1809  074A  1105               	bcf	(1066/8)^080h,(1066)&7
+  1810                           	
+  1811  074B                     l30000843:	
+  1812                           	line	107
+  1813                           ;OneWire.c: 107: RA2=0x01;
+  1814  074B  1283               	bcf	status, 5	;RP0=0, select bank0
+  1815  074C  1303               	bcf	status, 6	;RP1=0, select bank0
+  1816  074D  1505               	bsf	(42/8),(42)&7
+  1817                           	
+  1818  074E                     l30000844:	
+  1819                           	line	109
+  1820                           ;OneWire.c: 109: t=6;
+  1821  074E  3006               	movlw	(06h)
+  1822  074F  00FA               	movwf	(_t)
+  1823                           	line	110
+  1824                           ;OneWire.c: 110: delay_10us();
+  1825  0750  2689               	fcall	_delay_10us
+  1826                           	
+  1827  0751                     l30000845:	
+  1828                           	line	112
+  1829                           ;OneWire.c: 112: TRISA2=0x01;
+  1830  0751  1683               	bsf	status, 5	;RP0=1, select bank1
+  1831  0752  1303               	bcf	status, 6	;RP1=0, select bank1
+  1832  0753  1505               	bsf	(1066/8)^080h,(1066)&7
+  1833                           	
+  1834  0754                     l30000846:	
+  1835                           	line	113
+  1836                           ;OneWire.c: 113: if (RA2 == 1)
+  1837  0754  1283               	bcf	status, 5	;RP0=0, select bank0
+  1838  0755  1303               	bcf	status, 6	;RP1=0, select bank0
+  1839  0756  1D05               	btfss	(42/8),(42)&7
+  1840  0757  2F59               	goto	u391
+  1841  0758  2F5A               	goto	u390
+  1842  0759                     u391:
+  1843  0759  2F60               	goto	l30000848
+  1844  075A                     u390:
+  1845                           	
+  1846  075A                     l30000847:	
+  1847                           	line	114
+  1848                           ;OneWire.c: 114: PresencePulse=0x00;
+  1849  075A  1003               	clrc
+  1850  075B  3000               	movlw	0
+  1851  075C  1803               	btfsc	status,0
+  1852  075D  3001               	movlw	1
+  1853  075E  00F0               	movwf	(InitiButton@PresencePulse)
+  1854  075F  2F63               	goto	l30000849
+  1855                           	
+  1856  0760                     l30000848:	
+  1857                           	line	116
+  1858                           ;OneWire.c: 115: else
+  1859                           ;OneWire.c: 116: PresencePulse=0x01;
+  1860  0760  01F0               	clrf	(InitiButton@PresencePulse)
+  1861  0761  1403               	bsf	status,0
+  1862  0762  0DF0               	rlf	(InitiButton@PresencePulse),f
+  1863                           	
+  1864  0763                     l30000849:	
+  1865                           	line	118
+  1866                           ;OneWire.c: 118: t=50;
+  1867  0763  3032               	movlw	(032h)
+  1868  0764  00FA               	movwf	(_t)
+  1869                           	
+  1870  0765                     l30000850:	
+  1871                           	line	119
+  1872                           ;OneWire.c: 119: delay_10us();
+  1873  0765  2689               	fcall	_delay_10us
+  1874                           	
+  1875  0766                     l30000851:	
+  1876                           	line	121
+  1877                           ;OneWire.c: 121: TRISA2=0x00;
+  1878  0766  1683               	bsf	status, 5	;RP0=1, select bank1
+  1879  0767  1303               	bcf	status, 6	;RP1=0, select bank1
+  1880  0768  1105               	bcf	(1066/8)^080h,(1066)&7
+  1881                           	
+  1882  0769                     l30000852:	
+  1883                           	line	122
+  1884                           ;OneWire.c: 122: RA2=0x01;
+  1885  0769  1283               	bcf	status, 5	;RP0=0, select bank0
+  1886  076A  1303               	bcf	status, 6	;RP1=0, select bank0
+  1887  076B  1505               	bsf	(42/8),(42)&7
+  1888                           	
+  1889  076C                     l30000853:	
+  1890                           	line	123
+  1891                           ;OneWire.c: 123: return (PresencePulse);
+  1892  076C  0870               	movf	(InitiButton@PresencePulse),w
+  1893                           	
+  1894  076D                     l22:	
+  1895  076D  0008               	return
+  1896                           	opt stack 0
+  1897                           GLOBAL	__end_of_InitiButton
+  1898  076E                     	__end_of_InitiButton:
+  1899                           ; =============== function _InitiButton ends ============
+  1900                           
+  1901                           psect	text67,local,class=CODE,delta=2
+  1902                           global __ptext67
+  1903  0689                     __ptext67:
+  1904                           	line	124
+  1905                           	signat	_InitiButton,89
+  1906                           	global	_delay_10us
+  1907                           
+  1908                           ; *************** function _delay_10us *****************
+  1909                           ; Defined at:
+  1910                           ;		line 201 in file "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1911                           ; Parameters:    Size  Location     Type
+  1912                           ;		None
+  1913                           ; Auto vars:     Size  Location     Type
+  1914                           ;		None
+  1915                           ; Return value:  Size  Location     Type
+  1916                           ;		None               void
+  1917                           ; Registers used:
+  1918                           ;		None
+  1919                           ; Tracked objects:
+  1920                           ;		On entry : 0/0
+  1921                           ;		On exit  : 0/0
+  1922                           ;		Unchanged: 0/0
+  1923                           ; Data sizes:     COMMON   BANK0   BANK1
+  1924                           ;      Locals:         0       0       0
+  1925                           ;      Temp:     0
+  1926                           ;      Total:    0
+  1927                           ; This function calls:
+  1928                           ;		Nothing
+  1929                           ; This function is called by:
+  1930                           ;		_InitiButton
+  1931                           ;		_WriteByteToiButton
+  1932                           ;		_ReadByteToiButton
+  1933                           ; This function uses a non-reentrant model
+  1934                           ; 
+  1935                           psect	text67
+  1936                           	file	"D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1937                           	line	201
+  1938                           	global	__size_of_delay_10us
+  1939  000D                     	__size_of_delay_10us	equ	__end_of_delay_10us-_delay_10us
+  1940                           ;OneWire.c: 200: void delay_10us(void)
+  1941                           ;OneWire.c: 201: {
+  1942                           	
+  1943  0689                     _delay_10us:	
+  1944                           	opt stack 5
+  1945                           ; Regs used in _delay_10us: []
+  1946                           	line	203
+  1947                           	
+  1948  0689                     l30000878:	
+  1949                           # 203 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1950  0689  1283                BCF _STATUS,5 ;#
+  1951                           	line	204
+  1952                           # 204 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1953  068A                     DELAY_10US_XZ: ;#
+  1954                           	line	205
+  1955                           # 205 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1956  068A  0000                NOP ;#
+  1957                           	line	206
+  1958                           # 206 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1959  068B  0000                NOP ;#
+  1960                           	line	207
+  1961                           # 207 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1962  068C  0000                NOP ;#
+  1963                           	line	208
+  1964                           # 208 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1965  068D  0000                NOP ;#
+  1966                           	line	209
+  1967                           # 209 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1968  068E  0000                NOP ;#
+  1969                           	line	210
+  1970                           # 210 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1971  068F  0000                NOP ;#
+  1972                           	line	211
+  1973                           # 211 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1974  0690  0000                NOP ;#
+  1975                           	line	212
+  1976                           # 212 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1977  0691  0000                NOP ;#
+  1978                           	line	213
+  1979                           # 213 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1980  0692  0000                NOP ;#
+  1981                           	line	214
+  1982                           # 214 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1983  0693  0BFA                DECFSZ _t,F ;#
+  1984                           	line	215
+  1985                           # 215 "D:\Amit\E-Projects\PIC Projects\iButton\1 Wire\OneWire.c"
+  1986  0694  2E8A                GOTO DELAY_10US_XZ ;#
+  1987                           psect	text67
+  1988                           	
+  1989  0695                     l37:	
+  1990  0695  0008               	return
+  1991                           	opt stack 0
+  1992                           GLOBAL	__end_of_delay_10us
+  1993  0696                     	__end_of_delay_10us:
+  1994                           ; =============== function _delay_10us ends ============
+  1995                           
+  1996                           psect	text68,local,class=CODE,delta=2
+  1997                           global __ptext68
+  1998  0001                     __ptext68:
+
+
+HI-TECH Software PICC Macro Assembler V9.70 build 5239 
+Symbol Table                                                                                   Tue Jul 10 10:19:35 2012
+
+                          l4 07FF           ReadByteToiButton@n 0072                            _t 007A  
+                         l11 07DD                           _DA 04A5                           l22 076D  
+                         l14 0703                           _BF 04A0                           l31 0738  
+                         _DC 0019                           l32 0709                           l25 06D1  
+                         l41 07A5                           l26 06AC                           l37 0695  
+                         l46 06A1                           _PD 001B                           _RD 0C60  
+                         _UA 04A1                           _TO 001C                           _RW 04A2  
+                         _WR 0C61                           fsr 0004                  __pbssCOMMON 007A  
+  __end_of_ReadByteToiButton 0739   __end_of_WriteByteToiButton 06D2                          _C1R 08CA  
+                        _C2R 08D2                          _CKE 04A6                          _CKP 00A4  
+                        _GIE 005F                          _BOR 0470                          _RA0 0028  
+                        _RA1 0029                          _RA2 002A                          _RA3 002B  
+                        _RC0 0038                          _RA4 002C                          _RC1 0039  
+                        _RA5 002D                          _RC2 003A                          _RB4 0034  
+                        _RC3 003B                          _RB5 0035                          _RC4 003C  
+                        _RB6 0036                          _RC5 003D                          _RB7 0037  
+                        _RC6 003E                          _RC7 003F                          u310 06DF  
+                        u320 06F7                          _FSR 0004                          u321 06F6  
+                        u410 07D9                          u330 06FE                          _PCL 0002  
+                        u411 07D8                          u331 06FD                          u420 07E7  
+                        u404 07C8                          u340 069D                          u421 07E6  
+                        u405 07C6                          u341 069C                          u350 06B8  
+                        u430 07EF                          _PS0 0408                          u351 06B7  
+                        u431 07EE                          _PS1 0409                          u360 06D1  
+                        u440 07F8                          _PS2 040A                          _RP0 001D  
+                        _IRP 001F                          u361 06D0                          u441 07F7  
+                        _RP1 001E                          u450 07FC                          u370 071E  
+                        u371 071D                          _HTS 047A                          u380 0737  
+                        u381 0736                          u390 075A                          u391 0759  
+                        _SR0 0CF6                          _SR1 0CF7                          _SCS 0478  
+                        _PSA 040B                          _LTS 0479                          _VR0 08C0  
+                        _VR1 08C1                          _VR2 08C2                          _VR3 08C3  
+                        _POR 0471                          _SMP 04A7                    _PowerInit 076E  
+                        _VRR 08C5            __end_of_PowerInit 07A6                          fsr0 0004  
+                        indf 0000                   ?_PowerInit 0070                ??_InitiButton 0070  
+        __size_of_delay_10us 000D         CRCCheck@data_lsb_bit 0072                ??_ReadiButton 0079  
+                       _C1IE 046D                         _C1IF 006D                         _C2IE 046E  
+                       _C2IF 006E                         _C1OE 08CD                         _C2OE 08D5  
+                       _C1ON 08CF                         _C2ON 08D7                         _ADIE 0466  
+                       _ADIF 0066                         _ADFM 00FF                         _ADON 00F8  
+                   __ptext60 0001                     __ptext61 06D2                     __ptext62 076E  
+                   __ptext63 0704                     __ptext64 07A6                     __ptext65 06A6  
+                       _CHS0 00FA                     __ptext66 0739                         _CHS1 00FB  
+                   __ptext67 0689                         _CHS2 00FC                     __ptext68 0001  
+                       _CHS3 00FD                         _EEIE 046C                         _EEIF 006C  
+                       _ANS0 08F0                         _ANS1 08F1                         _ANS2 08F2  
+                       _ANS3 08F3                         _ANS4 08F4                         _ANS5 08F5  
+                       _ANS6 08F6                         _ANS7 08F7                         _ANS8 08F8  
+                       _ANS9 08F9                         _T0IE 005D                         _T0IF 005A  
+                       _T0CS 040D                         _T0SE 040C                         _IOCA 0096  
+                       _IOCB 0116                         _INDF 0000                         _PIE1 008C  
+                       _PIE2 008D                         _PEIE 005E                         _INTE 005C  
+                       _INTF 0059                         _RBIE 005B                         _RBIF 0058  
+                       _PCON 008E                         _PIR1 000C                         _PIR2 000D  
+                       _RBPU 040F                         _VCFG 00FE                         _TMR0 0001  
+                       _WCOL 00A7                         _OSTS 047B                         _TUN0 0480  
+                       _TUN1 0481                         _TUN2 0482                         _TUN3 0483  
+                       _TUN4 0484                         _USER 0020                         _STOP 04A4  
+                       _ZERO 001A                         _WREN 0C62                         _WPUA 0095  
+                       _WPUB 0115                  ??_PowerInit 0070             __end_of_CRCCheck 0800  
+      ReadByteToiButton@temp 0071                         _main 0696                         start 0000  
+        start_initialization 0679                     clear_ram 0681         ??_WriteByteToiButton 0070  
+                    _CM1CON0 0119                      _CM2CON0 011A                      _CM2CON1 011B  
+                      _C1CH0 08C8                        _C1CH1 08C9                        _C2CH0 08D0  
+                      _C2CH1 08D1                        _C1SEN 0CF5                        _C2REN 0CF4  
+                      _C1POL 08CC                        _C2POL 08D4                        _C1OUT 08CE  
+                      _C2OUT 08D6                        _ADCS0 04FC                        _ADCS1 04FD  
+                      _ADCS2 04FE                        ?_main 007A                        _EEADR 010D  
+                      _ANS10 08FA                        _EEDAT 010C                        _ANS11 08FB  
+                      _CARRY 0018                        _ANSEL 011E                        _T1CON 0010  
+                      _IOCA0 04B0                        _IOCA1 04B1                        _IOCA2 04B2  
+                      _IOCA3 04B3                        _IOCA4 04B4                        _IOCA5 04B5  
+                      _IOCB4 08B4                        _IOCB5 08B5                        _IOCB6 08B6  
+                      _IOCB7 08B7                        _T1GSS 08D9                      _T1CKPS0 0084  
+                    _T1CKPS1 0085                        _IRCF0 047C                        _IRCF1 047D  
+                      _IRCF2 047E                        _RABIE 005B                        _RABIF 0058  
+                      _RABPU 040F                        _OSFIE 046F                        _OSFIF 006F  
+                      _VP6EN 08C4                        _TMR1H 000F                        _TMR1L 000E  
+                      _PORTA 0005                        _PORTB 0006                      _T1OSCEN 0083  
+                      _PORTC 0007                        _SRCON 019E                        _START 04A3  
+                      _PULSR 0CF2                        _PULSS 0CF3                        _SSPM0 00A0  
+                      _SSPM1 00A1                        _SSPM2 00A2                        _SSPM3 00A3  
+                      _TRISA 0085                        _TRISB 0086                        _TRISC 0087  
+                      _SSPIE 0463                        _SSPIF 0063                        _SSPEN 00A5  
+                      _VRCON 0118                        _WPUA0 04A8                        _WPUA1 04A9  
+                      _WPUA2 04AA                        _WPUA4 04AC                        _WPUA5 04AD  
+                      _WPUB4 08AC                        _SSPOV 00A6                        _WPUB5 08AD  
+                      _WPUB6 08AE                        _WPUB7 08AF                        _WRERR 0C63  
+         __size_of_PowerInit 0038               __pcstackCOMMON 0070                      _OSCTUNE 0090  
+                    _SSPSTAT 0094            _ReadByteToiButton 0704                        status 0003  
+               ReadiButton@n 002E   __size_of_ReadByteToiButton 0035           _WriteByteToiButton 06A6  
+              __size_of_main 0010                   __pbssBANK0 0020                     l30000700 079D  
+                   l30000701 07A1                     l30000800 06E5                     l30000801 06EF  
+                   l30000802 06F3                     l30000803 06F7                     l30000811 0696  
+                   l30000820 06BC                     l30000804 06FE                     l30000812 0697  
+                   l30000821 06BE                     l30000813 069D                     l30000822 06BF  
+                   l30000814 06A7                     l30000830 071A                     l30000823 06C2  
+                   l30000831 071E                     l30000807 0700                     l30000840 0745  
+                   l30000824 06C7                     l30000832 0725                     l30000841 0747  
+                   l30000825 06CB                     l30000817 06B2                     l30000833 072A  
+                   l30000809 0702                     l30000850 0765                     l30000842 0748  
+                   l30000818 06B4                     l30000834 072C                     l30000826 0704  
+                   l30000851 0766                     l30000843 074B                     l30000819 06B8  
+                   l30000835 072D                     l30000852 0769                     l30000844 074E  
+                   l30000860 07BD                     l30000836 0731                     l30000853 076C  
+                   l30000845 0751                     l30000837 0737                     l30000829 0716  
+                   l30000693 076E                     l30000846 0754                     l30000870 07E9  
+                   l30000694 0774                     l30000847 075A                     l30000839 0739  
+                   l30000871 07EF                     l30000863 07C2                     l30000855 07A7  
+                   l30000695 078A                     l30000848 0760                     l30000872 07F8  
+                   l30000864 07CE                     l30000696 078D                     l30000792 06D2  
+                   l30000849 0763                     l30000873 07FC                     l30000865 07D1  
+                   l30000697 078D                     l30000793 06D2                     l30000866 07D3  
+                   l30000858 07B3                     l30000698 078F                     l30000794 06D6  
+                   l30000867 07D9                     l30000859 07B9                     l30000699 0793  
+                   l30000795 06DB                     l30000876 07FE                     l30000868 07E1  
+                   l30000796 06DF                     l30000869 07E7                     l30000797 06E1  
+                   l30000878 0689              CRCCheck@TmpByte 0075          WriteByteToiButton@d 0071  
+                 _delay_10us 0689          WriteByteToiButton@n 0072           __end_of_delay_10us 0696  
+     CRCCheck@KeyAllByteZero 0073           ?_ReadByteToiButton 0074                       ??_main 0072  
+                 __pmaintext 0696                  ?_delay_10us 0070  __size_of_WriteByteToiButton 002C  
+                     _C1VREN 08C7                       _C2VREN 08C6                       _C2SYNC 08D8  
+                CRCCheck@CRC 0076                       _ADCON0 001F                       _ADCON1 009F  
+                     _ADRESH 001E                       _ADRESL 009E                       _EEADRL 010D  
+                     _EEDATA 010C                       _EEDATL 010C                       _EECON1 018C  
+                     _EECON2 018D                    CRCCheck@i 0078                    CRCCheck@j 0077  
+                     _ANSELH 011F                       _MC1OUT 08DF                       _MC2OUT 08DE  
+               __end_of_main 06A6                       _T1GINV 0087                       _GODONE 00F9  
+       end_of_initialization 067F                       _T1SYNC 0082                       _INTEDG 040E  
+                     _PCLATH 000A                       _INTCON 000B                __pcstackBANK0 002D  
+                   _CRCCheck 07A6                       _SBOREN 0474                       _OSCCON 008F  
+                     _TMR1GE 0086                       _TMR1IE 0460                       _TMR1IF 0060  
+                     _TMR1CS 0081                       _OPTION 0081                       _TMR1ON 0080  
+                     _WDTCON 0097                    ?_CRCCheck 0079                       _WDTPS0 04B9  
+                     _WDTPS1 04BA                       _WDTPS2 04BB                       _WDTPS3 04BC  
+                     _SSPADD 0093                       _TRISA0 0428                       _TRISA1 0429  
+                     _TRISA2 042A                       _TRISA3 042B                       _TRISC0 0438  
+                     _TRISA4 042C                       _TRISC1 0439                       _TRISA5 042D  
+                     _TRISC2 043A                       _TRISB4 0434                       _TRISC3 043B  
+                     _TRISB5 0435                       _TRISC4 043C                       _TRISB6 0436  
+                     _TRISC5 043D                       _TRISB7 0437                       _TRISC6 043E  
+                     _TRISC7 043F                       _STATUS 0003                       _SSPCON 0014  
+                     _SSPBUF 0013                       _SWDTEN 04B8                       _ULPWUE 0475  
+                     _SSPMSK 0093                   ??_CRCCheck 0070      ReadByteToiButton@i_byte 0073  
+               ??_delay_10us 0070                  _InitiButton 0739          __end_of_InitiButton 076E  
+                _ReadiButton 06D2    ReadiButton@iButtonPresent 002D          ?_WriteByteToiButton 0073  
+        __end_of_ReadiButton 0704          CRCCheck@crc_lsb_bit 0071          ??_ReadByteToiButton 0070  
+               DELAY_10US_XZ 068A            __size_of_CRCCheck 005A                       clrloop 0682  
+               ?_InitiButton 0071     InitiButton@PresencePulse 0070             CRCCheck@USER_PTR 0074  
+               ?_ReadiButton 007A         __size_of_InitiButton 0035         __size_of_ReadiButton 0032  

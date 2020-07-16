@@ -1,0 +1,461 @@
+
+
+HI-TECH Software PIC PRO Macro Assembler V9.70 build 5239 
+                                                                                               Wed Jan 11 15:06:31 2012
+
+HI-TECH Software Omniscient Code Generator (PRO mode) build 5239
+     1                           	processor	16F690
+     2                           	opt	pw 120
+     3                           	opt	pm
+     4                           	psect	idataBANK0,global,class=CODE,delta=2
+     5                           	psect	cinit,global,class=CODE,delta=2
+     6                           	psect	dataBANK0,global,class=BANK0,space=1,delta=1
+     7                           	psect	cstackCOMMON,global,class=COMMON,space=1,delta=1
+     8                           	psect	cstackBANK0,global,class=BANK0,space=1,delta=1
+     9                           	psect	maintext,local,class=CODE,delta=2
+    10                           	psect	text46,local,class=CODE,delta=2
+    11                           	psect	text48,local,class=CODE,delta=2
+    12                           	psect	pa_nodes,global,class=CODE,delta=2
+    13  000A                     
+    14                           	psect	idataBANK0
+    15  0002                     __pidataBANK0:	;COMMON:	_main->_Transmit
+    16                           ;COMMON:	_Transmit->_Delay
+    17                           ;BANK0:	_main->_Transmit
+    18                           ;COMMON:	_Transmit->_Delay
+    19                           ;initializer for Transmit@F652
+    20  0C63                     
+    21                           	psect	cinit
+    22  0792                     start_initialization:
+    23                           ; Initialize objects allocated to BANK0
+    24  0792  1283               	bcf	3,5	;RP0=0, select bank0
+    25  0793  1303               	bcf	3,6	;RP1=0, select bank0
+    26                           ;initializer for Transmit@F652
+    27  0794  3050               	movlw	80
+    28  0795  00B3               	movwf	__pdataBANK0& (0+127)
+    29                           ;initializer for Transmit@F652
+    30  0796  3061               	movlw	97
+    31  0797  00B4               	movwf	(__pdataBANK0+1)& (0+127)
+    32                           ;initializer for Transmit@F652
+    33  0798  3072               	movlw	114
+    34  0799  00B5               	movwf	(__pdataBANK0+2)& (0+127)
+    35                           ;initializer for Transmit@F652
+    36  079A  3061               	movlw	97
+    37  079B  00B6               	movwf	(__pdataBANK0+3)& (0+127)
+    38                           ;initializer for Transmit@F652
+    39  079C  3067               	movlw	103
+    40  079D  00B7               	movwf	(__pdataBANK0+4)& (0+127)
+    41                           ;initializer for Transmit@F652
+    42  079E  3020               	movlw	32
+    43  079F  00B8               	movwf	(__pdataBANK0+5)& (0+127)
+    44                           ;initializer for Transmit@F652
+    45  07A0  3069               	movlw	105
+    46  07A1  00B9               	movwf	(__pdataBANK0+6)& (0+127)
+    47                           ;initializer for Transmit@F652
+    48  07A2  3073               	movlw	115
+    49  07A3  00BA               	movwf	(__pdataBANK0+7)& (0+127)
+    50                           ;initializer for Transmit@F652
+    51  07A4  3020               	movlw	32
+    52  07A5  00BB               	movwf	(__pdataBANK0+8)& (0+127)
+    53                           ;initializer for Transmit@F652
+    54  07A6  3042               	movlw	66
+    55  07A7  00BC               	movwf	(__pdataBANK0+9)& (0+127)
+    56                           ;initializer for Transmit@F652
+    57  07A8  3041               	movlw	65
+    58  07A9  00BD               	movwf	(__pdataBANK0+10)& (0+127)
+    59                           ;initializer for Transmit@F652
+    60  07AA  3044               	movlw	68
+    61  07AB  00BE               	movwf	(__pdataBANK0+11)& (0+127)
+    62                           ;initializer for Transmit@F652
+    63  07AC  3020               	movlw	32
+    64  07AD  00BF               	movwf	(__pdataBANK0+12)& (0+127)
+    65                           ;initializer for Transmit@F652
+    66  07AE  3062               	movlw	98
+    67  07AF  00C0               	movwf	(__pdataBANK0+13)& (0+127)
+    68                           ;initializer for Transmit@F652
+    69  07B0  306F               	movlw	111
+    70  07B1  00C1               	movwf	(__pdataBANK0+14)& (0+127)
+    71                           ;initializer for Transmit@F652
+    72  07B2  3079               	movlw	121
+    73  07B3  00C2               	movwf	(__pdataBANK0+15)& (0+127)
+    74                           ;initializer for Transmit@F652
+    75  07B4  3020               	movlw	32
+    76  07B5  00C3               	movwf	(__pdataBANK0+16)& (0+127)
+    77                           ;initializer for Transmit@F652
+    78  07B6  01C4               	clrf	(__pdataBANK0+17)& (0+127)
+    79  07B7                     end_of_initialization:	;End of C runtime variable initationation code
+    80  07B7  0183               	clrf	3
+    81  07B8  118A  2F83         	ljmp	_main	;jump to C main() function
+    82                           
+    83                           	psect	dataBANK0
+    84  0033                     __pdataBANK0:
+    85  0033                     Transmit@F652:
+    86  0033                     	ds	18
+    87                           
+    88                           	psect	cstackCOMMON
+    89  0070                     __pcstackCOMMON:
+    90  0070                     ??_Delay:
+    91  0070                     Delay@i:	;@ 0x0
+    92                           ; 2 bytes @ 0x0
+    93  0070                     	ds	2
+    94  0072                     Delay@u:
+    95                           ; 2 bytes @ 0x2
+    96  0072                     	ds	2
+    97  0074                     ??_main:
+    98  0074                     ?_Delay:	;@ 0x4
+    99  0074                     Delay@val:	;@ 0x4
+   100                           ; 2 bytes @ 0x4
+   101  0074                     	ds	2
+   102  0076                     ??_Transmit:
+   103                           ;@ 0x6
+   104  0076                     	ds	4
+   105  007A                     ?_main:
+   106  007A                     ?_Transmit:	;@ 0xA
+   107                           
+   108                           	psect	cstackBANK0
+   109  0020                     __pcstackBANK0:	;@ 0xA
+   110  0020                     Transmit@Mydata:
+   111                           ; 18 bytes @ 0x0
+   112  0020                     	ds	18
+   113  0032                     Transmit@i:
+   114                           ; 1 bytes @ 0x12
+   115  0032                     	ds	1
+   116                           
+   117                           	psect	maintext
+   118  0783                     __pmaintext:	;Data sizes: Strings 0, constant 0, data 18, bss 0, persistent 0 stack 0
+   119                           ;Auto spaces:   Size  Autos    Used
+   120                           ; COMMON          14     10      10
+   121                           ; BANK0           80     19      37
+   122                           ; BANK1           80      0       0
+   123                           ; BANK2           80      0       0
+   124                           ;Pointer list with targets:
+   125                           ;Main: autosize = 0, tempsize = 0, incstack = 0, save=0
+   126                           ;Call graph:                      Base Space Used Autos Args Refs Density
+   127                           ;_main                                                0    0  135   0.00
+   128                           ;           _Transmit
+   129                           ;  _Transmit                                         23    0  135   0.00
+   130                           ;                                    6 COMMO    4
+   131                           ;                                    0 BANK0   19
+   132                           ;              _Delay
+   133                           ;    _Delay                                           4    2   68   0.00
+   134                           ;                                    0 COMMO    6
+   135                           ; Estimated maximum call depth 2
+   136                           ; Address spaces:
+   137                           ;Name               Size   Autos  Total    Cost      Usage
+   138                           ;BITCOMMON            E      0       0       0        0.0%
+   139                           ;CODE                 0      0
+   140                           ; *************** function _main *****************
+   141                           ; Defined at:
+   142                           ;		line 5 in file "D:\Amit\E-Projects\PIC Projects\Serial\Serial_Transmit\Serial_Transmi
+      +                          t.c"
+   143                           ; Parameters:    Size  Location     Type
+   144                           ;		None
+   145                           ; Auto vars:     Size  Location     Type
+   146                           ;		None
+   147                           ; Return value:  Size  Location     Type
+   148                           ;		None               void
+   149                           ; Registers used:
+   150                           ;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   151                           ; Tracked objects:
+   152                           ;		On entry : 17F/0
+   153                           ;		On exit  : 60/0
+   154                           ;		Unchanged: FFE80/0
+   155                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   156                           ;      Locals:         0       0       0       0
+   157                           ;      Temp:     0
+   158                           ;      Total:    0
+   159                           ; This function calls:
+   160                           ;		_Transmit
+   161                           ; This function is called by:
+   162                           ;		Startup code after reset
+   163                           ; This function uses a non-reentrant model
+   164                           ; 
+   165  0783                     _main:	;pic16f685.h: 21: volatile unsigned char INDF @ 0x000;
+   166                           ;pic16f685.h: 22: volatile unsigned char TMR0 @ 0x001;
+   167                           ;pic16f685.h: 23: volatile unsigned char PCL @ 0x002;
+   168                           ;pic16f685.h: 24: volatile unsigned char STATUS @ 0x003;
+   169                           ;pic16f685.h: 25: unsigned char FSR @ 0x004;
+   170                           ;pic16f685.h: 26: volatile unsigned char PORTA @ 0x005;
+   171                           ;pic16f685.h: 27: volatile unsigned char PORTB @ 0x006;
+   172                           ;pic16f685.h: 28: volatile unsigned char PORTC @ 0x007;
+   173                           ;pic16f685.h: 29: volatile unsigned char PCLATH @ 0x00A;
+   174                           ;pic16f685.h: 30: volatile unsigned char INTCON @ 0x00B;
+   175                           ;Serial_Transmit.c: 7: OSCCON=0x77;
+   176                           ; Regs used in _main: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   177  0783  3077               	movlw	119
+   178  0784  1683               	bsf	3,5	;RP0=1, select bank1
+   179  0785  008F               	movwf	15	;volatile
+   180                           ;Serial_Transmit.c: 8: SPBRG=12;
+   181  0786  300C               	movlw	12
+   182  0787  0099               	movwf	25
+   183                           ;Serial_Transmit.c: 9: SYNC=0;
+   184  0788  1218               	bcf	24,4
+   185                           ;Serial_Transmit.c: 10: SPEN=1;
+   186  0789  1283               	bcf	3,5	;RP0=0, select bank0
+   187  078A  1798               	bsf	24,7
+   188                           ;Serial_Transmit.c: 11: TXEN=1;
+   189  078B  1683               	bsf	3,5	;RP0=1, select bank1
+   190  078C  1698               	bsf	24,5
+   191                           ;Serial_Transmit.c: 12: Transmit();
+   192  078D  118A  27BA  118A   	fcall	_Transmit
+   193  0790  118A  2800         	ljmp	start
+   194  0792                     __end_of_main:
+   195                           
+   196                           	psect	text46
+   197  07BA                     __ptext46:	; =============== function _main ends ============
+   198                           ; *************** function _Transmit *****************
+   199                           ; Defined at:
+   200                           ;		line 16 in file "D:\Amit\E-Projects\PIC Projects\Serial\Serial_Transmit\Serial_Transm
+      +                          it.c"
+   201                           ; Parameters:    Size  Location     Type
+   202                           ;		None
+   203                           ; Auto vars:     Size  Location     Type
+   204                           ;  Mydata         18    0[BANK0 ] unsigned char [18]
+   205                           ;  i               1   18[BANK0 ] unsigned char 
+   206                           ; Return value:  Size  Location     Type
+   207                           ;		None               void
+   208                           ; Registers used:
+   209                           ;		wreg, fsr0l, fsr0h, status,2, status,0, pclath, cstack
+   210                           ; Tracked objects:
+   211                           ;		On entry : 17F/20
+   212                           ;		On exit  : 60/0
+   213                           ;		Unchanged: FFE80/0
+   214                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   215                           ;      Locals:         4      19       0       0
+   216                           ;      Temp:     4
+   217                           ;      Total:   23
+   218                           ; This function calls:
+   219                           ;		_Delay
+   220                           ; This function is called by:
+   221                           ;		_main
+   222                           ; This function uses a non-reentrant model
+   223                           ; 
+   224  07BA                     _Transmit:	;Serial_Transmit.c: 15: void Transmit()
+   225                           ;Serial_Transmit.c: 16: {
+   226                           ;Serial_Transmit.c: 17: unsigned char i;
+   227                           ;Serial_Transmit.c: 18: unsigned char Mydata[]={"Parag is BAD boy "};
+   228                           ; Regs used in _Transmit: [wreg-fsr0h+status,2+status,0+pclath+cstack]
+   229  07BA  3020               	movlw	Transmit@Mydata& (0+255)
+   230  07BB  0084               	movwf	4
+   231  07BC  3033               	movlw	Transmit@F652& (0+255)
+   232  07BD  00F6               	movwf	??_Transmit
+   233  07BE  0804               	movf	4,w
+   234  07BF  00F7               	movwf	??_Transmit+1
+   235  07C0  3012               	movlw	18
+   236  07C1  00F8               	movwf	??_Transmit+2
+   237  07C2                     u60:
+   238  07C2  0876               	movf	??_Transmit,w
+   239  07C3  0084               	movwf	4
+   240  07C4  1383               	bcf	3,7	;select IRP bank0
+   241  07C5  0800               	movf	0,w
+   242  07C6  00F9               	movwf	??_Transmit+3
+   243  07C7  0AF6               	incf	??_Transmit,f
+   244  07C8  0877               	movf	??_Transmit+1,w
+   245  07C9  0084               	movwf	4
+   246  07CA  0879               	movf	??_Transmit+3,w
+   247  07CB  0080               	movwf	0
+   248  07CC  0AF7               	incf	??_Transmit+1,f
+   249  07CD  0BF8               	decfsz	??_Transmit+2,f
+   250  07CE  2FC2               	goto	u60
+   251                           ;Serial_Transmit.c: 19: for(i=0;i<17;i++)
+   252  07CF  1283               	bcf	3,5	;RP0=0, select bank0
+   253  07D0  01B2               	clrf	Transmit@i
+   254  07D1                     l30000471:
+   255                           ;Serial_Transmit.c: 20: {
+   256                           ;Serial_Transmit.c: 21: TXREG=Mydata[i];
+   257  07D1  0832               	movf	Transmit@i,w
+   258  07D2  3E20               	addlw	Transmit@Mydata& (0+255)
+   259  07D3  0084               	movwf	4
+   260  07D4  1383               	bcf	3,7	;select IRP bank0
+   261  07D5  0800               	movf	0,w
+   262  07D6  0099               	movwf	25	;volatile
+   263  07D7                     l6:
+   264  07D7  1E0C               	btfss	12,4
+   265  07D8  2FD7               	goto	l6
+   266                           ;Serial_Transmit.c: 23: Delay(10);
+   267  07D9  300A               	movlw	10
+   268  07DA  00F4               	movwf	?_Delay
+   269  07DB  01F5               	clrf	?_Delay+1
+   270  07DC  27E6  118A         	fcall	_Delay
+   271  07DE  1283               	bcf	3,5	;RP0=0, select bank0
+   272  07DF  1303               	bcf	3,6	;RP1=0, select bank0
+   273  07E0  0AB2               	incf	Transmit@i,f
+   274  07E1  3011               	movlw	17
+   275  07E2  0232               	subwf	Transmit@i,w
+   276  07E3  1803               	btfsc	3,0
+   277  07E4  0008               	return
+   278  07E5  2FD1               	goto	l30000471
+   279  07E6                     __end_of_Transmit:
+   280  07E6                     __ptext47:	; =============== function _Transmit ends ============
+   281                           ; *************** function _Delay *****************
+   282                           ; Defined at:
+   283                           ;		line 28 in file "D:\Amit\E-Projects\PIC Projects\Serial\Serial_Transmit\Serial_Transm
+      +                          it.c"
+   284                           ; Parameters:    Size  Location     Type
+   285                           ;  val             2    4[COMMON] unsigned int 
+   286                           ; Auto vars:     Size  Location     Type
+   287                           ;  u               2    2[COMMON] unsigned int 
+   288                           ;  i               2    0[COMMON] unsigned int 
+   289                           ; Return value:  Size  Location     Type
+   290                           ;		None               void
+   291                           ; Registers used:
+   292                           ;		wreg, status,2, status,0
+   293                           ; Tracked objects:
+   294                           ;		On entry : 160/0
+   295                           ;		On exit  : 0/0
+   296                           ;		Unchanged: FFE9F/0
+   297                           ; Data sizes:     COMMON   BANK0   BANK1   BANK2
+   298                           ;      Locals:         6       0       0       0
+   299                           ;      Temp:     0
+   300                           ;      Total:    6
+   301                           ; This function calls:
+   302                           ;		Nothing
+   303                           ; This function is called by:
+   304                           ;		_Transmit
+   305                           ; This function uses a non-reentrant model
+   306                           ; 
+   307  07E6                     _Delay:	;Serial_Transmit.c: 27: void Delay(unsigned int val)
+   308                           ;Serial_Transmit.c: 28: {
+   309                           ;Serial_Transmit.c: 29: unsigned int i,u;
+   310                           ;Serial_Transmit.c: 30: for(i=0;i<val;i++)
+   311                           ; Regs used in _Delay: [wreg+status,2+status,0]
+   312  07E6  01F0               	clrf	Delay@i
+   313  07E7  01F1               	clrf	Delay@i+1
+   314  07E8                     l30000487:
+   315  07E8  0875               	movf	Delay@val+1,w
+   316  07E9  0271               	subwf	Delay@i+1,w
+   317  07EA  1D03               	skipz
+   318  07EB  2FEE               	goto	u105
+   319  07EC  0874               	movf	Delay@val,w
+   320  07ED  0270               	subwf	Delay@i,w
+   321  07EE                     u105:
+   322  07EE  1803               	btfsc	3,0
+   323  07EF  0008               	return
+   324                           ;Serial_Transmit.c: 31: for(u=0;u<1000;u++);
+   325  07F0  01F2               	clrf	Delay@u
+   326  07F1  01F3               	clrf	Delay@u+1
+   327  07F2                     l30000484:
+   328  07F2  0AF2               	incf	Delay@u,f
+   329  07F3  1903               	skipnz
+   330  07F4  0AF3               	incf	Delay@u+1,f
+   331  07F5  3003               	movlw	3
+   332  07F6  0273               	subwf	Delay@u+1,w
+   333  07F7  30E8               	movlw	232
+   334  07F8  1903               	skipnz
+   335  07F9  0272               	subwf	Delay@u,w
+   336  07FA  1C03               	skipc
+   337  07FB  2FF2               	goto	l30000484
+   338  07FC  0AF0               	incf	Delay@i,f
+   339  07FD  1903               	skipnz
+   340  07FE  0AF1               	incf	Delay@i+1,f
+   341  07FF  2FE8               	goto	l30000487
+   342  0800                     __end_of_Delay:
+   343                           
+   344                           	psect	text48
+   345  0002                     __ptext48:	; =============== function _Delay ends ============
+
+
+HI-TECH Software PICC Macro Assembler V9.70 build 5239 
+Symbol Table                                                                                   Wed Jan 11 15:06:31 2012
+
+                   l1 0000                     l2 0000                     l6 07D7                     l9 0000  
+                  _DA 04A5                    _BF 04A0                    _DC 0019                    _PD 001B  
+                  _RD 0C60                    _UA 04A1                    u60 07C2                    _TO 001C  
+                  _RW 04A2                    _WR 0C61              _Transmit 07BA             ?_Transmit 007A  
+                 _C1R 08CA                   _C2R 08D2                   _CKE 04A6                   _CKP 00A4  
+                 _GIE 005F                   _BOR 0470                   _RA0 0028                   _RA1 0029  
+                 _RA2 002A                   _RA3 002B                   _RC0 0038                   _RA4 002C  
+                 _RC1 0039                   _RA5 002D                   _RC2 003A                   _RB4 0034  
+                 _RC3 003B                   _RB5 0035                   _RC4 003C                   _RB6 0036  
+                 _RC5 003D                   _RB7 0037                   _RC6 003E                   _RC7 003F  
+                 u105 07EE                   _FSR 0004                   _PCL 0002                   _PS0 0408  
+                 _PR2 0092                   _PS1 0409                   _PS2 040A                   _RP0 001D  
+                 _IRP 001F                   _RP1 001E                   _HTS 047A                   _SR0 0CF6  
+                 _SR1 0CF7                   _SCS 0478                   _PSA 040B                   _LTS 0479  
+                 _VR0 08C0                   _VR1 08C1                   _VR2 08C2                   _VR3 08C3  
+                 _POR 0471                   _RX9 00C6                   _SMP 04A7                   _TX9 04C6  
+                 _WUE 04D9                   _VRR 08C5                   fsr0 0004                   indf 0000  
+          ??_Transmit 0076               ??_Delay 0070                  _C1IE 046D                  _C1IF 006D  
+                _C2IE 046E                  _C2IF 006E                  _C1OE 08CD                  _C2OE 08D5  
+                _C1ON 08CF                  _C2ON 08D7                  _ADIE 0466                  _ADIF 0066  
+                _ADFM 00FF                  _ADON 00F8              __ptext46 07BA              __ptext47 07E6  
+            __ptext48 0002                  _P1M0 00BE                  _CHS0 00FA                  _P1M1 00BF  
+                _CHS1 00FB                  _CHS2 00FC                  _CHS3 00FD                  _EEIE 046C  
+                _EEIF 006C                  _ANS0 08F0                  _BRG0 04C8                  _ANS1 08F1  
+                _BRG1 04C9                  _ANS2 08F2                  _BRG2 04CA                  _ANS3 08F3  
+                _BRG3 04CB                  _ANS4 08F4                  _BRG4 04CC                  _ANS5 08F5  
+                _BRG5 04CD                  _ANS6 08F6                  _BRG6 04CE                  _ANS7 08F7  
+                _BRG7 04CF                  _ANS8 08F8                  _BRG8 04D0                  _ANS9 08F9  
+                _BRG9 04D1                  _BRGH 04C2                  _T0IE 005D                  _T0IF 005A  
+                _CREN 00C4                  _T0CS 040D                  _FERR 00C2             Transmit@i 0032  
+                _PDC0 00E0                  _PDC1 00E1                  _PDC2 00E2                  _PDC3 00E3  
+                _PDC4 00E4                  _T0SE 040C                  _CSRC 04C7                  _IOCA 0096  
+                _PDC5 00E5                  _IOCB 0116                  _PDC6 00E6                  _INDF 0000  
+                _PIE1 008C                  _PIE2 008D                  _PEIE 005E                  _INTE 005C  
+                _INTF 0059                  _RBIE 005B                  _RBIF 0058                  _RCIE 0465  
+                _RCIF 0065                  _PCON 008E                  _PIR1 000C                  _PIR2 000D  
+                _OERR 00C1                  _SCKP 04DC                  _RBPU 040F                  _VCFG 00FE  
+        __pidataBANK0 0002                  _RX9D 00C0                  _TMR0 0001                  _TMR2 0011  
+                _WCOL 00A7                  _SPEN 00C7                  _TX9D 04C0                  _SREN 00C5  
+                _OSTS 047B                  _TUN0 0480                  _TUN1 0481                  _TUN2 0482  
+                _TUN3 0483                  _TUN4 0484                  _STRA 0CE8                  _STRB 0CE9  
+                _STRC 0CEA                  _STRD 0CEB                  _TRMT 04C1                  _STOP 04A4  
+                _TXIE 0464                  _ZERO 001A                  _WREN 0C62                  _TXEN 04C5  
+                _TXIF 0064                  _SYNC 04C4                  _WPUA 0095                  _WPUB 0115  
+                _main 0783     __size_of_Transmit 002C                  start 0000   start_initialization 0792  
+       __end_of_Delay 0800               _CM1CON0 0119               _CM2CON0 011A               _CCP1CON 0017  
+             _CM2CON1 011B               _BAUDCTL 009B               _ECCPAS0 00EC               _ECCPAS1 00ED  
+             _ECCPAS2 00EE          Transmit@F652 0033               _ECCPASE 00EF                 _C1CH0 08C8  
+               _C1CH1 08C9                 _C2CH0 08D0                 _C2CH1 08D1                 _DC1B0 00BC  
+               _DC1B1 00BD                 _C1SEN 0CF5                 _C2REN 0CF4                 _C1POL 08CC  
+               _C2POL 08D4                 _C1OUT 08CE                 _C2OUT 08D6                 _ABDEN 04D8  
+               _ADCS0 04FC                 _ADCS1 04FD                 _ADCS2 04FE                 _ADDEN 00C3  
+               ?_main 007A                 _EEADR 010D                 _ANS10 08FA                 _EEDAT 010C  
+               _BRG10 04D2                 _ANS11 08FB                 _BRG11 04D3                 _BRG12 04D4  
+               _BRG13 04D5                 _BRG14 04D6                 _BRG15 04D7                 _BRG16 04DB  
+               _CARRY 0018                 _EEPGD 0C67                 _ANSEL 011E                 _T1CON 0010  
+               _IOCA0 04B0                 _IOCA1 04B1                 _IOCA2 04B2                 _T2CON 0012  
+               _IOCA3 04B3                 _IOCA4 04B4                 _IOCA5 04B5                 _IOCB4 08B4  
+               _IOCB5 08B5                 _IOCB6 08B6                 _IOCB7 08B7                 _T1GSS 08D9  
+             _T1CKPS0 0084               _T1CKPS1 0085                 _IRCF0 047C                 _IRCF1 047D  
+               _IRCF2 047E               _T2CKPS0 0090               _T2CKPS1 0091                 _RABIE 005B  
+               _RABIF 0058                 _RABPU 040F                 _RCIDL 04DE                 _RCREG 001A  
+               _SENDB 04C3                 _RCSTA 0018                 _OSFIE 046F                 _OSFIF 006F  
+               _VP6EN 08C4                 _TMR1H 000F                 _TMR1L 000E                 _SPBRG 0099  
+               _PORTA 0005                 _PORTB 0006               _T1OSCEN 0083                 _PORTC 0007  
+               _PRSEN 00E7                 _SRCON 019E                 _START 04A3                 _PULSR 0CF2  
+               _PULSS 0CF3                 _SSPM0 00A0                 _SSPM1 00A1                 _SSPM2 00A2  
+               _SSPM3 00A3                 _TRISA 0085                 _TRISB 0086                 _TRISC 0087  
+               _SSPIE 0463                 _SSPIF 0063                 _SSPEN 00A5                 _VRCON 0118  
+               _WPUA0 04A8                 _WPUA1 04A9                 _WPUA2 04AA                 _WPUA4 04AC  
+               _WPUA5 04AD                 _WPUB4 08AC                 _SSPOV 00A6                 _WPUB5 08AD  
+               _WPUB6 08AE                 _WPUB7 08AF                 _WRERR 0C63                 _TXREG 0019  
+               _TXSTA 0098                 _Delay 07E6        Transmit@Mydata 0020        __pcstackCOMMON 0070  
+             _OSCTUNE 0090               _PWM1CON 001C               _PSTRCON 019D               _SSPSTAT 0094  
+             _TOUTPS0 0093               _TOUTPS1 0094               _TOUTPS2 0095               _TOUTPS3 0096  
+             _STRSYNC 0CEC                 status 0003         __size_of_main 000F              l30000471 07D1  
+            l30000480 0000              l30000473 0000              l30000474 0000              l30000467 0000  
+            l30000475 0000              l30000484 07F2              l30000468 0000              l30000476 0000  
+            l30000485 0000              l30000477 0000              l30000478 0000              l30000487 07E8  
+            l30000479 0000      __end_of_Transmit 07E6                ??_main 0074            __pmaintext 0783  
+              ?_Delay 0074                _C1VREN 08C7                _C2VREN 08C6                _C2SYNC 08D8  
+              _ADCON0 001F                _ADCON1 009F                _ABDOVF 04DF                _CCP1M0 00B8  
+              _CCP1M1 00B9                _CCP1M2 00BA                _CCP1M3 00BB                _CCP1IE 0462  
+              _CCP1IF 0062                _ADRESH 001E                _EEADRH 010F                _ADRESL 009E  
+              _EEADRL 010D                _EEDATA 010C                _ECCPAS 001D                _CCPR1H 0016  
+              _EEDATH 010E                _CCPR1L 0015                _EEDATL 010C                _EECON1 018C  
+              _EECON2 018D                _ANSELH 011F                _MC1OUT 08DF                _MC2OUT 08DE  
+        __end_of_main 0792                _T1GINV 0087                _GODONE 00F9  end_of_initialization 07B7  
+              _T1SYNC 0082                Delay@i 0070                Delay@u 0072                _INTEDG 040E  
+              _PCLATH 000A                _INTCON 000B         __pcstackBANK0 0020                _SBOREN 0474  
+              _OSCCON 008F                _TMR1GE 0086                _TMR1IE 0460                _TMR1IF 0060  
+              _TMR1CS 0081                _TMR2IE 0461                _TMR2IF 0061                _PSSAC0 00EA  
+              _PSSAC1 00EB                _PSSBD0 00E8                _PSSBD1 00E9                _SPBRGH 009A  
+              _OPTION 0081                _TMR1ON 0080                _TMR2ON 0092                _WDTCON 0097  
+              _WDTPS0 04B9                _WDTPS1 04BA                _WDTPS2 04BB                _WDTPS3 04BC  
+              _SSPADD 0093                _TRISA0 0428                _TRISA1 0429                _TRISA2 042A  
+              _TRISA3 042B                _TRISC0 0438                _TRISA4 042C                _TRISC1 0439  
+              _TRISA5 042D                _TRISC2 043A                _TRISB4 0434                _TRISC3 043B  
+              _TRISB5 0435                _TRISC4 043C                _TRISB6 0436                _TRISC5 043D  
+              _TRISB7 0437                _TRISC6 043E                _TRISC7 043F                _STATUS 0003  
+              _SSPCON 0014                _SSPBUF 0013                _SWDTEN 04B8                _ULPWUE 0475  
+              _SSPMSK 0093              Delay@val 0074           __pdataBANK0 0033        __size_of_Delay 001A  

@@ -1,0 +1,195 @@
+[Header]
+MagicCookie={0b13fe8c-dfe0-40eb-8900-6712719559a7}
+Version=1.0
+[File000]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\LCD.p1
+Folder=Intermediary
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File001]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\main.p1
+Folder=Intermediary
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File002]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\serial.p1
+Folder=Intermediary
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File003]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\RFID.cof
+Folder=Output
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File004]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\RFID.hex
+Folder=Output
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File005]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\RFID.sym
+Folder=Output
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File006]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\RFID.map
+Folder=Output
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File007]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\RFID.hxl
+Folder=Output
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File008]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\startup.lst
+Folder=Output
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File009]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\startup.rlf
+Folder=Output
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File010]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\doprnt.p1
+Folder=Output
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File011]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\doprnt.pre
+Folder=Output
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File012]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\RFID.obj
+Folder=Output
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File013]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\RFID.lst
+Folder=Output
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File014]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\RFID.rlf
+Folder=Output
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=
+[File015]
+Location=D:\Amit\E-Projects\PIC Projects\RFID\RFID Modular\RFID.sdb
+Folder=Output
+DeviceName=PIC16F690
+LanguageToolSuiteID={507D93FD-16F1-4270-980F-0C7C0207E6D3}
+LanguageToolID={0F51667C-2BAF-4EF8-A2C9-AB83788A793D}
+LanguageToolLocation=C:\Program Files\HI-TECH Software\PICC\9.70\bin\picc.exe
+PPAD=$(BINDIR)||$(TMPDIR)||$(AINDIR)||$(INCDIR)||$(LIBDIR)||$(LKRDIR)||
+SOLK=<src>|LCD.c|main.c|serial.c||<obj>||<lib>||<lkr>||
+SuiteArgsString=
+ToolArgsString= C9=7
+TraceCmdString=

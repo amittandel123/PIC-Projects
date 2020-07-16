@@ -1,0 +1,976 @@
+
+# 1 "D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\main.c"
+
+# 21 "C:\Program Files\HI-TECH Software\PICC\9.70\include\pic16f685.h"
+volatile unsigned char INDF @ 0x000;
+volatile unsigned char TMR0 @ 0x001;
+volatile unsigned char PCL @ 0x002;
+volatile unsigned char STATUS @ 0x003;
+unsigned char FSR @ 0x004;
+volatile unsigned char PORTA @ 0x005;
+volatile unsigned char PORTB @ 0x006;
+volatile unsigned char PORTC @ 0x007;
+volatile unsigned char PCLATH @ 0x00A;
+volatile unsigned char INTCON @ 0x00B;
+volatile unsigned char PIR1 @ 0x00C;
+volatile unsigned char PIR2 @ 0x00D;
+volatile unsigned char TMR1L @ 0x00E;
+volatile unsigned char TMR1H @ 0x00F;
+unsigned char T1CON @ 0x010;
+
+# 41
+volatile unsigned char SSPBUF @ 0x013;
+volatile unsigned char SSPCON @ 0x014;
+
+# 59
+volatile unsigned char ADRESH @ 0x01E;
+volatile unsigned char ADCON0 @ 0x01F;
+
+unsigned char OPTION @ 0x081;
+volatile unsigned char TRISA @ 0x085;
+volatile unsigned char TRISB @ 0x086;
+volatile unsigned char TRISC @ 0x087;
+unsigned char PIE1 @ 0x08C;
+unsigned char PIE2 @ 0x08D;
+volatile unsigned char PCON @ 0x08E;
+volatile unsigned char OSCCON @ 0x08F;
+unsigned char OSCTUNE @ 0x090;
+
+# 75
+unsigned char SSPADD @ 0x093;
+
+unsigned char SSPMSK @ 0x093;
+volatile unsigned char SSPSTAT @ 0x094;
+
+unsigned char WPUA @ 0x095;
+unsigned char IOCA @ 0x096;
+volatile unsigned char WDTCON @ 0x097;
+
+# 90
+volatile unsigned char ADRESL @ 0x09E;
+unsigned char ADCON1 @ 0x09F;
+
+volatile unsigned char EEDAT @ 0x10C;
+
+volatile unsigned char EEDATA @ 0x10C;
+
+volatile unsigned char EEDATL @ 0x10C;
+volatile unsigned char EEADR @ 0x10D;
+
+volatile unsigned char EEADRL @ 0x10D;
+
+# 105
+unsigned char WPUB @ 0x115;
+unsigned char IOCB @ 0x116;
+unsigned char VRCON @ 0x118;
+volatile unsigned char CM1CON0 @ 0x119;
+volatile unsigned char CM2CON0 @ 0x11A;
+volatile unsigned char CM2CON1 @ 0x11B;
+unsigned char ANSEL @ 0x11E;
+
+unsigned char ANSELH @ 0x11F;
+
+volatile unsigned char EECON1 @ 0x18C;
+volatile unsigned char EECON2 @ 0x18D;
+
+# 120
+volatile unsigned char SRCON @ 0x19E;
+
+
+
+volatile bit CARRY @ ((unsigned)&STATUS*8)+0;
+volatile bit DC @ ((unsigned)&STATUS*8)+1;
+volatile bit ZERO @ ((unsigned)&STATUS*8)+2;
+volatile bit PD @ ((unsigned)&STATUS*8)+3;
+volatile bit TO @ ((unsigned)&STATUS*8)+4;
+bit RP0 @ ((unsigned)&STATUS*8)+5;
+bit RP1 @ ((unsigned)&STATUS*8)+6;
+bit IRP @ ((unsigned)&STATUS*8)+7;
+
+
+volatile bit RA0 @ ((unsigned)&PORTA*8)+0;
+volatile bit RA1 @ ((unsigned)&PORTA*8)+1;
+volatile bit RA2 @ ((unsigned)&PORTA*8)+2;
+volatile bit RA3 @ ((unsigned)&PORTA*8)+3;
+volatile bit RA4 @ ((unsigned)&PORTA*8)+4;
+volatile bit RA5 @ ((unsigned)&PORTA*8)+5;
+
+
+volatile bit RB4 @ ((unsigned)&PORTB*8)+4;
+volatile bit RB5 @ ((unsigned)&PORTB*8)+5;
+volatile bit RB6 @ ((unsigned)&PORTB*8)+6;
+volatile bit RB7 @ ((unsigned)&PORTB*8)+7;
+
+
+volatile bit RC0 @ ((unsigned)&PORTC*8)+0;
+volatile bit RC1 @ ((unsigned)&PORTC*8)+1;
+volatile bit RC2 @ ((unsigned)&PORTC*8)+2;
+volatile bit RC3 @ ((unsigned)&PORTC*8)+3;
+volatile bit RC4 @ ((unsigned)&PORTC*8)+4;
+volatile bit RC5 @ ((unsigned)&PORTC*8)+5;
+volatile bit RC6 @ ((unsigned)&PORTC*8)+6;
+volatile bit RC7 @ ((unsigned)&PORTC*8)+7;
+
+
+volatile bit RABIF @ ((unsigned)&INTCON*8)+0;
+
+volatile bit RBIF @ ((unsigned)&INTCON*8)+0;
+volatile bit INTF @ ((unsigned)&INTCON*8)+1;
+volatile bit T0IF @ ((unsigned)&INTCON*8)+2;
+bit RABIE @ ((unsigned)&INTCON*8)+3;
+
+bit RBIE @ ((unsigned)&INTCON*8)+3;
+bit INTE @ ((unsigned)&INTCON*8)+4;
+bit T0IE @ ((unsigned)&INTCON*8)+5;
+bit PEIE @ ((unsigned)&INTCON*8)+6;
+volatile bit GIE @ ((unsigned)&INTCON*8)+7;
+
+
+volatile bit TMR1IF @ ((unsigned)&PIR1*8)+0;
+
+# 178
+volatile bit SSPIF @ ((unsigned)&PIR1*8)+3;
+
+# 185
+volatile bit ADIF @ ((unsigned)&PIR1*8)+6;
+
+
+
+volatile bit EEIF @ ((unsigned)&PIR2*8)+4;
+volatile bit C1IF @ ((unsigned)&PIR2*8)+5;
+volatile bit C2IF @ ((unsigned)&PIR2*8)+6;
+volatile bit OSFIF @ ((unsigned)&PIR2*8)+7;
+
+
+bit TMR1ON @ ((unsigned)&T1CON*8)+0;
+bit TMR1CS @ ((unsigned)&T1CON*8)+1;
+bit T1SYNC @ ((unsigned)&T1CON*8)+2;
+bit T1OSCEN @ ((unsigned)&T1CON*8)+3;
+bit T1CKPS0 @ ((unsigned)&T1CON*8)+4;
+bit T1CKPS1 @ ((unsigned)&T1CON*8)+5;
+bit TMR1GE @ ((unsigned)&T1CON*8)+6;
+bit T1GINV @ ((unsigned)&T1CON*8)+7;
+
+# 217
+bit SSPM0 @ ((unsigned)&SSPCON*8)+0;
+bit SSPM1 @ ((unsigned)&SSPCON*8)+1;
+bit SSPM2 @ ((unsigned)&SSPCON*8)+2;
+bit SSPM3 @ ((unsigned)&SSPCON*8)+3;
+bit CKP @ ((unsigned)&SSPCON*8)+4;
+bit SSPEN @ ((unsigned)&SSPCON*8)+5;
+volatile bit SSPOV @ ((unsigned)&SSPCON*8)+6;
+volatile bit WCOL @ ((unsigned)&SSPCON*8)+7;
+
+# 275
+bit ADON @ ((unsigned)&ADCON0*8)+0;
+volatile bit GODONE @ ((unsigned)&ADCON0*8)+1;
+bit CHS0 @ ((unsigned)&ADCON0*8)+2;
+bit CHS1 @ ((unsigned)&ADCON0*8)+3;
+bit CHS2 @ ((unsigned)&ADCON0*8)+4;
+bit CHS3 @ ((unsigned)&ADCON0*8)+5;
+bit VCFG @ ((unsigned)&ADCON0*8)+6;
+bit ADFM @ ((unsigned)&ADCON0*8)+7;
+
+
+
+bit PS0 @ ((unsigned)&OPTION*8)+0;
+bit PS1 @ ((unsigned)&OPTION*8)+1;
+bit PS2 @ ((unsigned)&OPTION*8)+2;
+bit PSA @ ((unsigned)&OPTION*8)+3;
+bit T0SE @ ((unsigned)&OPTION*8)+4;
+bit T0CS @ ((unsigned)&OPTION*8)+5;
+bit INTEDG @ ((unsigned)&OPTION*8)+6;
+bit RABPU @ ((unsigned)&OPTION*8)+7;
+
+bit RBPU @ ((unsigned)&OPTION*8)+7;
+
+
+bit TRISA0 @ ((unsigned)&TRISA*8)+0;
+bit TRISA1 @ ((unsigned)&TRISA*8)+1;
+bit TRISA2 @ ((unsigned)&TRISA*8)+2;
+bit TRISA3 @ ((unsigned)&TRISA*8)+3;
+bit TRISA4 @ ((unsigned)&TRISA*8)+4;
+bit TRISA5 @ ((unsigned)&TRISA*8)+5;
+
+
+volatile bit TRISB4 @ ((unsigned)&TRISB*8)+4;
+volatile bit TRISB5 @ ((unsigned)&TRISB*8)+5;
+volatile bit TRISB6 @ ((unsigned)&TRISB*8)+6;
+volatile bit TRISB7 @ ((unsigned)&TRISB*8)+7;
+
+
+volatile bit TRISC0 @ ((unsigned)&TRISC*8)+0;
+volatile bit TRISC1 @ ((unsigned)&TRISC*8)+1;
+volatile bit TRISC2 @ ((unsigned)&TRISC*8)+2;
+volatile bit TRISC3 @ ((unsigned)&TRISC*8)+3;
+volatile bit TRISC4 @ ((unsigned)&TRISC*8)+4;
+volatile bit TRISC5 @ ((unsigned)&TRISC*8)+5;
+volatile bit TRISC6 @ ((unsigned)&TRISC*8)+6;
+volatile bit TRISC7 @ ((unsigned)&TRISC*8)+7;
+
+
+bit TMR1IE @ ((unsigned)&PIE1*8)+0;
+
+# 328
+bit SSPIE @ ((unsigned)&PIE1*8)+3;
+
+# 335
+bit ADIE @ ((unsigned)&PIE1*8)+6;
+
+
+
+bit EEIE @ ((unsigned)&PIE2*8)+4;
+bit C1IE @ ((unsigned)&PIE2*8)+5;
+bit C2IE @ ((unsigned)&PIE2*8)+6;
+bit OSFIE @ ((unsigned)&PIE2*8)+7;
+
+
+volatile bit BOR @ ((unsigned)&PCON*8)+0;
+volatile bit POR @ ((unsigned)&PCON*8)+1;
+bit SBOREN @ ((unsigned)&PCON*8)+4;
+bit ULPWUE @ ((unsigned)&PCON*8)+5;
+
+
+bit SCS @ ((unsigned)&OSCCON*8)+0;
+volatile bit LTS @ ((unsigned)&OSCCON*8)+1;
+volatile bit HTS @ ((unsigned)&OSCCON*8)+2;
+volatile bit OSTS @ ((unsigned)&OSCCON*8)+3;
+bit IRCF0 @ ((unsigned)&OSCCON*8)+4;
+bit IRCF1 @ ((unsigned)&OSCCON*8)+5;
+bit IRCF2 @ ((unsigned)&OSCCON*8)+6;
+
+
+bit TUN0 @ ((unsigned)&OSCTUNE*8)+0;
+bit TUN1 @ ((unsigned)&OSCTUNE*8)+1;
+bit TUN2 @ ((unsigned)&OSCTUNE*8)+2;
+bit TUN3 @ ((unsigned)&OSCTUNE*8)+3;
+bit TUN4 @ ((unsigned)&OSCTUNE*8)+4;
+
+
+
+volatile bit BF @ ((unsigned)&SSPSTAT*8)+0;
+volatile bit UA @ ((unsigned)&SSPSTAT*8)+1;
+volatile bit RW @ ((unsigned)&SSPSTAT*8)+2;
+volatile bit START @ ((unsigned)&SSPSTAT*8)+3;
+volatile bit STOP @ ((unsigned)&SSPSTAT*8)+4;
+volatile bit DA @ ((unsigned)&SSPSTAT*8)+5;
+bit CKE @ ((unsigned)&SSPSTAT*8)+6;
+bit SMP @ ((unsigned)&SSPSTAT*8)+7;
+
+
+
+bit WPUA0 @ ((unsigned)&WPUA*8)+0;
+bit WPUA1 @ ((unsigned)&WPUA*8)+1;
+bit WPUA2 @ ((unsigned)&WPUA*8)+2;
+bit WPUA4 @ ((unsigned)&WPUA*8)+4;
+bit WPUA5 @ ((unsigned)&WPUA*8)+5;
+
+
+bit IOCA0 @ ((unsigned)&IOCA*8)+0;
+bit IOCA1 @ ((unsigned)&IOCA*8)+1;
+bit IOCA2 @ ((unsigned)&IOCA*8)+2;
+bit IOCA3 @ ((unsigned)&IOCA*8)+3;
+bit IOCA4 @ ((unsigned)&IOCA*8)+4;
+bit IOCA5 @ ((unsigned)&IOCA*8)+5;
+
+
+bit SWDTEN @ ((unsigned)&WDTCON*8)+0;
+bit WDTPS0 @ ((unsigned)&WDTCON*8)+1;
+bit WDTPS1 @ ((unsigned)&WDTCON*8)+2;
+bit WDTPS2 @ ((unsigned)&WDTCON*8)+3;
+bit WDTPS3 @ ((unsigned)&WDTCON*8)+4;
+
+# 442
+bit ADCS0 @ ((unsigned)&ADCON1*8)+4;
+bit ADCS1 @ ((unsigned)&ADCON1*8)+5;
+bit ADCS2 @ ((unsigned)&ADCON1*8)+6;
+
+
+
+bit WPUB4 @ ((unsigned)&WPUB*8)+4;
+bit WPUB5 @ ((unsigned)&WPUB*8)+5;
+bit WPUB6 @ ((unsigned)&WPUB*8)+6;
+bit WPUB7 @ ((unsigned)&WPUB*8)+7;
+
+
+bit IOCB4 @ ((unsigned)&IOCB*8)+4;
+bit IOCB5 @ ((unsigned)&IOCB*8)+5;
+bit IOCB6 @ ((unsigned)&IOCB*8)+6;
+bit IOCB7 @ ((unsigned)&IOCB*8)+7;
+
+
+bit VR0 @ ((unsigned)&VRCON*8)+0;
+bit VR1 @ ((unsigned)&VRCON*8)+1;
+bit VR2 @ ((unsigned)&VRCON*8)+2;
+bit VR3 @ ((unsigned)&VRCON*8)+3;
+bit VP6EN @ ((unsigned)&VRCON*8)+4;
+bit VRR @ ((unsigned)&VRCON*8)+5;
+bit C2VREN @ ((unsigned)&VRCON*8)+6;
+bit C1VREN @ ((unsigned)&VRCON*8)+7;
+
+
+bit C1CH0 @ ((unsigned)&CM1CON0*8)+0;
+bit C1CH1 @ ((unsigned)&CM1CON0*8)+1;
+bit C1R @ ((unsigned)&CM1CON0*8)+2;
+bit C1POL @ ((unsigned)&CM1CON0*8)+4;
+bit C1OE @ ((unsigned)&CM1CON0*8)+5;
+volatile bit C1OUT @ ((unsigned)&CM1CON0*8)+6;
+bit C1ON @ ((unsigned)&CM1CON0*8)+7;
+
+
+bit C2CH0 @ ((unsigned)&CM2CON0*8)+0;
+bit C2CH1 @ ((unsigned)&CM2CON0*8)+1;
+bit C2R @ ((unsigned)&CM2CON0*8)+2;
+bit C2POL @ ((unsigned)&CM2CON0*8)+4;
+bit C2OE @ ((unsigned)&CM2CON0*8)+5;
+volatile bit C2OUT @ ((unsigned)&CM2CON0*8)+6;
+bit C2ON @ ((unsigned)&CM2CON0*8)+7;
+
+
+bit C2SYNC @ ((unsigned)&CM2CON1*8)+0;
+bit T1GSS @ ((unsigned)&CM2CON1*8)+1;
+volatile bit MC2OUT @ ((unsigned)&CM2CON1*8)+6;
+volatile bit MC1OUT @ ((unsigned)&CM2CON1*8)+7;
+
+
+bit ANS0 @ ((unsigned)&ANSEL*8)+0;
+bit ANS1 @ ((unsigned)&ANSEL*8)+1;
+bit ANS2 @ ((unsigned)&ANSEL*8)+2;
+bit ANS3 @ ((unsigned)&ANSEL*8)+3;
+bit ANS4 @ ((unsigned)&ANSEL*8)+4;
+bit ANS5 @ ((unsigned)&ANSEL*8)+5;
+bit ANS6 @ ((unsigned)&ANSEL*8)+6;
+bit ANS7 @ ((unsigned)&ANSEL*8)+7;
+
+
+
+bit ANS8 @ ((unsigned)&ANSELH*8)+0;
+bit ANS9 @ ((unsigned)&ANSELH*8)+1;
+bit ANS10 @ ((unsigned)&ANSELH*8)+2;
+bit ANS11 @ ((unsigned)&ANSELH*8)+3;
+
+
+
+volatile bit RD @ ((unsigned)&EECON1*8)+0;
+volatile bit WR @ ((unsigned)&EECON1*8)+1;
+volatile bit WREN @ ((unsigned)&EECON1*8)+2;
+volatile bit WRERR @ ((unsigned)&EECON1*8)+3;
+
+# 528
+volatile bit PULSR @ ((unsigned)&SRCON*8)+2;
+volatile bit PULSS @ ((unsigned)&SRCON*8)+3;
+bit C2REN @ ((unsigned)&SRCON*8)+4;
+bit C1SEN @ ((unsigned)&SRCON*8)+5;
+bit SR0 @ ((unsigned)&SRCON*8)+6;
+bit SR1 @ ((unsigned)&SRCON*8)+7;
+
+# 392 "C:\Program Files\HI-TECH Software\PICC\9.70\include\pic.h"
+extern unsigned int flash_read(unsigned short addr);
+
+# 41 "C:\Program Files\HI-TECH Software\PICC\9.70\include\eeprom_routines.h"
+extern void eeprom_write(unsigned char addr, unsigned char value);
+extern unsigned char eeprom_read(unsigned char addr);
+
+
+# 465 "C:\Program Files\HI-TECH Software\PICC\9.70\include\pic.h"
+#pragma inline(_delay)
+extern void _delay(unsigned long);
+
+# 47 "D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\main.h"
+unsigned int DataEEAddr, DataEEData;
+unsigned char EEPROMKey[9];
+unsigned char DoorState;
+unsigned char LowBatt;
+unsigned char AutoMode;
+unsigned char TimeCounter;
+unsigned char SlaveConfigured;
+unsigned char MatchKey;
+unsigned char ToggleSkipFlag;
+
+
+void ReadEEPROM(void);
+void WriteEEPROM(void);
+
+extern unsigned char iButtonKey[9];
+extern unsigned char ReadiButton(void);
+extern unsigned char CheckForiButtonDisconnect(void);
+extern unsigned char CRCCheck(unsigned char*);
+
+# 91
+void CHK_LOW_BAT_OPEN(void);
+
+# 14 "D:\Amit\E-Projects\PIC Projects\CMC\iBUTTON\main.c"
+unsigned char InvalidKeyCount = 0;
+
+asm("\tpsect config,class=CONFIG,delta=2"); asm("\tdw ""0x3FFC & 0x3FF7 & 0x3FFF & 0x3FDF & 0x3FBF & 0x3CFF & 0x3BFF & 0x37FF");
+
+void PowerInit(void)
+{
+IRCF0=0x00;
+SCS=0x01;
+IRCF1=0x01;
+IRCF2=0x01;
+
+OSCTUNE=0x00;
+
+CM1CON0=0x00;
+ANSEL=0x00;
+ANSELH=0x00;
+
+TRISC1=0x00;
+RC1=0x00;
+
+TRISA5=0x01;
+WPUA=0x24;
+
+TRISC5=0x00;
+RC5=0x00;
+TRISA4=0x01;
+RABPU=0x00;
+TRISC0=0x00;
+TRISC2=0x01;
+TRISA2=0x01;
+RC0=0x00;
+
+TRISC6=0x00;
+TRISC7=0x00;
+
+do{RC6 = 0; RC7 = 0;}while(0);
+
+EECON1=0x00;
+
+INTCON=0x88;
+IOCA=0x24;
+AutoMode=0x01;
+}
+
+void DelayMs(unsigned int TimeCnt)
+{
+unsigned int i,j;
+for(i=0;i<TimeCnt;i++)
+{
+for(j=0;j<50;j++);
+}
+}
+
+void GoToSleep(void)
+{
+
+# 69
+#asm
+ BSF 0x3, 0x5
+ BCF 0x3, 0x6
+ BSF 0x5, 0x2
+
+ MOVLW 0x24
+ MOVWF 0x16
+ SLEEP
+
+# 77
+#endasm 
+1267;
+DelayMs(80);
+}
+
+void ToggleLED(void)
+{
+if(RC0)
+RC0=0x00;
+else
+{
+if(ToggleSkipFlag == 0)
+{
+ToggleSkipFlag=0x01;
+RC0=0x01;
+}
+else
+ToggleSkipFlag=0x00;
+}
+}
+
+void ToggleBuzzLED(void)
+{
+if(RC0)
+{
+RC1=0x00;
+RC0=0x00;
+}
+else
+{
+RC1=0x01;
+RC0=0x01;
+}
+}
+
+void DoorOpen(void)
+{
+unsigned char BattStatus;
+BattStatus=0x00;
+if(RA5)
+BattStatus++;
+DelayMs(10);
+if(RA5)
+BattStatus++;
+if(DoorState != 1)
+{
+do{RC6 = 1; RC7 = 1;}while(0);
+
+DelayMs(10);
+do{RC6 = 1; RC7 = 0;}while(0);
+
+DelayMs(195);
+}
+if(!RA5)
+BattStatus++;
+DelayMs(10);
+if(!RA5)
+BattStatus++;
+DelayMs(195);
+do{RC6 = 0; RC7 = 0;}while(0);
+
+DoorState=1;
+
+if(BattStatus == 4)
+LowBatt=0x01;
+else
+LowBatt=0x00;
+}
+
+void DoorClose(void)
+{
+
+
+
+if(DoorState != 0)
+{
+do{RC6 = 0; RC7 = 1;}while(0);
+DelayMs(400);
+do{RC6 = 0; RC7 = 0;}while(0);
+}
+DoorState=0;
+}
+
+void BuzzerBeep(unsigned char BeepNum, unsigned char LONG_BEEP)
+{
+unsigned char BeepCnt = 0;
+unsigned int BeepTime = 0;
+if(LONG_BEEP)
+BeepTime = (4*0x64);
+else
+BeepTime = 0x64;
+
+RC1=0x00;
+for(BeepCnt=0; BeepCnt<((BeepNum * 2) - 1); BeepCnt++)
+{
+RC1 = !RC1;
+DelayMs(BeepTime);
+}
+RC1=0x00;
+}
+
+void ReadEEPROM(void)
+{
+EEADR=DataEEAddr;
+EECON1=0x00;
+RD=0x01;
+DataEEData=EEDAT;
+}
+
+void WriteEEPROM(void)
+{
+EEADR=DataEEAddr;
+EEDAT=DataEEData;
+EECON1=0x00;
+WREN=0x01;
+GIE=0x00;
+while(GIE);
+EECON2=0x55;
+EECON2=0xAA;
+WR=0x01;
+GIE=0x01;
+WREN=0x00;
+}
+
+void EEPROMReadKey(unsigned char ReadAddress)
+{
+unsigned char KeyLength;
+do{INTCON &= 0x7E;}while(0);
+ReadAddress = ReadAddress * 8;
+for(KeyLength=0;KeyLength<8;KeyLength++)
+{
+DataEEAddr = ReadAddress++;
+ReadEEPROM();
+EEPROMKey[KeyLength] = DataEEData;
+}
+do{INTCON |= 0x80;}while(0);
+}
+
+void EEPROMWriteKeyByte(unsigned char WriteAddress)
+{
+do{INTCON &= 0x7E;}while(0);
+WriteAddress = WriteAddress * 8;
+DataEEAddr = WriteAddress++;
+DataEEData = iButtonKey[0];
+WriteEEPROM();
+DelayMs(10);
+do{INTCON |= 0x80;}while(0);
+}
+
+void EEPROMWriteKey(unsigned char WriteAddress)
+{
+unsigned char KeyLength;
+do{INTCON &= 0x7E;}while(0);
+WriteAddress = WriteAddress * 8;
+for(KeyLength=0;KeyLength<8;KeyLength++)
+{
+DataEEAddr = WriteAddress++;
+DataEEData = iButtonKey[KeyLength];
+WriteEEPROM();
+DelayMs(10);
+}
+do{INTCON |= 0x80;}while(0);
+}
+
+unsigned char strcmp(unsigned char* x, unsigned char* y)
+{
+unsigned char i;
+for(i=0;i<8;i++)
+{
+if(*x++ != *y++)
+break;
+}
+if(i==8)
+return(1);
+else
+return(0);
+}
+
+unsigned char AvailabeKey(void)
+{
+unsigned char i, key;
+for(i=0;i<23;i++)
+{
+EEPROMReadKey(i);
+key = strcmp(iButtonKey,EEPROMKey);
+if(key)
+break;
+}
+if(i == 0)
+return(2);
+else if(i < 23)
+return(1);
+else
+return(0);
+}
+
+void ClearAllKeys(unsigned char Master_Also)
+{
+unsigned char i;
+
+for(i=0;i<8;i++)
+{
+iButtonKey[i]=0x55;
+}
+i=0x01;
+if(Master_Also)
+i=0x00;
+for(;i<23;i++)
+{
+EEPROMWriteKeyByte(i);
+}
+}
+
+void ClearKey(unsigned char KeyNum)
+{
+unsigned char i;
+for(i=0;i<8;i++)
+{
+iButtonKey[i]=0x55;
+}
+EEPROMWriteKeyByte(KeyNum);
+}
+
+void Wait_With_LED_Blink(void)
+{
+unsigned int k;
+while(CheckForiButtonDisconnect())
+{
+for(k=0;k<13500;k++);
+ToggleLED();
+}
+}
+
+void Configuration(void)
+{
+unsigned char i, key, KeyConfigured = 0;
+unsigned int k;
+
+BuzzerBeep(1,1);
+
+Wait_With_LED_Blink();
+
+TimeCounter = 0;
+while(TimeCounter < 36)
+{
+if(ReadiButton())
+{
+MatchKey = AvailabeKey();
+if(MatchKey != 2)
+{
+KeyConfigured=0x01;
+for(i=1;i<23;i++)
+{
+EEPROMReadKey(i);
+key = strcmp(iButtonKey,EEPROMKey);
+if(key)
+{
+ClearKey(i);
+BuzzerBeep(2,0);
+TimeCounter=0x00;
+
+Wait_With_LED_Blink();
+break;
+}
+}
+if(i==23)
+{
+for(i=1;i<23;i++)
+{
+EEPROMReadKey(i);
+if(CRCCheck(EEPROMKey) == 0)
+{
+EEPROMWriteKey(i);
+BuzzerBeep(1,0);
+TimeCounter=0x00;
+
+Wait_With_LED_Blink();
+break;
+}
+}
+
+if(i==23)
+BuzzerBeep(3,1);
+
+}
+}
+else
+{
+if(KeyConfigured==0)
+{
+ClearAllKeys(0);
+BuzzerBeep(3,1);
+}
+else
+BuzzerBeep(1,0);
+break;
+}
+}
+DelayMs(170+30*3);
+ToggleLED();
+TimeCounter++;
+}
+TimeCounter = 5;
+TimeCounter++;
+}
+
+void InvalidKeyIndication(void)
+{
+RC1=0x01;
+RC0=0x01;
+TimeCounter=0x00;
+while(TimeCounter < 240 )
+{
+DelayMs(420);
+TimeCounter++;
+
+if(ReadiButton())
+{
+MatchKey = AvailabeKey();
+if(MatchKey != 0)
+{
+RC1=0x00;
+RC0=0x00;
+DelayMs(500);
+break;
+}
+}
+}
+RC1=0x00;
+RC0=0x00;
+}
+
+static void interrupt isr(void)
+{
+unsigned char i;
+i=PORTA;
+RABIF=0x00;
+IOCA=0x00;
+}
+
+void ConfigureMasterKey(unsigned char PowerOnBeep)
+{
+EEPROMReadKey(0);
+if(CRCCheck(EEPROMKey) == 0)
+{
+if(!PowerOnBeep)
+BuzzerBeep(3,1);
+
+while(1)
+{
+if(ReadiButton())
+{
+EEPROMWriteKey(0);
+BuzzerBeep(3,0);
+
+Wait_With_LED_Blink();
+return;
+}
+if(RA5 == 0)
+BuzzerBeep(3,1);
+
+GoToSleep();
+}
+}
+}
+
+void LockOperation(void)
+{
+unsigned int i;
+unsigned char ShouldCheckConfig;
+
+if(ReadiButton())
+{
+MatchKey = AvailabeKey();
+if(MatchKey)
+{
+RC0=0x01;
+BuzzerBeep(1,0);
+
+TimeCounter=0x00;
+ShouldCheckConfig=0x00;
+SlaveConfigured=0x00;
+ToggleSkipFlag=0x01;
+while(TimeCounter < 5 )
+{
+if(LowBatt)
+ToggleBuzzLED();
+
+if(ShouldCheckConfig == 0)
+{
+if((MatchKey == 2) && (!CheckForiButtonDisconnect()))
+{
+ShouldCheckConfig=0x01;
+}
+}
+
+if(RC2==1)
+{
+DoorOpen();
+}
+else
+{
+RC0=0x00;
+if(MatchKey!=2)
+{
+break;
+}
+}
+
+if(ReadiButton() && ShouldCheckConfig)
+{
+MatchKey = AvailabeKey();
+if(MatchKey == 2)
+{
+Configuration();
+SlaveConfigured=0x01;
+break;
+}
+}
+DelayMs(30);
+RC1=0x00;
+DelayMs(170);
+TimeCounter++;
+}
+RC1=0x00;
+RC0=0x00;
+DoorClose();
+
+while(CheckForiButtonDisconnect());
+InvalidKeyCount=0x00;
+}
+else
+{
+if((++InvalidKeyCount)>2)
+{
+InvalidKeyCount = 0;
+InvalidKeyIndication();
+}
+else
+{
+for(i=0;i<4;i++)
+{
+ToggleBuzzLED();
+DelayMs(125);
+}
+}
+while(CheckForiButtonDisconnect());
+}
+}
+}
+
+void CHK_LOW_BAT_OPEN(void)
+{
+DataEEAddr = 0xFF;
+ReadEEPROM();
+
+if(LowBatt)
+{
+if(DataEEData >= 0x03)
+LowBatt = 0x01;
+else
+{
+LowBatt = 0x00;
+DataEEAddr = 0xFF;
+DataEEData++;
+}
+}
+else
+{
+if(DataEEData > 0x00)
+{
+DataEEData--;
+}
+}
+WriteEEPROM();
+DelayMs(10);
+}
+
+void main(void)
+{
+unsigned char PowerOnBeep;
+PowerInit();
+PowerOnBeep=0x00;
+DelayMs(100);
+
+BuzzerBeep(2,0);
+
+while(1)
+{
+ConfigureMasterKey(PowerOnBeep);
+PowerOnBeep=0x01;
+
+while(1)
+{
+if(!RA5)
+{
+BuzzerBeep(3,1);
+do {DataEEAddr = 0xFF; DataEEData = 0x00; WriteEEPROM();}while(0);
+ClearAllKeys(1);
+ClearKey(0);
+break;
+}
+LockOperation();
+GoToSleep();
+}
+}
+}

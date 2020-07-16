@@ -1,0 +1,6 @@
+_Send_Command: CODE, 1859 0 31
+_main: CODE, 1890 0 40
+_Clear_LCD: CODE, 1836 0 23
+_Initialize_LCD: CODE, 1971 0 77
+_Delay: CODE, 1930 0 41
+Total: 212
